@@ -175,6 +175,7 @@
 <div class="nav">
   <button class="tab-btn active" onclick="showTab('rankings')">🏆 STR Rankings</button>
   <button class="tab-btn" onclick="showTab('details')">📊 Full Property Analysis</button>
+  <button class="tab-btn" onclick="showTab('tax')">💰 Tax Benefits</button>
   <button class="tab-btn" onclick="showTab('rules')">📋 Winhall STR Rules</button>
 </div>
 
@@ -619,7 +620,330 @@
     </div>
   </div>
 
-  <!-- ==================== RULES ==================== -->
+  <!-- ==================== TAX BENEFITS ==================== -->
+  <div class="tab-pane" id="tab-tax">
+
+    <div class="info-box">
+      <strong>Assumptions:</strong> 100% bonus depreciation in effect (restored for property acquired after Jan 19, 2025). Average guest stay ≤7 days (qualifies as non-passive under IRC §469). Material participation by owner (100+ hrs, more than any other individual). 37% marginal federal tax rate + 5% VT state = 42% combined. Land value = 20% of purchase price (non-depreciable). Building value = 80%. Cost segregation reclassifies 25% of building value to 5/15-yr assets eligible for immediate 100% bonus depreciation. Straight-line 39-yr on remaining 75%. All figures are estimates — consult your CPA.
+    </div>
+
+    <div class="alert-box">
+      <strong>The STR Loophole in plain English:</strong> Because your average guest stay is ≤7 days, the IRS treats this like a business (not a passive rental). That means depreciation losses offset your W-2 income directly — no real estate professional status required. Year 1 is the big year: 100% bonus depreciation on the reclassified short-life assets creates a massive paper loss that reduces your taxable income immediately.
+    </div>
+
+    <div class="section-title">How the Tax Stack Works</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:24px;">
+      <div class="rule-card">
+        <h3>📐 Step 1 — Cost Segregation</h3>
+        <div class="rule-item"><span class="ri">🏗️</span><div><div class="rl">Hire an engineer to reclassify building components into 5-yr, 15-yr, and 39-yr buckets</div><div class="rn">Flooring, fixtures, cabinetry, hot tub, landscaping, driveway, deck → shorter life</div></div></div>
+        <div class="rule-item"><span class="ri">📊</span><div><div class="rl">Typical result for ski home: 25–30% of building value reclassified</div><div class="rn">We model 25% (conservative)</div></div></div>
+        <div class="rule-item"><span class="ri">💵</span><div><div class="rl">Cost of study: ~$5,000–$8,000 (one-time)</div><div class="rn">Pays for itself in first-year tax savings many times over</div></div></div>
+      </div>
+      <div class="rule-card">
+        <h3>⚡ Step 2 — 100% Bonus Depreciation</h3>
+        <div class="rule-item"><span class="ri">✅</span><div><div class="rl">All reclassified short-life assets deducted 100% in Year 1</div><div class="rn">Restored under 2025 legislation for property placed in service after Jan 19, 2025</div></div></div>
+        <div class="rule-item"><span class="ri">📉</span><div><div class="rl">Creates large paper loss in Year 1</div><div class="rn">No cash outflow — pure accounting acceleration</div></div></div>
+        <div class="rule-item"><span class="ri">📋</span><div><div class="rl">Remaining 75% of building still depreciates over 39 years (straight-line)</div><div class="rn">Generates annual deduction in Years 2–39</div></div></div>
+      </div>
+      <div class="rule-card">
+        <h3>💼 Step 3 — Non-Passive Loss Offset</h3>
+        <div class="rule-item"><span class="ri">🔑</span><div><div class="rl">≤7-day avg guest stay + material participation = losses are non-passive</div><div class="rn">Offsets W-2 income dollar-for-dollar (no $25K cap, no REPS required)</div></div></div>
+        <div class="rule-item"><span class="ri">📈</span><div><div class="rl">Additional operating deductions every year</div><div class="rn">Mortgage interest, property taxes, STR license, insurance, repairs, utilities (rental %)</div></div></div>
+        <div class="rule-item"><span class="ri">🏖️</span><div><div class="rl">Personal use days require proration</div><div class="rn">4–6 weeks personal = ~85% rental allocation for deductions</div></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Tax Benefit Model — All 4 Properties</div>
+
+    <!-- Property Tax Tabs -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+      <button class="tab-btn active" onclick="showTaxProp('tax-sugarbush')" style="border:1px solid #d97706;border-radius:6px;padding:8px 14px;" id="tbtn-sugarbush">🥇 24 Sugarbush</button>
+      <button class="tab-btn" onclick="showTaxProp('tax-17rt')" style="border:1px solid #6b7280;border-radius:6px;padding:8px 14px;" id="tbtn-17rt">🥈 17 Roundtree</button>
+      <button class="tab-btn" onclick="showTaxProp('tax-7rt')" style="border:1px solid #92400e;border-radius:6px;padding:8px 14px;" id="tbtn-7rt">🥉 7 Roundtree</button>
+      <button class="tab-btn" onclick="showTaxProp('tax-maple')" style="border:1px solid #374151;border-radius:6px;padding:8px 14px;" id="tbtn-maple">⚠️ Maple Ridge</button>
+    </div>
+
+    <!-- 24 SUGARBUSH TAX -->
+    <div id="tax-sugarbush" class="tax-prop-pane" style="display:block;">
+      <div style="background:#1c1500;border:1px solid #d97706;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-size:16px;font-weight:700;color:#fff;">24 Sugarbush Drive — $849,000</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px;">5 bed · 2,897 sf · Land 20% = $169,800 non-depreciable · Building 80% = $679,200</div>
+      </div>
+      <div class="stats-3" style="margin-bottom:16px;">
+        <div class="stat"><div class="s-label">Building Basis</div><div class="s-val">$679,200</div></div>
+        <div class="stat"><div class="s-label">Cost Seg (25%)</div><div class="s-val green">$169,800</div></div>
+        <div class="stat"><div class="s-label">Yr1 Bonus Dep.</div><div class="s-val green">$169,800</div></div>
+        <div class="stat"><div class="s-label">39-yr Annual Dep.</div><div class="s-val blue">$13,062/yr</div></div>
+        <div class="stat"><div class="s-label">Mortgage Interest/yr</div><div class="s-val">~$43,500</div></div>
+        <div class="stat"><div class="s-label">Rental Alloc. (85%)</div><div class="s-val">of all deductions</div></div>
+      </div>
+      <div class="section-title">Year 1 Tax Analysis (Optimistic STR Scenario)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:500px;">
+          <thead><tr><th>Item</th><th>Amount</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Gross STR Revenue</td><td style="color:#4ade80;">$93,750</td><td>75 nights × $1,250 avg</td></tr>
+            <tr><td>Less: 22% Lodging Taxes</td><td style="color:#f87171;">−$20,625</td><td>10% Winhall + 9% VT + 3% VT surcharge</td></tr>
+            <tr><td>Net STR Revenue</td><td style="color:#4ade80;">$73,125</td><td>Before operating expenses</td></tr>
+            <tr><td style="border-top:1px solid #2a2d3a;padding-top:10px;">Mortgage Interest (85% rental alloc.)</td><td style="color:#f87171;">−$36,975</td><td>~$43,500 interest × 85%</td></tr>
+            <tr><td>Property Tax (85% rental alloc.)</td><td style="color:#f87171;">−$8,500</td><td>Est. $10,000/yr × 85%</td></tr>
+            <tr><td>STR License</td><td style="color:#f87171;">−$2,500</td><td>5 bedrooms × $500</td></tr>
+            <tr><td>Insurance (85%)</td><td style="color:#f87171;">−$2,550</td><td>Est. $3,000/yr × 85%</td></tr>
+            <tr><td>Repairs & Maintenance</td><td style="color:#f87171;">−$3,500</td><td>~4% of rental revenue</td></tr>
+            <tr><td>Utilities & Supplies (rental %)</td><td style="color:#f87171;">−$2,500</td><td>Electric, wifi, cleaning supplies</td></tr>
+            <tr><td>Cost Seg Study (one-time)</td><td style="color:#f87171;">−$6,500</td><td>Engineering study, fully deductible</td></tr>
+            <tr><td><strong>Year 1 Bonus Depreciation (100%)</strong></td><td style="color:#f87171;font-weight:700;">−$169,800</td><td style="color:#d97706;font-weight:700;">⚡ KEY: 25% of building reclassified, deducted all at once</td></tr>
+            <tr><td>39-yr Straight-Line Depreciation</td><td style="color:#f87171;">−$13,062</td><td>Remaining 75% ÷ 39 yrs (partial yr: ~$11,100)</td></tr>
+            <tr style="background:#052e16;"><td><strong>Year 1 Net Taxable Loss</strong></td><td style="color:#f87171;font-weight:700;">−$174,807</td><td style="color:#4ade80;">Offsets W-2 income at 42% combined rate</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Tax Savings (42% rate)</strong></td><td style="color:#4ade80;font-weight:700;font-size:15px;">+$73,419</td><td style="color:#60a5fa;font-weight:700;">Real cash back from IRS/VT in Year 1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title" style="margin-top:20px;">5-Year Totality Model — 24 Sugarbush Dr ($849K, Optimistic)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:600px;">
+          <thead><tr><th>Year</th><th>Net STR Cash</th><th>Annual Carry</th><th>Cash Position</th><th>Tax Savings</th><th>Total Economic Value</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Year 1</strong></td><td style="color:#4ade80;">$70,625</td><td style="color:#f87171;">−$64,000</td><td style="color:#4ade80;">+$6,625</td><td style="color:#4ade80;font-weight:700;">+$73,419</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$80,044</td></tr>
+            <tr><td><strong>Year 2</strong></td><td style="color:#4ade80;">$73,344</td><td style="color:#f87171;">−$64,000</td><td style="color:#fbbf24;">+$9,344</td><td style="color:#4ade80;">+$8,400</td><td style="color:#4ade80;">+$17,744</td></tr>
+            <tr><td><strong>Year 3</strong></td><td style="color:#4ade80;">$76,077</td><td style="color:#f87171;">−$64,000</td><td style="color:#fbbf24;">+$12,077</td><td style="color:#4ade80;">+$8,400</td><td style="color:#4ade80;">+$20,477</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Yr 1–3 Total</strong></td><td></td><td></td><td style="color:#4ade80;">+$28,046</td><td style="color:#4ade80;font-weight:700;">+$90,219</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$118,265</td></tr>
+            <tr><td><strong>Year 4</strong></td><td style="color:#4ade80;">$78,892</td><td style="color:#f87171;">−$64,000</td><td style="color:#4ade80;">+$14,892</td><td style="color:#4ade80;">+$8,400</td><td style="color:#4ade80;">+$23,292</td></tr>
+            <tr><td><strong>Year 5</strong></td><td style="color:#4ade80;">$81,762</td><td style="color:#f87171;">−$64,000</td><td style="color:#4ade80;">+$17,762</td><td style="color:#4ade80;">+$8,400</td><td style="color:#4ade80;">+$26,162</td></tr>
+            <tr style="background:#052e16;"><td><strong>Yr 1–5 TOTAL</strong></td><td style="color:#4ade80;">$380,700</td><td style="color:#f87171;">−$320,000</td><td style="color:#4ade80;font-weight:700;">+$60,700</td><td style="color:#4ade80;font-weight:700;">+$107,019</td><td style="color:#4ade80;font-weight:700;font-size:16px;">+$167,719</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict green" style="margin-top:12px;">
+        <strong>Over 5 years, 24 Sugarbush generates ~$167K in combined economic value</strong> (cash flow + tax savings) against a $212K down payment. That's a ~79% return on cash invested in 5 years before appreciation. Year 1 alone returns $80K — largely from the first-year bonus depreciation event. This is the only property in the group that works as a standalone investment at current pricing.
+      </div>
+    </div>
+
+    <!-- 17 ROUNDTREE TAX -->
+    <div id="tax-17rt" class="tax-prop-pane" style="display:none;">
+      <div style="background:#13161f;border:1px solid #6b7280;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-size:16px;font-weight:700;color:#fff;">17 Roundtree Road — $1,075,000</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px;">4 bed · 3,938 sf · Land 20% = $215,000 · Building 80% = $860,000</div>
+      </div>
+      <div class="stats-3" style="margin-bottom:16px;">
+        <div class="stat"><div class="s-label">Building Basis</div><div class="s-val">$860,000</div></div>
+        <div class="stat"><div class="s-label">Cost Seg (25%)</div><div class="s-val green">$215,000</div></div>
+        <div class="stat"><div class="s-label">Yr1 Bonus Dep.</div><div class="s-val green">$215,000</div></div>
+        <div class="stat"><div class="s-label">39-yr Annual Dep.</div><div class="s-val blue">$16,538/yr</div></div>
+        <div class="stat"><div class="s-label">Mortgage Interest/yr</div><div class="s-val">~$55,000</div></div>
+        <div class="stat"><div class="s-label">Road + Water Fees</div><div class="s-val">$2,500/yr</div></div>
+      </div>
+      <div class="section-title">Year 1 Tax Analysis (Optimistic STR Scenario)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:500px;">
+          <thead><tr><th>Item</th><th>Amount</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Gross STR Revenue</td><td style="color:#4ade80;">$90,000</td><td>75 nights × $1,200 avg</td></tr>
+            <tr><td>Less: 22% Lodging Taxes</td><td style="color:#f87171;">−$19,800</td><td>10% Winhall + 9% VT + 3% VT surcharge</td></tr>
+            <tr><td>Net STR Revenue</td><td style="color:#4ade80;">$70,200</td><td></td></tr>
+            <tr><td>Mortgage Interest (85%)</td><td style="color:#f87171;">−$46,750</td><td>~$55,000 × 85%</td></tr>
+            <tr><td>Property Tax (85%)</td><td style="color:#f87171;">−$10,200</td><td>~$12,000/yr est. × 85%</td></tr>
+            <tr><td>Road Maint. + Water/Sewer</td><td style="color:#f87171;">−$2,500</td><td>$1,472 + $1,028</td></tr>
+            <tr><td>STR License</td><td style="color:#f87171;">−$2,000</td><td>4 bedrooms × $500</td></tr>
+            <tr><td>Insurance + Repairs + Utilities</td><td style="color:#f87171;">−$9,500</td><td>Combined operating</td></tr>
+            <tr><td>Cost Seg Study</td><td style="color:#f87171;">−$6,500</td><td>One-time</td></tr>
+            <tr><td><strong>Year 1 Bonus Depreciation</strong></td><td style="color:#f87171;font-weight:700;">−$215,000</td><td style="color:#d97706;font-weight:700;">⚡ 25% of $860K building basis</td></tr>
+            <tr><td>39-yr Depreciation (partial yr)</td><td style="color:#f87171;">−$14,000</td><td>Remaining 75% ÷ 39 yrs</td></tr>
+            <tr style="background:#052e16;"><td><strong>Year 1 Net Taxable Loss</strong></td><td style="color:#f87171;font-weight:700;">−$240,250</td><td style="color:#4ade80;">Offsets W-2 at 42%</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Tax Savings (42% rate)</strong></td><td style="color:#4ade80;font-weight:700;font-size:15px;">+$100,905</td><td style="color:#60a5fa;font-weight:700;">Real cash back from IRS/VT</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title" style="margin-top:20px;">5-Year Totality — 17 Roundtree Rd ($1,075K, Optimistic)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:600px;">
+          <thead><tr><th>Year</th><th>Net STR Cash</th><th>Annual Carry</th><th>Cash Position</th><th>Tax Savings</th><th>Total Economic Value</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Year 1</strong></td><td style="color:#4ade80;">$67,700</td><td style="color:#f87171;">−$86,500</td><td style="color:#f87171;">−$18,800</td><td style="color:#4ade80;font-weight:700;">+$100,905</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$82,105</td></tr>
+            <tr><td><strong>Year 2</strong></td><td style="color:#4ade80;">$70,340</td><td style="color:#f87171;">−$86,500</td><td style="color:#f87171;">−$16,160</td><td style="color:#4ade80;">+$11,000</td><td style="color:#f87171;">−$5,160</td></tr>
+            <tr><td><strong>Year 3</strong></td><td style="color:#4ade80;">$73,080</td><td style="color:#f87171;">−$86,500</td><td style="color:#f87171;">−$13,420</td><td style="color:#4ade80;">+$11,000</td><td style="color:#f87171;">−$2,420</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Yr 1–3 Total</strong></td><td></td><td></td><td style="color:#f87171;">−$48,380</td><td style="color:#4ade80;font-weight:700;">+$122,905</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$74,525</td></tr>
+            <tr><td><strong>Year 4</strong></td><td style="color:#4ade80;">$75,920</td><td style="color:#f87171;">−$86,500</td><td style="color:#f87171;">−$10,580</td><td style="color:#4ade80;">+$11,000</td><td style="color:#fbbf24;">+$420</td></tr>
+            <tr><td><strong>Year 5</strong></td><td style="color:#4ade80;">$78,860</td><td style="color:#f87171;">−$86,500</td><td style="color:#f87171;">−$7,640</td><td style="color:#4ade80;">+$11,000</td><td style="color:#fbbf24;">+$3,360</td></tr>
+            <tr style="background:#1c1500;"><td><strong>Yr 1–5 TOTAL</strong></td><td style="color:#4ade80;">$365,900</td><td style="color:#f87171;">−$432,500</td><td style="color:#f87171;font-weight:700;">−$66,600</td><td style="color:#4ade80;font-weight:700;">+$144,905</td><td style="color:#fbbf24;font-weight:700;font-size:16px;">+$78,305</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict yellow" style="margin-top:12px;">
+        <strong>17 Roundtree works on a total economic basis — but only because of the tax event.</strong> Year 1 alone generates $82K in combined value, primarily from $100K in tax savings on the $215K bonus depreciation. Without the tax strategy, this property loses $66K cash over 5 years. With it, you net +$78K over 5 years. The $268K down payment means a ~29% ROI over 5 years before appreciation — viable, but requires the tax strategy to be actively executed.
+      </div>
+    </div>
+
+    <!-- 7 ROUNDTREE TAX -->
+    <div id="tax-7rt" class="tax-prop-pane" style="display:none;">
+      <div style="background:#13161f;border:1px solid #92400e;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-size:16px;font-weight:700;color:#fff;">7 Roundtree Road — $950,000</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px;">4 bed · 3,031 sf · Land 20% = $190,000 · Building 80% = $760,000</div>
+      </div>
+      <div class="stats-3" style="margin-bottom:16px;">
+        <div class="stat"><div class="s-label">Building Basis</div><div class="s-val">$760,000</div></div>
+        <div class="stat"><div class="s-label">Cost Seg (25%)</div><div class="s-val green">$190,000</div></div>
+        <div class="stat"><div class="s-label">Yr1 Bonus Dep.</div><div class="s-val green">$190,000</div></div>
+        <div class="stat"><div class="s-label">39-yr Annual Dep.</div><div class="s-val blue">$14,615/yr</div></div>
+        <div class="stat"><div class="s-label">Mortgage Interest/yr</div><div class="s-val">~$48,600</div></div>
+        <div class="stat"><div class="s-label">Property Tax/yr</div><div class="s-val">$11,744</div></div>
+      </div>
+      <div class="section-title">Year 1 Tax Analysis (Optimistic STR Scenario)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:500px;">
+          <thead><tr><th>Item</th><th>Amount</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Gross STR Revenue</td><td style="color:#4ade80;">$79,200</td><td>72 nights × $1,100 avg</td></tr>
+            <tr><td>Less: 22% Lodging Taxes</td><td style="color:#f87171;">−$17,424</td><td></td></tr>
+            <tr><td>Net STR Revenue</td><td style="color:#4ade80;">$61,776</td><td></td></tr>
+            <tr><td>Mortgage Interest (85%)</td><td style="color:#f87171;">−$41,310</td><td>~$48,600 × 85%</td></tr>
+            <tr><td>Property Tax (85%)</td><td style="color:#f87171;">−$9,982</td><td>$11,744 × 85%</td></tr>
+            <tr><td>STR License</td><td style="color:#f87171;">−$2,000</td><td>4 bedrooms × $500</td></tr>
+            <tr><td>Insurance + Repairs + Utilities</td><td style="color:#f87171;">−$8,500</td><td>Combined</td></tr>
+            <tr><td>Cost Seg Study</td><td style="color:#f87171;">−$6,500</td><td>One-time</td></tr>
+            <tr><td><strong>Year 1 Bonus Depreciation</strong></td><td style="color:#f87171;font-weight:700;">−$190,000</td><td style="color:#d97706;font-weight:700;">⚡ 25% of $760K building basis</td></tr>
+            <tr><td>39-yr Depreciation (partial yr)</td><td style="color:#f87171;">−$12,400</td><td>Remaining 75% ÷ 39 yrs</td></tr>
+            <tr style="background:#052e16;"><td><strong>Year 1 Net Taxable Loss</strong></td><td style="color:#f87171;font-weight:700;">−$218,916</td><td style="color:#4ade80;">Offsets W-2 at 42%</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Tax Savings (42% rate)</strong></td><td style="color:#4ade80;font-weight:700;font-size:15px;">+$91,945</td><td style="color:#60a5fa;font-weight:700;">Real cash back from IRS/VT</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title" style="margin-top:20px;">5-Year Totality — 7 Roundtree Rd ($950K, Optimistic)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:600px;">
+          <thead><tr><th>Year</th><th>Net STR Cash</th><th>Annual Carry</th><th>Cash Position</th><th>Tax Savings</th><th>Total Economic Value</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Year 1</strong></td><td style="color:#4ade80;">$59,776</td><td style="color:#f87171;">−$72,000</td><td style="color:#f87171;">−$12,224</td><td style="color:#4ade80;font-weight:700;">+$91,945</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$79,721</td></tr>
+            <tr><td><strong>Year 2</strong></td><td style="color:#4ade80;">$62,168</td><td style="color:#f87171;">−$72,000</td><td style="color:#f87171;">−$9,832</td><td style="color:#4ade80;">+$9,600</td><td style="color:#fbbf24;">−$232</td></tr>
+            <tr><td><strong>Year 3</strong></td><td style="color:#4ade80;">$64,632</td><td style="color:#f87171;">−$72,000</td><td style="color:#f87171;">−$7,368</td><td style="color:#4ade80;">+$9,600</td><td style="color:#fbbf24;">+$2,232</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Yr 1–3 Total</strong></td><td></td><td></td><td style="color:#f87171;">−$29,424</td><td style="color:#4ade80;font-weight:700;">+$111,145</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$81,721</td></tr>
+            <tr><td><strong>Year 4</strong></td><td style="color:#4ade80;">$67,180</td><td style="color:#f87171;">−$72,000</td><td style="color:#f87171;">−$4,820</td><td style="color:#4ade80;">+$9,600</td><td style="color:#fbbf24;">+$4,780</td></tr>
+            <tr><td><strong>Year 5</strong></td><td style="color:#4ade80;">$69,820</td><td style="color:#f87171;">−$72,000</td><td style="color:#f87171;">−$2,180</td><td style="color:#4ade80;">+$9,600</td><td style="color:#fbbf24;">+$7,420</td></tr>
+            <tr style="background:#1c1500;"><td><strong>Yr 1–5 TOTAL</strong></td><td style="color:#4ade80;">$323,576</td><td style="color:#f87171;">−$360,000</td><td style="color:#f87171;font-weight:700;">−$36,424</td><td style="color:#4ade80;font-weight:700;">+$129,945</td><td style="color:#fbbf24;font-weight:700;font-size:16px;">+$93,521</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict yellow" style="margin-top:12px;">
+        <strong>7 Roundtree is the strongest risk-adjusted play of the two Roundtree properties.</strong> Lower purchase price = lower carry = closer to break-even on cash. Tax strategy generates $91K in Year 1, covering the cash shortfall and then some. Over 5 years, nets +$93K economic value on a $237K down payment — a ~39% 5-year ROI before appreciation. The 100+ days on market suggests room to negotiate to $900K, which would improve all metrics meaningfully.
+      </div>
+    </div>
+
+    <!-- MAPLE RIDGE TAX -->
+    <div id="tax-maple" class="tax-prop-pane" style="display:none;">
+      <div style="background:#13161f;border:1px solid #374151;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-size:16px;font-weight:700;color:#fff;">Maple Ridge Unit B2 — $775,000</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px;">3 bed · 2,317 sf · Condo · HOA rules TBD · Land 20% = $155,000 · Building 80% = $620,000</div>
+      </div>
+      <div class="stats-3" style="margin-bottom:16px;">
+        <div class="stat"><div class="s-label">Building Basis</div><div class="s-val">$620,000</div></div>
+        <div class="stat"><div class="s-label">Cost Seg (25%)</div><div class="s-val green">$155,000</div></div>
+        <div class="stat"><div class="s-label">Yr1 Bonus Dep.</div><div class="s-val yellow">$155,000*</div></div>
+        <div class="stat"><div class="s-label">39-yr Annual Dep.</div><div class="s-val blue">$11,923/yr</div></div>
+        <div class="stat"><div class="s-label">Mortgage Interest/yr</div><div class="s-val">~$39,600</div></div>
+        <div class="stat"><div class="s-label">STR Eligibility</div><div class="s-val red">HOA Unknown</div></div>
+      </div>
+      <div class="alert-box">⚠️ <strong>STR loophole only applies if:</strong> (a) HOA permits STR, (b) average guest stay is ≤7 days, and (c) you materially participate. If HOA restricts to 30+ day minimums, the STR loophole is unavailable — losses revert to passive and cannot offset W-2 income. All tax analysis below assumes STR is permitted by HOA.
+      </div>
+      <div class="section-title">Year 1 Tax Analysis (Optimistic, IF STR Permitted)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:500px;">
+          <thead><tr><th>Item</th><th>Amount</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Gross STR Revenue</td><td style="color:#4ade80;">$55,250</td><td>65 nights × $850 avg</td></tr>
+            <tr><td>Less: 22% Lodging Taxes</td><td style="color:#f87171;">−$12,155</td><td></td></tr>
+            <tr><td>Net STR Revenue</td><td style="color:#4ade80;">$43,095</td><td></td></tr>
+            <tr><td>Mortgage Interest (85%)</td><td style="color:#f87171;">−$33,660</td><td>~$39,600 × 85%</td></tr>
+            <tr><td>Property Tax + HOA (85%)</td><td style="color:#f87171;">−$9,000</td><td>Est. $8K prop tax + HOA fees × 85%</td></tr>
+            <tr><td>STR License</td><td style="color:#f87171;">−$1,500</td><td>3 bedrooms × $500</td></tr>
+            <tr><td>Insurance + Repairs + Utilities</td><td style="color:#f87171;">−$5,500</td><td>Combined</td></tr>
+            <tr><td>Cost Seg Study</td><td style="color:#f87171;">−$5,500</td><td>One-time (lower cost for smaller unit)</td></tr>
+            <tr><td><strong>Year 1 Bonus Depreciation*</strong></td><td style="color:#f87171;font-weight:700;">−$155,000</td><td style="color:#d97706;">⚡ *IF HOA permits STR</td></tr>
+            <tr><td>39-yr Depreciation (partial yr)</td><td style="color:#f87171;">−$10,100</td><td></td></tr>
+            <tr style="background:#052e16;"><td><strong>Year 1 Net Taxable Loss</strong></td><td style="color:#f87171;font-weight:700;">−$181,165</td><td style="color:#4ade80;">Offsets W-2 at 42%</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Tax Savings (42% rate)</strong></td><td style="color:#4ade80;font-weight:700;font-size:15px;">+$76,089</td><td style="color:#60a5fa;font-weight:700;">IF STR permitted by HOA</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title" style="margin-top:20px;">5-Year Totality — Maple Ridge B2 ($775K, Optimistic, IF STR Permitted)</div>
+      <div class="table-scroll">
+        <table class="summary-table" style="min-width:600px;">
+          <thead><tr><th>Year</th><th>Net STR Cash</th><th>Annual Carry</th><th>Cash Position</th><th>Tax Savings</th><th>Total Economic Value</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Year 1</strong></td><td style="color:#4ade80;">$41,595</td><td style="color:#f87171;">−$58,000</td><td style="color:#f87171;">−$16,405</td><td style="color:#4ade80;font-weight:700;">+$76,089</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$59,684</td></tr>
+            <tr><td><strong>Year 2</strong></td><td style="color:#4ade80;">$43,260</td><td style="color:#f87171;">−$58,000</td><td style="color:#f87171;">−$14,740</td><td style="color:#4ade80;">+$7,700</td><td style="color:#f87171;">−$7,040</td></tr>
+            <tr><td><strong>Year 3</strong></td><td style="color:#4ade80;">$44,982</td><td style="color:#f87171;">−$58,000</td><td style="color:#f87171;">−$13,018</td><td style="color:#4ade80;">+$7,700</td><td style="color:#f87171;">−$5,318</td></tr>
+            <tr style="background:#0c1a3a;"><td><strong>Yr 1–3 Total</strong></td><td></td><td></td><td style="color:#f87171;">−$44,163</td><td style="color:#4ade80;font-weight:700;">+$91,489</td><td style="color:#fbbf24;font-weight:700;font-size:14px;">+$47,326</td></tr>
+            <tr><td><strong>Year 4</strong></td><td style="color:#4ade80;">$46,762</td><td style="color:#f87171;">−$58,000</td><td style="color:#f87171;">−$11,238</td><td style="color:#4ade80;">+$7,700</td><td style="color:#f87171;">−$3,538</td></tr>
+            <tr><td><strong>Year 5</strong></td><td style="color:#4ade80;">$48,600</td><td style="color:#f87171;">−$58,000</td><td style="color:#f87171;">−$9,400</td><td style="color:#4ade80;">+$7,700</td><td style="color:#f87171;">−$1,700</td></tr>
+            <tr style="background:#1c0505;"><td><strong>Yr 1–5 TOTAL</strong></td><td style="color:#4ade80;">$225,199</td><td style="color:#f87171;">−$290,000</td><td style="color:#f87171;font-weight:700;">−$64,801</td><td style="color:#4ade80;font-weight:700;">+$106,889</td><td style="color:#fbbf24;font-weight:700;font-size:16px;">+$42,088</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict red" style="margin-top:12px;">
+        <strong>Even with the full tax strategy, Maple Ridge barely breaks even over 5 years — and that's assuming HOA permits STR.</strong> Years 2–5 are all cash-flow negative. The Year 1 tax event (+$59K) saves the total from being deeply negative, but the cumulative 5-year economic value (+$42K on a $193K down payment) is the worst return of the group at ~22%. If HOA restricts STR: no loophole, no bonus depreciation offset against W-2, losses become passive — this becomes a vacation condo with negative carry.
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px;">5-Year Economic Totality — All 4 Properties</div>
+    <div class="mobile-only" style="margin-bottom:16px;">
+      <div class="mob-sum-card" style="border-color:#d97706;">
+        <div class="mob-sum-rank" style="color:#d97706;">🥇 24 Sugarbush Dr · $849K</div>
+        <div class="mob-sum-addr">Best overall — only property cash-flow positive without tax</div>
+        <div class="mob-sum-row"><span>5-Yr Cash Position</span><span style="color:#4ade80;">+$60,700</span></div>
+        <div class="mob-sum-row"><span>5-Yr Tax Savings</span><span style="color:#4ade80;">+$107,019</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr Total Value</span><span style="color:#4ade80;font-weight:700;">+$167,719</span></div>
+        <div class="mob-sum-row"><span>Down Payment</span><span>$212,250</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr ROI on Cash</span><span style="color:#4ade80;font-weight:700;">~79%</span></div>
+      </div>
+      <div class="mob-sum-card" style="border-color:#92400e;">
+        <div class="mob-sum-rank" style="color:#b45309;">🥉 7 Roundtree Rd · $950K</div>
+        <div class="mob-sum-addr">Best of the Roundtree pair — negotiation potential</div>
+        <div class="mob-sum-row"><span>5-Yr Cash Position</span><span style="color:#f87171;">−$36,424</span></div>
+        <div class="mob-sum-row"><span>5-Yr Tax Savings</span><span style="color:#4ade80;">+$129,945</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr Total Value</span><span style="color:#fbbf24;font-weight:700;">+$93,521</span></div>
+        <div class="mob-sum-row"><span>Down Payment</span><span>$237,500</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr ROI on Cash</span><span style="color:#fbbf24;font-weight:700;">~39%</span></div>
+      </div>
+      <div class="mob-sum-card" style="border-color:#6b7280;">
+        <div class="mob-sum-rank" style="color:#9ca3af;">🥈 17 Roundtree Rd · $1,075K</div>
+        <div class="mob-sum-addr">Best location, highest tax event, carries hardest</div>
+        <div class="mob-sum-row"><span>5-Yr Cash Position</span><span style="color:#f87171;">−$66,600</span></div>
+        <div class="mob-sum-row"><span>5-Yr Tax Savings</span><span style="color:#4ade80;">+$144,905</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr Total Value</span><span style="color:#fbbf24;font-weight:700;">+$78,305</span></div>
+        <div class="mob-sum-row"><span>Down Payment</span><span>$268,750</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr ROI on Cash</span><span style="color:#fbbf24;font-weight:700;">~29%</span></div>
+      </div>
+      <div class="mob-sum-card" style="border-color:#374151;">
+        <div class="mob-sum-rank" style="color:#6b7280;">⚠️ Maple Ridge B2 · $775K</div>
+        <div class="mob-sum-addr">Lowest price, worst return — HOA risk kills the thesis</div>
+        <div class="mob-sum-row"><span>5-Yr Cash Position</span><span style="color:#f87171;">−$64,801</span></div>
+        <div class="mob-sum-row"><span>5-Yr Tax Savings</span><span style="color:#4ade80;">+$106,889 (if STR permitted)</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr Total Value</span><span style="color:#fbbf24;font-weight:700;">+$42,088</span></div>
+        <div class="mob-sum-row"><span>Down Payment</span><span>$193,750</span></div>
+        <div class="mob-sum-row"><span style="font-weight:700;">5-Yr ROI on Cash</span><span style="color:#f87171;font-weight:700;">~22% (HOA risk)</span></div>
+      </div>
+    </div>
+    <div class="table-scroll desktop-only">
+      <table class="summary-table" style="min-width:680px;">
+        <thead><tr><th>Property</th><th>Price</th><th>Down Pmt</th><th>5-Yr Cash</th><th>5-Yr Tax Savings</th><th>5-Yr Total</th><th>ROI on Cash</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#d97706;font-weight:700;">🥇 24 Sugarbush Dr</td><td>$849K</td><td>$212,250</td><td style="color:#4ade80;">+$60,700</td><td style="color:#4ade80;">+$107,019</td><td style="color:#4ade80;font-weight:700;font-size:14px;">+$167,719</td><td style="color:#4ade80;font-weight:700;">~79%</td></tr>
+          <tr><td style="color:#b45309;font-weight:700;">🥉 7 Roundtree Rd</td><td>$950K</td><td>$237,500</td><td style="color:#f87171;">−$36,424</td><td style="color:#4ade80;">+$129,945</td><td style="color:#fbbf24;font-weight:700;font-size:14px;">+$93,521</td><td style="color:#fbbf24;font-weight:700;">~39%</td></tr>
+          <tr><td style="color:#9ca3af;font-weight:700;">🥈 17 Roundtree Rd</td><td>$1,075K</td><td>$268,750</td><td style="color:#f87171;">−$66,600</td><td style="color:#4ade80;">+$144,905</td><td style="color:#fbbf24;font-weight:700;font-size:14px;">+$78,305</td><td style="color:#fbbf24;font-weight:700;">~29%</td></tr>
+          <tr><td style="color:#6b7280;font-weight:700;">⚠️ Maple Ridge B2</td><td>$775K</td><td>$193,750</td><td style="color:#f87171;">−$64,801</td><td style="color:#4ade80;">+$106,889*</td><td style="color:#fbbf24;font-weight:700;font-size:14px;">+$42,088*</td><td style="color:#f87171;font-weight:700;">~22%*</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:#6b7280;margin-top:8px;">*Maple Ridge figures assume HOA permits STR. If STR is prohibited, tax loophole is unavailable and losses are passive — total 5-yr position becomes deeply negative.</div>
+
+    <div class="info-box" style="margin-top:20px;">
+      <strong>What's not in this model (all additive):</strong> Property appreciation (Winhall SFH avg ~5–7%/yr), Ikon pass savings (~$5,177/yr for family of 5), personal use enjoyment value, depreciation recapture on sale (reduces net proceeds but deferred to exit), cost seg study investment (~$6,500 one-time).
+    </div>
+  </div>
   <div class="tab-pane" id="tab-rules">
 
     <div class="alert-box">
@@ -681,6 +1005,19 @@ function showTab(id) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   event.target.classList.add('active');
+}
+
+function showTaxProp(id) {
+  document.querySelectorAll('.tax-prop-pane').forEach(p => p.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  // Update sub-tab button styles
+  ['sugarbush','17rt','7rt','maple'].forEach(k => {
+    const btn = document.getElementById('tbtn-' + k);
+    if (btn) btn.classList.remove('active');
+  });
+  const map = {'tax-sugarbush':'sugarbush','tax-17rt':'17rt','tax-7rt':'7rt','tax-maple':'maple'};
+  const btn = document.getElementById('tbtn-' + map[id]);
+  if (btn) btn.classList.add('active');
 }
 
 // Wrap all rev-tables in scrollable containers for mobile
