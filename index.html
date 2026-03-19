@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stratton STR Viability Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e4e4e7; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0f1117 100%); border-bottom: 1px solid #2a2d3a; padding: 24px 32px; }
+  .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header .sub { font-size: 13px; color: #6b7280; }
+  .meta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .pill { background: #1e2332; border: 1px solid #2a2d3a; border-radius: 8px; padding: 8px 14px; font-size: 12px; }
+  .pill .label { color: #6b7280; display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .pill .value { color: #fff; font-weight: 600; }
+  .pill.green .value { color: #4ade80; }
+  .pill.yellow .value { color: #fbbf24; }
+  .pill.red .value { color: #f87171; }
+  .pill.blue .value { color: #60a5fa; }
+
+  .nav { display: flex; background: #0f1117; border-bottom: 1px solid #1e2332; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 12px 16px; font-size: 12px; font-weight: 500; color: #6b7280; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .tab-btn:hover { color: #d1d5db; }
+  .tab-btn.active { color: #60a5fa; border-bottom-color: #60a5fa; }
+
+  .content { padding: 24px 32px; max-width: 1100px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .section-title { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; margin-top: 28px; }
+  .section-title:first-child { margin-top: 0; }
+
+  /* Cards grid */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; }
+  .card.primary { border-color: #1e3a5f; }
+  .card.backup { border-color: #2d2010; }
+  .card.watch { border-color: #1a1a1a; }
+  .card.sold-comp { border-color: #0d2818; }
+  .card.ideal { border-color: #1a1f2e; background: #0f1421; }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .card-address { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .card-town { font-size: 12px; color: #6b7280; margin-top: 2px; }
+  .card-badge { display: inline-block; padding: 3px 9px; border-radius: 5px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap; }
+  .badge-primary { background: #0c1a3a; color: #60a5fa; border: 1px solid #1e3a5f; }
+  .badge-backup { background: #2d1a00; color: #fb923c; border: 1px solid #4d2d00; }
+  .badge-watch { background: #1e1e1e; color: #9ca3af; border: 1px solid #2a2a2a; }
+  .badge-sold { background: #052e16; color: #4ade80; border: 1px solid #14532d; }
+  .badge-active { background: #0c1a3a; color: #93c5fd; border: 1px solid #1e3a5f; }
+  .badge-ideal { background: #1c1500; color: #fbbf24; border: 1px solid #3d2c00; }
+  .badge-str { background: #0c1a3a; color: #93c5fd; border: 1px solid #1e3a5f; }
+
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .stat { background: #0f1117; border-radius: 6px; padding: 8px 10px; }
+  .stat .s-label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px; }
+  .stat .s-val { font-size: 14px; font-weight: 700; color: #e4e4e7; }
+  .stat .s-val.green { color: #4ade80; }
+  .stat .s-val.yellow { color: #fbbf24; }
+  .stat .s-val.red { color: #f87171; }
+  .stat .s-val.blue { color: #60a5fa; }
+
+  .card-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-top: 12px; }
+  .card-link { display: inline-block; margin-top: 12px; font-size: 11px; color: #60a5fa; text-decoration: none; }
+  .card-link:hover { text-decoration: underline; }
+  .card-price-big { font-size: 24px; font-weight: 800; color: #fff; margin-top: 6px; }
+  .card-price-big span { font-size: 13px; font-weight: 400; color: #6b7280; margin-left: 6px; }
+
+  .tag { display: inline-block; background: #1e2332; border: 1px solid #2a2d3a; border-radius: 4px; padding: 2px 7px; font-size: 10px; color: #9ca3af; margin-right: 4px; margin-top: 6px; }
+  .tag.green { background: #052e16; border-color: #14532d; color: #4ade80; }
+  .tag.yellow { background: #1c1500; border-color: #3d2c00; color: #fbbf24; }
+
+  /* Full-width table for comps */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th { text-align: left; padding: 10px 12px; color: #6b7280; font-weight: 500; border-bottom: 1px solid #1e2332; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .comp-table td { padding: 12px; border-bottom: 1px solid #1a1d27; vertical-align: middle; }
+  .comp-table tr:hover td { background: #14172080; }
+  .comp-table tr td:first-child { font-weight: 600; color: #e4e4e7; }
+
+  /* Profile checklist */
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media(max-width: 700px) { .profile-grid { grid-template-columns: 1fr; } .cards { grid-template-columns: 1fr; } }
+  .profile-section { background: #13161f; border: 1px solid #1e2332; border-radius: 10px; padding: 18px; }
+  .profile-section h3 { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 1px solid #1a1d27; font-size: 13px; }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { font-size: 13px; min-width: 18px; margin-top: 1px; }
+  .check-label { color: #d1d5db; flex: 1; }
+  .check-note { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+  /* Deal calculator */
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  @media(max-width: 700px) { .calc-grid { grid-template-columns: 1fr 1fr; } }
+  .calc-card { background: #13161f; border: 1px solid #1e2332; border-radius: 10px; padding: 16px; }
+  .calc-card h3 { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+  .calc-big { font-size: 22px; font-weight: 800; color: #fff; }
+  .calc-big.green { color: #4ade80; }
+  .calc-big.yellow { color: #fbbf24; }
+  .calc-big.blue { color: #60a5fa; }
+  .calc-sub { font-size: 11px; color: #6b7280; margin-top: 4px; }
+
+  .divider { border: none; border-top: 1px solid #1e2332; margin: 24px 0; }
+
+  .alert-box { background: #1c1000; border: 1px solid #854d0e; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #fcd34d; }
+  .alert-box strong { color: #fbbf24; }
+
+  .info-box { background: #0c1a3a; border: 1px solid #1e3a5f; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #93c5fd; }
+
+  /* Timeline */
+  .timeline { list-style: none; padding: 0; }
+  .timeline li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1d27; align-items: flex-start; }
+  .timeline li:last-child { border-bottom: none; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+  .tl-dot.red { background: #f87171; }
+  .tl-dot.yellow { background: #fbbf24; }
+  .tl-dot.green { background: #4ade80; }
+  .tl-dot.blue { background: #60a5fa; }
+  .tl-dot.gray { background: #4b5563; }
+  .tl-date { font-size: 12px; color: #6b7280; min-width: 90px; }
+  .tl-text { font-size: 13px; color: #d1d5db; line-height: 1.5; }
+  .tl-text strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>📈 Stratton STR Viability Dashboard</h1>
+      <div class="sub">Winhall STR Property Reviews & Rule Impact | Updated March 19, 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="tab-btn active" onclick="showTab('str-properties')">🎯 STR Properties (Today)</button>
+  <button class="tab-btn" onclick="showTab('str-rules')">📋 Winhall STR Rules</button>
+</div>
+
+<div class="content">
+
+  <!-- STR Properties (Today) -->
+  <div class="tab-pane active" id="tab-str-properties">
+    <div class="section-title">Properties to View Today (March 19, 2026)</div>
+    <div class="cards">
+
+      <!-- 24 Sugarbush Drive -->
+      <div class="card primary">
+        <div class="card-header">
+          <div>
+            <div class="card-address">24 Sugarbush Drive</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-str">5 Bedrooms</span>
+        </div>
+        <div class="card-price-big">Price: TBD <span>(during viewing)</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">STR License Fee</div><div class="s-val blue">$2,500/year</div></div>
+          <div class="stat"><div class="s-label">Total STR Taxes</div><div class="s-val red">22% of Gross</div></div>
+        </div>
+        <div class="card-desc">
+          **Viability Notes:** A 5-bedroom property has strong rental potential for larger groups, but also incurs a higher annual license fee. The price will be a key factor in overall viability. Consider potential for hot tub or other amenities to justify price point and maximize STR revenue.
+        </div>
+      </div>
+
+      <!-- 7 Roundtree Rd -->
+      <div class="card primary">
+        <div class="card-header">
+          <div>
+            <div class="card-address">7 Roundtree Road</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-str">4 Bedrooms</span>
+        </div>
+        <div class="card-price-big">$950,000 <span>asking</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">STR License Fee</div><div class="s-val blue">$2,000/year</div></div>
+          <div class="stat"><div class="s-label">Total STR Taxes</div><div class="s-val red">22% of Gross</div></div>
+        </div>
+        <div class="card-desc">
+          **Viability Notes:** At $950K, this 4-bedroom property is above the hard ceiling of $850K. It would require significant justification through exceptional features, strong proven STR income, or a price reduction to be considered viable. The annual license fee is manageable for a 4-bedroom. Prioritize understanding its rental history and potential ROI.
+        </div>
+      </div>
+
+      <!-- 17 Roundtree Rd -->
+      <div class="card primary">
+        <div class="card-header">
+          <div>
+            <div class="card-address">17 Roundtree Road</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-str">4 Bedrooms</span>
+        </div>
+        <div class="card-price-big">$1,075,000 <span>asking</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">STR License Fee</div><div class="s-val blue">$2,000/year</div></div>
+          <div class="stat"><div class="s-label">Total STR Taxes</div><div class="s-val red">22% of Gross</div></div>
+        </div>
+        <div class="card-desc">
+          **Viability Notes:** At $1.075M, this 4-bedroom property is well above the hard ceiling. It would only be viable if it comes with exceptional ski-in/ski-out access, a fully established and high-performing STR business with documented revenue far exceeding typical market rates, or if the property is a multi-unit compound. Requires deep analysis of rental income to justify the price.
+        </div>
+      </div>
+
+      <!-- 0 Maple Ridge Rd. Unit B2 (Condo) -->
+      <div class="card primary">
+        <div class="card-header">
+          <div>
+            <div class="card-address">0 Maple Ridge Road Unit B2</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-str">~2 Bedrooms (est.)</span>
+        </div>
+        <div class="card-price-big">Price: TBD <span>(details unconfirmed)</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">STR License Fee</div><div class="s-val blue">$1,000/year</div></div>
+          <div class="stat"><div class="s-label">Total STR Taxes</div><div class="s-val red">22% of Gross</div></div>
+        </div>
+        <div class="card-desc">
+          **Viability Notes:** As a condo, this property needs verification of HOA rules regarding STR. Assuming 2 bedrooms, the license fee would be the minimum $1,000. Price, amenities, and confirmed STR permissibility within the HOA are critical. Condos generally have lower gross rental income potential than SFH but can have lower maintenance. Full details on beds/baths/price are pending.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Winhall STR Rules -->
+  <div class="tab-pane" id="tab-str-rules">
+    <div class="section-title">Winhall Short-Term Rental Ordinance (Effective Dec 4, 2024)</div>
+    <div class="info-box">
+      **Applies to:** Any property rented for fewer than 30 consecutive days and for more than 14 days per calendar year.
+    </div>
+
+    <div class="profile-section">
+      <h3>Key Licensing & Registration Rules</h3>
+      <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">License Required</div><div class="check-note">Must be obtained prior to advertising or renting.</div></div></div>
+      <div class="check-item"><span class="check-icon">💰</span><div><div class="check-label">Annual Fees</div><div class="check-note">$500 per bedroom. Minimum fee: $1,000. Maximum fee: $4,000 annually.</div></div></div>
+      <div class="check-item"><span class="check-icon">🔄</span><div><div class="check-label">Renewal</div><div class="check-note">Licenses are valid for one year from issuance and must be renewed annually.</div></div></div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Operating Requirements</h3>
+      <div class="check-item"><span class="check-icon">📋</span><div><div class="check-label">Display Requirements</div><div class="check-note">STR license and visitor emergency information must be posted conspicuously.</div></div></div>
+      <div class="check-item"><span class="check-icon">🔥</span><div><div class="check-label">Fire Safety</div><div class="check-note">Comply with Vermont Fire & Building Code. Self-certification for ≤ 8 persons; formal inspection for ≥ 9.</div></div></div>
+      <div class="check-item"><span class="check-icon">🛡️</span><div><div class="check-label">Insurance</div><div class="check-note">Proof of commercial liability insurance required.</div></div></div>
+      <div class="check-item"><span class="check-icon">🅿️</span><div><div class="check-label">Parking & Site Plan</div><div class="check-note">Site plan showing designated parking must be submitted.</div></div></div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Taxes and Compliance</h3>
+      <div class="check-item"><span class="check-icon">💸</span><div><div class="check-label">Lodgers’ Tax (Winhall)</div><div class="check-note">10% tax on gross short-term rents. Owners are responsible for manual remittance via the <a href="https://winhallvt.munirevs.com/faq/" target="_blank">Winhall GovOS portal</a>.</div></div></div>
+      <div class="check-item"><span class="check-icon">📈</span><div><div class="check-label">Vermont State Surcharge</div><div class="check-note">3% surcharge (as of Aug 1, 2024) in addition to existing 9% Rooms Tax (Total VT: 12%).</div></div></div>
+      <div class="check-item"><span class="check-icon">🚨</span><div><div class="check-label">Fines</div><div class="check-note">Properties not in compliance are subject to daily fines.</div></div></div>
+    </div>
+
+    <div class="info-box" style="margin-top:24px;">
+      For more information, visit the Winhall town website at <a href="https://www.winhall.org/news_detail_T2_R5.php" target="_blank">https://www.winhall.org/news_detail_T2_R5.php</a>.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Activate the first tab by default on load
+document.addEventListener('DOMContentLoaded', () => {
+  const firstTabBtn = document.querySelector('.nav .tab-btn');
+  if (firstTabBtn) {
+    firstTabBtn.click();
+  }
+});
+</script>
+</body>
+</html>
