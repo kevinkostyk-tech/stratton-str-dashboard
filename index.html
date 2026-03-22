@@ -184,6 +184,7 @@
   <button class="tab-btn" onclick="showTab('rules')">📋 Winhall STR Rules</button>
   <button class="tab-btn" onclick="showTab('mortgage')" style="color:#a78bfa;font-weight:700;">🏦 MORTGAGE OPTIONS</button>
   <button class="tab-btn" onclick="showTab('comps')" style="color:#34d399;font-weight:700;">🔬 COMP ANALYSIS</button>
+  <button class="tab-btn" onclick="showTab('closing')" style="color:#fb923c;font-weight:700;">💵 CLOSING PLAN</button>
 </div>
 
 <div class="content">
@@ -3243,6 +3244,267 @@
 
 
   
+  <div class="tab-pane" id="tab-closing">
+  <div class="content">
+
+    <div style="font-size:11px;color:#fb923c;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Closing Plan & Funding Walkthrough</div>
+    <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px;">How to Fund and Close This Deal</div>
+    <div style="font-size:13px;color:#9ca3af;margin-bottom:24px;">24 Sugarbush Dr, Winhall VT · 10% ARM (6.375% 7/1) · Second home classification · Vermont Mortgage Company + Spruce Mortgage (Rebecca Williams / Heidi Hayward)</div>
+
+    <!-- EXACT CASH NEEDED -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Exact Cash Required at Each Price Point (10% ARM)</div>
+    <div style="overflow-x:auto;margin-bottom:24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="background:#0f1117;">
+          <th style="padding:9px 14px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Price</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">10% Down</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">VT Transfer Tax (3.62%)</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Other Closing Costs</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Prepaids</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;font-weight:800;color:#fb923c;">Total Cash to Close</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$820,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$82,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#f87171;">$29,684</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$7,486</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$8,331</td>
+          <td style="padding:8px 14px;text-align:right;color:#fb923c;font-weight:800;">$127,501</td>
+        </tr>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$835,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$83,500</td>
+          <td style="padding:8px 14px;text-align:right;color:#f87171;">$30,227</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$7,486</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$8,367</td>
+          <td style="padding:8px 14px;text-align:right;color:#fb923c;font-weight:800;">$129,580</td>
+        </tr>
+        <tr style="background:#0f0a1f;border-bottom:1px solid #1a1d27;border-left:2px solid #fb923c;">
+          <td style="padding:8px 14px;color:#fff;font-weight:800;">$849,000 (ask)</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$84,900</td>
+          <td style="padding:8px 14px;text-align:right;color:#f87171;">$30,734</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$7,486</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$8,400</td>
+          <td style="padding:8px 14px;text-align:right;color:#fb923c;font-weight:800;">$131,520</td>
+        </tr>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$860,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$86,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#f87171;">$31,132</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$7,486</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$8,426</td>
+          <td style="padding:8px 14px;text-align:right;color:#fb923c;font-weight:800;">$133,044</td>
+        </tr>
+        <tr style="background:#052e0a;border-bottom:1px solid #1a1d27;border-left:2px solid #4ade80;">
+          <td style="padding:8px 14px;color:#4ade80;font-weight:800;">$875,000 (cap)</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$87,500</td>
+          <td style="padding:8px 14px;text-align:right;color:#f87171;">$31,675</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$7,486</td>
+          <td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$8,461</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;font-weight:800;">$135,122</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- CLOSING COST BREAKDOWN -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">What Each Line Means (at $875K)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;overflow:hidden;">
+        <div style="background:#0f1117;padding:10px 16px;border-bottom:1px solid #1e2332;font-size:11px;font-weight:700;color:#fb923c;text-transform:uppercase;">Closing Costs · $39,161</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Vermont Transfer Tax (3.62%)</td><td style="padding:8px 14px;text-align:right;color:#f87171;font-weight:700;">$31,675</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Processing Fee (NEHL)</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$1,175</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Appraisal Fee</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$900</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Attorney Fee</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$1,000</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Closing / Escrow Fee</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$1,000</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Lender's Title Insurance</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$2,015</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Owner's Title Insurance</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$911</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Mortgage Recording</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$330</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Credit Report</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$136</td></tr>
+          <tr><td style="padding:8px 14px;color:#e4e4e7;">Tax Transcript</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$19</td></tr>
+        </table>
+      </div>
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;overflow:hidden;">
+        <div style="background:#0f1117;padding:10px 16px;border-bottom:1px solid #1e2332;font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;">Prepaids · ~$8,461</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Daily Interest (15 days × $154)</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">~$2,313</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Hazard Insurance (12 months)</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$1,200</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;"><td style="padding:8px 14px;color:#e4e4e7;">Hazard Insurance Reserve (2 months)</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$200</td></tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#0c0c0f;"><td style="padding:8px 14px;color:#e4e4e7;">Property Tax Reserve (6 months)</td><td style="padding:8px 14px;text-align:right;color:#e4e4e7;">$4,788</td></tr>
+          <tr><td style="padding:8px 14px;color:#fbbf24;">PMI Reserve (1 month)</td><td style="padding:8px 14px;text-align:right;color:#fbbf24;">$210</td></tr>
+        </table>
+        <div style="padding:10px 14px;border-top:1px solid #1e2332;font-size:10px;color:#6b7280;line-height:1.6;">Prepaids are not "lost" money — tax reserve and insurance are simply collected upfront and held in escrow. PMI reserve is credited toward your first PMI payment.</div>
+      </div>
+    </div>
+
+    <!-- VT TRANSFER TAX DEEP DIVE -->
+    <div style="background:#1c0505;border:1px solid #7f1d1d;border-radius:10px;padding:18px;margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;color:#f87171;margin-bottom:10px;">Vermont Transfer Tax: Why It's $31,675 and Cannot Be Reduced</div>
+      <div style="font-size:11px;color:#d1d5db;line-height:1.85;">
+        Vermont Act 181 (H.687, effective August 1, 2024) creates two tiers:<br><br>
+        <strong style="color:#fff;">Principal Residence: 0.5% on first $200K + 1.47% above $200K</strong> → at $875K = ~$10,923<br>
+        <strong style="color:#fff;">Non-Principal Residence: 3.62% on full value</strong> → at $875K = $31,675<br><br>
+        A second home intended for STR use is <strong style="color:#f87171;">legally required to use the 3.62% rate.</strong> Vermont's definition of "principal residence" requires the buyer to occupy the property as their primary domicile. STR intent disqualifies the property. Rebecca's fee sheet used the correct rate. The $20,752 gap between the two rates cannot be captured without misrepresenting the intended use of the property on the PTT-172 form — which constitutes tax fraud, subject to back-assessment, penalties, and interest. This is not a path.
+      </div>
+    </div>
+
+    <!-- EMD FUNDING PLAN -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Earnest Money Deposit: How to Fund It</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:18px;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:12px;">EMD = Goes Toward Down Payment at Close — It's Not an Extra Cost</div>
+      <div style="overflow-x:auto;margin-bottom:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead><tr style="background:#0f1117;">
+          <th style="padding:7px 12px;text-align:left;color:#6b7280;border-bottom:1px solid #1e2332;">EMD Amount</th>
+          <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">% of $875K</th>
+          <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Normal for VT?</th>
+          <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Remaining at Close</th>
+          <th style="padding:7px 12px;text-align:left;color:#6b7280;border-bottom:1px solid #1e2332;">How to Fund It</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1a1d27;background:#052e16;">
+            <td style="padding:7px 12px;color:#4ade80;font-weight:700;">$25,000 ← Counter</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">2.9%</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">✓ Standard</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$110,122</td>
+            <td style="padding:7px 12px;color:#9ca3af;font-size:10px;">Existing savings/checking. No stress.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#fbbf24;font-weight:700;">$35,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#fbbf24;">4.0%</td>
+            <td style="padding:7px 12px;text-align:right;color:#fbbf24;">↑ Above avg</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$100,122</td>
+            <td style="padding:7px 12px;color:#9ca3af;font-size:10px;">HELOC draw. Done same day.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#fbbf24;font-weight:700;">$50,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#fbbf24;">5.7%</td>
+            <td style="padding:7px 12px;text-align:right;color:#f87171;">↑↑ Aggressive</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$85,122</td>
+            <td style="padding:7px 12px;color:#9ca3af;font-size:10px;">HELOC draw or family bridge. Both viable.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#1c0505;">
+            <td style="padding:7px 12px;color:#f87171;font-weight:700;">$85,000 ← Seller ask</td>
+            <td style="padding:7px 12px;text-align:right;color:#f87171;">9.7%</td>
+            <td style="padding:7px 12px;text-align:right;color:#f87171;">✗ Unusual</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$50,122</td>
+            <td style="padding:7px 12px;color:#9ca3af;font-size:10px;">401K loan ($50K max) + $35K family bridge. Annoying but doable.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:11px;color:#9ca3af;line-height:1.7;"><strong style="color:#fff;">Recommended tactic:</strong> Counter with $25K–$35K EMD alongside your full-ask offer. Frame it as "standard market EMD with a strong, clean offer." If they push back to $50K, accept. Resist $85K — it's unusual, puts pressure on your near-term liquidity, and is not a standard Vermont ask. Only concede $85K if you're convinced the deal requires it and you have HELOC capacity to cover it without tapping retirement.</div>
+    </div>
+
+    <!-- SEQUENCING & TIMELINE -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Closing Sequence: What Happens When</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:18px;margin-bottom:20px;">
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:0;">
+        <div style="border-right:2px solid #fb923c;padding-right:16px;">
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#fb923c;font-weight:700;">TODAY</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+1 day</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+2–3 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+3–5 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+7 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+10 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#6b7280;">+10–14 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#fbbf24;">+14–21 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#fbbf24;">+21–30 days</div>
+          <div style="text-align:right;padding:8px 0;font-size:10px;color:#4ade80;font-weight:700;">Day 45</div>
+        </div>
+        <div style="padding-left:20px;">
+          <div style="padding:8px 0;font-size:11px;color:#fff;border-bottom:1px solid #1a1d27;"><strong>Submit offer</strong> — $820–$849K opening + escalation to $875K, $25–35K EMD, 10-day inspection, financing contingency, 45-day close</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Call Rebecca (Vermont Mortgage) + Heidi (Spruce). Start ARM application. Flag derogatory mark — get written assessment of impact on approval/rate.</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Call current HELOC lender. Start expansion process. If needed for EMD, draw on existing HELOC capacity immediately.</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Accepted offer → EMD wired to escrow (applies toward down payment at close)</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Schedule and complete home inspection. Focus: roof, systems, septic probe/pump, electrical panel, heating. Negotiate credits if issues found.</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Inspection contingency deadline — waive, negotiate, or walk. Do not skip inspection.</div>
+          <div style="padding:8px 0;font-size:11px;color:#d1d5db;border-bottom:1px solid #1a1d27;">Appraisal ordered and completed. Vermont appraisers book out; Rebecca orders immediately upon ratified contract.</div>
+          <div style="padding:8px 0;font-size:11px;color:#fbbf24;border-bottom:1px solid #1a1d27;"><strong>Rate lock</strong> — lock the 6.375% ARM rate once purchase & sale is executed. Rates move daily; lock early.</div>
+          <div style="padding:8px 0;font-size:11px;color:#fbbf24;border-bottom:1px solid #1a1d27;">Underwriting + conditions. Supply all docs: 2 years W-2/tax returns, 2 months bank statements, HELOC statements. Dispute derogatory mark now if not done — may take 30 days to clear.</div>
+          <div style="padding:8px 0;font-size:11px;color:#4ade80;font-weight:700;">Closing — wire remaining cash ($50–110K depending on EMD), sign, keys. File PTT-172 property transfer tax return within 30 days.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNDING SOURCES -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">How to Fund the $135K at Close</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <div style="background:#052e16;border:1px solid #14532d;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#4ade80;margin-bottom:10px;">Recommended Funding Stack (10% ARM, $875K)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#e4e4e7;">HELOC expansion (new capacity)</td><td style="padding:6px 0;text-align:right;color:#4ade80;">$90,000</td></tr>
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#e4e4e7;">Existing savings / checking</td><td style="padding:6px 0;text-align:right;color:#4ade80;">$30,000</td></tr>
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#e4e4e7;">CC payoff credit (freed capacity)</td><td style="padding:6px 0;text-align:right;color:#9ca3af;">December bonus</td></tr>
+          <tr><td style="padding:6px 0;color:#9ca3af;font-style:italic;">Total needed</td><td style="padding:6px 0;text-align:right;color:#fb923c;font-weight:700;">$135,122</td></tr>
+        </table>
+        <div style="font-size:10px;color:#9ca3af;margin-top:10px;line-height:1.6;">Adjust based on your actual savings balance. The HELOC expansion is the key unlock — start that call Monday.</div>
+      </div>
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:10px;">If EMD Is $85K (Worst Case)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#e4e4e7;">EMD (wire at ratification)</td><td style="padding:6px 0;text-align:right;color:#f87171;">$85,000</td></tr>
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#9ca3af;">  → 401K loan ($50K max)</td><td style="padding:6px 0;text-align:right;color:#9ca3af;">$50,000</td></tr>
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#9ca3af;">  → Family bridge (repaid at close)</td><td style="padding:6px 0;text-align:right;color:#9ca3af;">$35,000</td></tr>
+          <tr style="border-bottom:1px solid #1e2332;"><td style="padding:6px 0;color:#e4e4e7;">Remaining at close</td><td style="padding:6px 0;text-align:right;color:#e4e4e7;">$50,122</td></tr>
+          <tr><td style="padding:6px 0;color:#9ca3af;font-style:italic;">  → HELOC + savings</td><td style="padding:6px 0;text-align:right;color:#9ca3af;">$50,122</td></tr>
+        </table>
+        <div style="font-size:10px;color:#9ca3af;margin-top:10px;line-height:1.6;">All-in doable but maxes out flexibility. Push back on $85K EMD first — this is the worst-case path, not the plan.</div>
+      </div>
+    </div>
+
+    <!-- DEROGATORY MARK -->
+    <div style="background:#1c1000;border:1px solid #92400e;border-radius:10px;padding:18px;margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;color:#fbbf24;margin-bottom:10px;">⚠️ Derogatory Mark on Credit — Act Now</div>
+      <div style="font-size:11px;color:#d1d5db;line-height:1.85;">
+        <strong style="color:#fff;">This is the single biggest scheduling risk in the deal.</strong> Credit disputes can take 30–45 days to resolve. If the mark affects your rate tier or approval, you need maximum lead time.<br><br>
+        <strong style="color:#fff;">Do this Monday:</strong>
+        <ol style="margin:8px 0 8px 18px;line-height:2.0;">
+          <li>Call Rebecca and Heidi. Tell them about the derogatory mark. Get their written assessment: does it affect approval? Does it affect the 6.375% ARM rate? Is the loan conditionally approvable now?</li>
+          <li>Pull your credit report (annualcreditreport.com). Identify the specific mark — account, amount, creditor.</li>
+          <li>If disputable: file dispute with all three bureaus (Equifax, Experian, TransUnion) online the same day. Takes 15 minutes. Bureaus must respond within 30 days.</li>
+          <li>If it's a collection/charge-off: ask Rebecca if a pay-for-delete letter from the creditor will help. Some creditors will remove the mark if paid.</li>
+        </ol>
+        <strong style="color:#4ade80;">If the mark doesn't affect the approval or rate (common for minor/old marks): no action needed beyond disclosure.</strong> Get that answer Monday before you spend energy on it.
+      </div>
+    </div>
+
+    <!-- WHICH LENDER -->
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:18px;margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:12px;">Rebecca (Vermont Mortgage) vs. Heidi (Spruce) — Which Lender?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="background:#0f1117;border-radius:8px;padding:12px;">
+          <div style="font-size:11px;font-weight:700;color:#a78bfa;margin-bottom:8px;">Rebecca Williams — Vermont Mortgage Co.</div>
+          <div style="font-size:10px;color:#d1d5db;line-height:1.8;">
+            ✓ Vermont-based, local knowledge<br>
+            ✓ Fee sheets already prepared, fastest start<br>
+            ✓ Quoted the ARM product correctly<br>
+            ✓ 802 area lender — Vermont attorneys know her<br>
+            → NMLS #1376992 · 802.999.6737
+          </div>
+        </div>
+        <div style="background:#0f1117;border-radius:8px;padding:12px;">
+          <div style="font-size:11px;font-weight:700;color:#60a5fa;margin-bottom:8px;">Heidi Hayward Urish — Spruce Mortgage</div>
+          <div style="font-size:10px;color:#d1d5db;line-height:1.8;">
+            ✓ Vermont-based (Burlington), second opinion<br>
+            ✓ Experience / Integrity / Creativity tagline suggests flexibility<br>
+            ◐ No fee sheets yet — need to request<br>
+            ◐ "Not all of this applies to you" = she's been briefed<br>
+            → NMLS #92061 · 802.652.0163
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#d1d5db;margin-top:14px;line-height:1.7;"><strong style="color:#fff;">Recommendation:</strong> Get Heidi's competing quote this week — specifically on the ARM product at 10% down, second home. If she can match or beat 6.375% with lower origination costs, use her. If Rebecca is competitive, go with Rebecca (faster, already in motion). Do not pay $1,175 in processing fees to both — pick one lender and commit by the time you have an accepted offer.</div>
+    </div>
+
+  </div>
+  </div>
+
+
   <div class="tab-pane" id="tab-comps">
   <div class="content">
 
