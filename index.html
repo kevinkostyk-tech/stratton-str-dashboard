@@ -182,6 +182,7 @@
   <button class="tab-btn" onclick="showTab('offer')" style="color:#f87171;font-weight:700;background:#1c0505;border-radius:4px;border:1px solid #7f1d1d;">🎯 OFFER CALIBRATION</button>
   <button class="tab-btn" onclick="showTab('financing')" style="color:#f87171;font-weight:700;">💼 How To Buy This NOW</button>
   <button class="tab-btn" onclick="showTab('rules')">📋 Winhall STR Rules</button>
+  <button class="tab-btn" onclick="showTab('mortgage')" style="color:#a78bfa;font-weight:700;">🏦 MORTGAGE OPTIONS</button>
 </div>
 
 <div class="content">
@@ -2328,7 +2329,313 @@
 </div>
 
 
-  <div class="tab-pane" id="tab-rules">
+  
+  <div class="tab-pane" id="tab-mortgage">
+  <div class="content">
+
+    <div style="font-size:11px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Mortgage Options Analysis</div>
+    <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px;">Which Loan Is Right for This Deal?</div>
+    <div style="font-size:13px;color:#9ca3af;margin-bottom:24px;">Based on fee sheets from Vermont Mortgage Company (Rebecca Williams, NMLS #1376992) · Purchase price: $875,000 · All figures at closing</div>
+
+    <!-- QUICK COMPARISON TABLE -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Quick Comparison</div>
+    <div style="overflow-x:auto;margin-bottom:28px;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="background:#13161f;">
+          <th style="padding:10px 14px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Option</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Rate</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Down</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Loan</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">P&amp;I/mo</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">PMI/mo</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Total/mo</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Cash to Close</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">STR Covers</th>
+          <th style="padding:10px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Monthly OOP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#0f0a1f;border-left:3px solid #d97706;">
+          <td style="padding:10px 14px;color:#fbbf24;font-weight:700;white-space:nowrap;">⭐ 10% ARM (7/1) <span style="background:#d97706;color:#000;font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px;">BEST</span></td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;font-weight:700;">6.375%</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$87,500 (10%)</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$787,500</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$4,913</td>
+          <td style="padding:10px 14px;text-align:right;color:#fbbf24;">$210</td>
+          <td style="padding:10px 14px;text-align:right;color:#fff;font-weight:700;">$6,021</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;font-weight:700;">$135,151</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">86.6%</td>
+          <td style="padding:10px 14px;text-align:right;color:#fbbf24;font-weight:700;">+$804/mo</td>
+        </tr>
+        <tr style="background:#0f1117;">
+          <td style="padding:10px 14px;color:#e4e4e7;font-weight:600;white-space:nowrap;">10% Fixed 30yr</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">7.125%</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$87,500 (10%)</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$787,500</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$5,306</td>
+          <td style="padding:10px 14px;text-align:right;color:#fbbf24;">$210</td>
+          <td style="padding:10px 14px;text-align:right;color:#fff;font-weight:700;">$6,414</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">$136,308</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">81.3%</td>
+          <td style="padding:10px 14px;text-align:right;color:#f87171;font-weight:700;">+$1,197/mo</td>
+        </tr>
+        <tr style="background:#0f1117;border-top:1px solid #1e2332;">
+          <td style="padding:10px 14px;color:#e4e4e7;font-weight:600;white-space:nowrap;">20% Fixed 30yr</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">7.125%</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$175,000 (20%)</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$700,000</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$4,716</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">$0</td>
+          <td style="padding:10px 14px;text-align:right;color:#fff;font-weight:700;">$5,614</td>
+          <td style="padding:10px 14px;text-align:right;color:#fbbf24;">$222,427</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">92.9%</td>
+          <td style="padding:10px 14px;text-align:right;color:#fbbf24;font-weight:700;">+$397/mo</td>
+        </tr>
+        <tr style="background:#0f1117;border-top:1px solid #1e2332;">
+          <td style="padding:10px 14px;color:#e4e4e7;font-weight:600;white-space:nowrap;">25% Fixed 30yr</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">6.625%</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$218,750 (25%)</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$656,250</td>
+          <td style="padding:10px 14px;text-align:right;color:#e4e4e7;">$4,202</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;">$0</td>
+          <td style="padding:10px 14px;text-align:right;color:#fff;font-weight:700;">$5,100</td>
+          <td style="padding:10px 14px;text-align:right;color:#f87171;">$265,911</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;font-weight:700;">102.3%</td>
+          <td style="padding:10px 14px;text-align:right;color:#4ade80;font-weight:700;">−$117/mo</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- RANK CARDS -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Ranked by Overall Fit for This Deal</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:28px;">
+
+      <!-- Rank 1 -->
+      <div style="background:linear-gradient(135deg,#1c1500 0%,#13161f 100%);border:1px solid #d97706;border-radius:12px;padding:20px;position:relative;">
+        <div style="position:absolute;top:-10px;left:20px;background:#d97706;color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;">🥇 RECOMMENDED</div>
+        <div style="font-size:15px;font-weight:800;color:#fbbf24;margin-top:8px;margin-bottom:4px;">10% ARM (7/1)</div>
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:14px;">6.375% fixed for 7 years · $787,500 loan</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Cash to Close</div>
+            <div style="font-size:14px;font-weight:700;color:#4ade80;">$135,151</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Monthly Total</div>
+            <div style="font-size:14px;font-weight:700;color:#fff;">$6,021</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">After STR</div>
+            <div style="font-size:14px;font-weight:700;color:#fbbf24;">+$804/mo</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Rate Type</div>
+            <div style="font-size:14px;font-weight:700;color:#a78bfa;">7yr Fixed</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#d1d5db;line-height:1.7;">
+          <strong style="color:#4ade80;">Why it wins:</strong> Lowest cash requirement ($135K) preserves HELOC capacity. Rate is 0.75% lower than the fixed options, saving $393/mo in carry. The 7-year fixed window aligns perfectly with your hold thesis — you'd either refi or sell well before year 7. PMI drops at year 3 via appreciation. Cash preservation now matters more than rate certainty over 30 years you won't hold.
+        </div>
+      </div>
+
+      <!-- Rank 2 -->
+      <div style="background:#13161f;border:1px solid #374151;border-radius:12px;padding:20px;position:relative;">
+        <div style="position:absolute;top:-10px;left:20px;background:#6b7280;color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;">🥈 RUNNER-UP</div>
+        <div style="font-size:15px;font-weight:800;color:#fff;margin-top:8px;margin-bottom:4px;">20% Fixed 30yr</div>
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:14px;">7.125% · $700,000 loan · No PMI</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Cash to Close</div>
+            <div style="font-size:14px;font-weight:700;color:#fbbf24;">$222,427</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Monthly Total</div>
+            <div style="font-size:14px;font-weight:700;color:#fff;">$5,614</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">After STR</div>
+            <div style="font-size:14px;font-weight:700;color:#fbbf24;">+$397/mo</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">PMI</div>
+            <div style="font-size:14px;font-weight:700;color:#4ade80;">None</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#d1d5db;line-height:1.7;">
+          <strong style="color:#fff;">When it makes sense:</strong> If the ARM makes you uncomfortable or lender pushes back on 10% for a second home classification. No PMI simplifies cash flow. Requires $87K more at closing — manageable if HELOC expansion clears, but ties up capital that earns nothing in home equity vs. being deployed elsewhere. Year 2 cash flow near breakeven vs. $1,197/mo outlay on 10% fixed.
+        </div>
+      </div>
+
+      <!-- Rank 3 -->
+      <div style="background:#13161f;border:1px solid #92400e;border-radius:12px;padding:20px;position:relative;">
+        <div style="position:absolute;top:-10px;left:20px;background:#92400e;color:#fef3c7;font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;">🥉 CONSIDER IF...</div>
+        <div style="font-size:15px;font-weight:800;color:#fff;margin-top:8px;margin-bottom:4px;">25% Fixed 30yr</div>
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:14px;">6.625% · $656,250 loan · No PMI</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Cash to Close</div>
+            <div style="font-size:14px;font-weight:700;color:#f87171;">$265,911</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Monthly Total</div>
+            <div style="font-size:14px;font-weight:700;color:#4ade80;">$5,100</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">After STR</div>
+            <div style="font-size:14px;font-weight:700;color:#4ade80;">−$117/mo</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">PMI</div>
+            <div style="font-size:14px;font-weight:700;color:#4ade80;">None</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#d1d5db;line-height:1.7;">
+          <strong style="color:#fff;">When it makes sense:</strong> Only if the December bonus is large and you want to eliminate the monthly carry burden entirely. At −$117/mo after STR the property essentially pays for itself in Year 2+. Best carry profile. But requires $130K more cash than the ARM, which is $130K not available to eliminate CC debt or fund other investments. The better rate (6.625%) only partially offsets the capital locked in.
+        </div>
+      </div>
+
+      <!-- Rank 4 -->
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:12px;padding:20px;position:relative;opacity:0.85;">
+        <div style="position:absolute;top:-10px;left:20px;background:#1e2332;color:#6b7280;border:1px solid #374151;font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;">❌ SKIP</div>
+        <div style="font-size:15px;font-weight:800;color:#9ca3af;margin-top:8px;margin-bottom:4px;">10% Fixed 30yr</div>
+        <div style="font-size:11px;color:#6b7280;margin-bottom:14px;">7.125% · $787,500 loan · With PMI</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Cash to Close</div>
+            <div style="font-size:14px;font-weight:700;color:#9ca3af;">$136,308</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">Monthly Total</div>
+            <div style="font-size:14px;font-weight:700;color:#f87171;">$6,414</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">After STR</div>
+            <div style="font-size:14px;font-weight:700;color:#f87171;">+$1,197/mo</div>
+          </div>
+          <div style="background:#0f1117;border-radius:6px;padding:8px 10px;">
+            <div style="font-size:9px;color:#6b7280;text-transform:uppercase;margin-bottom:3px;">PMI</div>
+            <div style="font-size:14px;font-weight:700;color:#f87171;">$210/mo</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#9ca3af;line-height:1.7;">
+          <strong>Why to skip:</strong> Same down payment and closing cost as the ARM ($1,157 more at close), but $393/mo higher carry. You're paying more every month for the same loan size with no additional security. The 10% ARM is strictly better — lower rate, same cash requirement, same PMI, same loan. There is no scenario where this option is the right choice given the other three available.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ARM RISK SECTION -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;margin-top:8px;">Understanding the ARM Risk</div>
+    <div style="background:#0c0a1f;border:1px solid #3730a3;border-radius:10px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:#a78bfa;margin-bottom:12px;">7/1 ARM — What Actually Happens in Year 8?</div>
+      <div style="font-size:12px;color:#d1d5db;line-height:1.85;">
+        The rate is fixed at 6.375% for 7 years (84 payments). Starting in month 85, it adjusts annually based on a benchmark index (typically SOFR) + a margin, subject to caps.<br><br>
+        <strong style="color:#fff;">Typical ARM caps structure:</strong> 2/2/5 — meaning the first adjustment can't exceed +2%, subsequent annual adjustments can't exceed +2%, and the lifetime cap is +5% above the start rate.<br><br>
+        <strong style="color:#fff;">Worst-case Year 8 rate: 11.375%</strong> (6.375% + 5% lifetime cap) → P&I would rise to ~$7,700/mo. Extreme scenario; unlikely absent a major rate shock.<br><br>
+        <strong style="color:#fff;">Realistic Year 8 scenarios:</strong>
+        <ul style="margin:8px 0 8px 18px;line-height:2.0;">
+          <li>Rates flat/down: ~6–7% → P&I stays near $4,900–5,300/mo. No problem.</li>
+          <li>Rates slightly higher: ~7.5–8.5% → P&I ~$5,500–6,000/mo. Manageable with STR income.</li>
+          <li>Rates significantly higher: ~9–11%+ → P&I $6,200–7,700/mo. Stress scenario; would likely trigger refi or sale.</li>
+        </ul>
+        <strong style="color:#4ade80;">The mitigant:</strong> Your hold horizon is 5–7 years. You will likely refi before the first adjustment — especially if Stratton property values rise as projected (Year 5 appraised value ~$1.17M at 6%/yr). A refi at Year 5 with 35%+ equity is straightforward. The ARM risk is real but misaligned with your actual hold plan.
+      </div>
+    </div>
+
+    <!-- PMI SECTION -->
+    <div style="background:#0a1f0a;border:1px solid #14532d;border-radius:10px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:#4ade80;margin-bottom:12px;">PMI: When Does It Drop?</div>
+      <div style="font-size:12px;color:#d1d5db;line-height:1.85;margin-bottom:14px;">
+        PMI applies to both 10% options (ARM and fixed). Monthly cost: <strong style="color:#fff;">$210/mo</strong>. You can request removal once you reach 20% equity via appreciation or paydown.<br><br>
+        At 6%/yr Stratton appreciation:
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+        <div style="background:#0f1117;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Year 1</div>
+          <div style="font-size:16px;font-weight:700;color:#fff;">$927,500</div>
+          <div style="font-size:11px;color:#f87171;margin-top:4px;">15.1% equity · PMI ON</div>
+        </div>
+        <div style="background:#0f1117;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Year 2</div>
+          <div style="font-size:16px;font-weight:700;color:#fff;">$983,150</div>
+          <div style="font-size:11px;color:#fbbf24;margin-top:4px;">19.9% equity · PMI ON</div>
+        </div>
+        <div style="background:#052e16;border-radius:8px;padding:12px;text-align:center;border:1px solid #14532d;">
+          <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Year 3</div>
+          <div style="font-size:16px;font-weight:700;color:#4ade80;">$1,042,139</div>
+          <div style="font-size:11px;color:#4ade80;font-weight:700;margin-top:4px;">24.4% equity · PMI OFF ✓</div>
+        </div>
+        <div style="background:#052e16;border-radius:8px;padding:12px;text-align:center;border:1px solid #14532d;">
+          <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Year 4</div>
+          <div style="font-size:16px;font-weight:700;color:#4ade80;">$1,104,667</div>
+          <div style="font-size:11px;color:#4ade80;font-weight:700;margin-top:4px;">28.7% equity · PMI OFF ✓</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#9ca3af;line-height:1.7;">
+        Total PMI cost over ~2.5 years: <strong style="color:#fff;">~$6,300</strong>. This is not a material number in the context of a $875K purchase. Do not let PMI aversion drive you to a 20% or 25% down product when the ARM saves $393/mo in carry for 7 years.
+      </div>
+    </div>
+
+    <!-- CASH DEPLOYMENT TRADEOFF -->
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:12px;">Cash Deployment Tradeoff</div>
+      <div style="font-size:12px;color:#d1d5db;line-height:1.85;margin-bottom:14px;">Every dollar above the 10% ARM closing cost is capital deployed into home equity earning the mortgage rate — vs. capital you could use to eliminate CC debt at 20%+ or invest elsewhere.</div>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:#0f1117;">
+            <th style="padding:8px 12px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Option</th>
+            <th style="padding:8px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Extra Cash vs. ARM</th>
+            <th style="padding:8px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Opp. Cost @6%/yr</th>
+            <th style="padding:8px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Carry Savings vs. ARM</th>
+            <th style="padding:8px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">True Net Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#0f1117;">
+            <td style="padding:8px 12px;color:#e4e4e7;">10% Fixed 30yr</td>
+            <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">+$1,157</td>
+            <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">$6/mo</td>
+            <td style="padding:8px 12px;text-align:right;color:#f87171;">−$393/mo more expensive</td>
+            <td style="padding:8px 12px;text-align:right;color:#f87171;font-weight:700;">Pay $387/mo extra for nothing</td>
+          </tr>
+          <tr style="background:#0f1117;border-top:1px solid #1e2332;">
+            <td style="padding:8px 12px;color:#e4e4e7;">20% Fixed 30yr</td>
+            <td style="padding:8px 12px;text-align:right;color:#fbbf24;">+$87,276</td>
+            <td style="padding:8px 12px;text-align:right;color:#fbbf24;">$436/mo</td>
+            <td style="padding:8px 12px;text-align:right;color:#4ade80;">+$407/mo cheaper carry</td>
+            <td style="padding:8px 12px;text-align:right;color:#fbbf24;font-weight:700;">Net −$29/mo after opp. cost</td>
+          </tr>
+          <tr style="background:#0f1117;border-top:1px solid #1e2332;">
+            <td style="padding:8px 12px;color:#e4e4e7;">25% Fixed 30yr</td>
+            <td style="padding:8px 12px;text-align:right;color:#f87171;">+$130,760</td>
+            <td style="padding:8px 12px;text-align:right;color:#f87171;">$654/mo</td>
+            <td style="padding:8px 12px;text-align:right;color:#4ade80;">+$921/mo cheaper carry</td>
+            <td style="padding:8px 12px;text-align:right;color:#fbbf24;font-weight:700;">Net +$267/mo after opp. cost</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:11px;color:#9ca3af;margin-top:12px;line-height:1.7;">The 20% option is essentially break-even on a true opportunity-cost basis vs. the ARM. The 25% option provides a real $267/mo net benefit — but requires $130K more cash at a time when you're carrying CC debt and a HELOC balance. Context matters more than the math.</div>
+    </div>
+
+    <!-- FINAL RECOMMENDATION -->
+    <div style="background:linear-gradient(135deg,#0c0a1f 0%,#0a1020 100%);border:2px solid #3730a3;border-radius:12px;padding:22px 24px;">
+      <div style="font-size:13px;font-weight:700;color:#a78bfa;margin-bottom:10px;">MORTGAGE RECOMMENDATION</div>
+      <div style="font-size:13px;color:#e4e4e7;line-height:2.0;">
+        <strong style="color:#fff;">Go with the 10% ARM (7/1) at 6.375%.</strong><br><br>
+        The ARM wins on every metric that matters for this deal: lowest cash to close ($135K vs. $222K–$266K), lowest rate, and lowest monthly carry ($6,021/mo vs. $5,614–$6,414 for others). The 7-year fixed window aligns with your hold thesis — you'll either sell or refi at a better LTV before the rate ever adjusts.<br><br>
+        PMI ($210/mo) disappears at year 3 via appreciation. Total PMI cost: ~$6,300. Not a deciding factor.<br><br>
+        <strong style="color:#fbbf24;">The only reason to switch:</strong> If the lender requires 20%+ down to classify this as a second home rather than investment property (different rate tiers). Clarify this with Rebecca before finalizing. If she's already quoting the ARM at 10% down for a second home, you're good.
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+<div class="tab-pane" id="tab-rules">
 
     <div class="alert-box">
       <strong>Ordinance effective Dec 4, 2024.</strong> Applies to any property rented for fewer than 30 consecutive days AND more than 14 days per calendar year. No grandfather clause for existing rentals — all must license. Platform auto-collection does NOT cover Winhall's 10% local tax. This tax has been removed from the financial model — verify applicability with your CPA.
