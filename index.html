@@ -557,77 +557,56 @@
   </div>
 
   <div class="card">
-    <div class="card-title">Year-by-Year Cash Flow Model</div>
-    <div style="overflow-x:auto">
-    <table>
+    <div class="card-title">Year-by-Year Cash Flow — Full Breakdown</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:940px;">
       <thead>
-        <tr>
-          <th>Year</th>
-          <th>Mode</th>
-          <th>STR Gross → Net</th>
-          <th>Tax Benefit</th>
-          <th>Annual Carry</th>
-          <th>Net Position<br><span style="font-weight:400;font-size:0.7rem;">(STR + tax − carry)</span></th>
-          <th>Cumulative</th>
-          <th>Note</th>
+        <tr style="background:var(--surface2);">
+          <th style="padding:9px 12px;text-align:left;color:var(--muted);border-bottom:2px solid var(--accent);min-width:210px;">Component</th>
+          <th style="padding:9px 12px;text-align:right;color:var(--teal);border-bottom:2px solid var(--accent);width:14%;">Year 1<br><span style="font-size:0.7rem;font-weight:400;">LTR</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--green);border-bottom:2px solid var(--accent);width:16%;">Year 2<br><span style="font-size:0.7rem;font-weight:400;">STR + Cost Seg 🚀</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 3<br><span style="font-size:0.7rem;font-weight:400;">STR (PMI on)</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 4<br><span style="font-size:0.7rem;font-weight:400;">STR (PMI off ✓)</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 5<br><span style="font-size:0.7rem;font-weight:400;">STR</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr class="row-highlight-y1">
-          <td><strong>Year 1</strong></td>
-          <td><span class="badge badge-teal">LTR</span></td>
-          <td>$30,000 gross<br><span style="font-size:0.7rem;color:var(--muted)">2-3 monthly rentals</span></td>
-          <td class="col-teal" style="color:var(--teal)">$8,858<br><span style="font-size:0.7rem;color:var(--muted)">Std dep 27.5yr</span></td>
-          <td class="col-red">($75,911)</td>
-          <td class="col-red fw-bold">($37,057)</td>
-          <td class="col-red">($37,057)</td>
-          <td style="font-size:0.75rem; color:var(--muted)">LTR year. VT transfer tax 1.47%.</td>
+        <tr style="background:#0a1a0a;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">INCOME</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Gross Revenue</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$30,000<br><span style="font-size:0.68rem;color:var(--muted)">monthly rentals</span></td><td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">+$110,000</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">VT Rooms+STR Tax (12%)</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Property Management (20%)</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">STR License + Ikon</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td></tr>
+        <tr style="background:#052e16;border-top:1px solid #14532d;border-bottom:1px solid #14532d;"><td style="padding:8px 12px;color:var(--green);font-weight:700;">Net STR / LTR Income</td><td style="padding:8px 12px;text-align:right;color:var(--green);">+$30,000</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td><td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td></tr>
+
+        <tr style="background:#0a0a1a;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">TAX BENEFITS (IRS cash savings at 35% marginal rate)</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Standard Dep (27.5yr, LTR)</td><td style="padding:7px 12px;text-align:right;color:var(--teal);">+$8,858</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">100% Bonus Dep (Cost Seg)<br><span style="font-size:0.68rem;color:var(--muted)">$313,400 eligible × 35% = $109,690</span></td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">+$109,690</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Ongoing Dep (39yr, $417,600 remaining)</td><td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td><td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td><td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td><td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td><td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td></tr>
+
+        <tr style="background:#0c0a1f;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">OPERATING COSTS</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Mortgage P&amp;I (6.375% ARM)</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">PMI ($210/mo)</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td><td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">DROPS ✓ $0</td><td style="padding:7px 12px;text-align:right;color:var(--green);">$0</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">Property Taxes</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">Insurance + Maintenance</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td><td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td></tr>
+
+        <tr style="background:linear-gradient(90deg,#052e16,#0c1a3a);border-top:2px solid var(--green);">
+          <td style="padding:11px 12px;color:#fff;font-weight:800;font-size:1rem;">NET POSITION</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$37,053</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1.15rem;">+$105,691</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$3,999</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$1,479</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$1,479</td>
         </tr>
-        <tr class="row-highlight-y2">
-          <td><strong>Year 2</strong></td>
-          <td><span class="badge badge-green">STR + 🚀</span></td>
-          <td>$68,164</td>
-          <td class="col-green fw-bold">$113,438<br><span style="font-size:0.7rem;color:var(--muted)">$109,690 cost seg + $3,748 ongoing</span></td>
-          <td class="col-red">($75,911)</td>
-          <td class="col-green fw-bold">+$105,687</td>
-          <td class="col-green">+$68,630</td>
-          <td style="font-size:0.75rem; color:var(--muted)">Aggressive cost seg: 40% of building + hot tub + game room = $313,400 eligible. Maximum bonus dep.</td>
-        </tr>
-        <tr>
-          <td><strong>Year 3</strong></td>
-          <td><span class="badge badge-blue">STR</span></td>
-          <td>$68,164</td>
-          <td class="col-teal">$3,748</td>
-          <td class="col-red">($75,911)</td>
-          <td class="col-red fw-bold">−$4,003</td>
-          <td class="col-green">+$64,627</td>
-          <td style="font-size:0.75rem; color:var(--muted)">Ongoing dep ($10,708/yr @35% = $3,748)</td>
-        </tr>
-        <tr>
-          <td><strong>Year 4</strong></td>
-          <td><span class="badge badge-blue">STR</span></td>
-          <td>$68,164</td>
-          <td class="col-teal">$3,748</td>
-          <td class="col-red">($73,391)</td>
-          <td class="col-red fw-bold">−$1,483</td>
-          <td class="col-green">+$63,144</td>
-          <td style="font-size:0.75rem; color:var(--muted)">PMI drops ✓ + ongoing dep</td>
-        </tr>
-        <tr>
-          <td><strong>Year 5</strong></td>
-          <td><span class="badge badge-blue">STR</span></td>
-          <td>$68,164</td>
-          <td class="col-teal">$3,748</td>
-          <td class="col-red">($73,391)</td>
-          <td class="col-red fw-bold">−$1,483</td>
-          <td class="col-green fw-bold">+$61,661</td>
-          <td style="font-size:0.75rem; color:var(--muted)">Stable run rate</td>
+        <tr style="background:#13161f;">
+          <td style="padding:8px 12px;color:var(--muted);font-weight:600;">Cumulative</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);">−$37,053</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,638</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$64,639</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$63,160</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$61,681</td>
         </tr>
       </tbody>
     </table>
-    </div>
-    <div class="alert alert-green mt-12">
-      <strong>Year 2 nets +$105,687 — full STR revenue ($68,164 net on $110K gross) + cost seg bonus dep ($113,438). Years 3-5 run near breakeven (~−$546 to −$3K/yr). Total 5-yr cash positive +$61,661. Add appreciation + principal = <strong>$301,238 total wealth / 253% ROI.</strong></strong>
     </div>
   </div>
 
@@ -653,29 +632,47 @@
           <div class="waterfall-label">💸 Cash Flow (incl. tax benefits)</div>
           <div style="font-size:0.72rem; color:var(--muted)">STR income + depreciation tax savings − carry, cumulative Y1–Y5</div>
         </div>
-        <span class="waterfall-amount col-green">+$61,661</span>
+        <span class="waterfall-amount col-green">+$61,681</span>
       </div>
-      <div style="font-size:0.72rem;color:#4ade80;text-align:right;margin-top:-8px;margin-bottom:8px;">Includes: $109,690 Y2 bonus dep + $14,992 ongoing dep − $62,346 net carry shortfall</div>
+      <div style="font-size:0.72rem;color:#4ade80;text-align:right;margin-top:-8px;margin-bottom:8px;">$109,690 Y2 bonus dep + $14,992 ongoing dep − $62,346 net carry shortfall</div>
+      <div class="waterfall-row">
+        <div>
+          <div class="waterfall-label">🎿 Personal Use Value</div>
+          <div style="font-size:0.72rem; color:var(--muted)">Y1: ~30 nights · Y2–Y5: 14 nights/yr · $800/night comparable rate</div>
+        </div>
+        <span class="waterfall-amount" style="color:#a78bfa;">+$68,800</span>
+      </div>
+      <div style="font-size:0.72rem;color:#a78bfa;text-align:right;margin-top:-8px;margin-bottom:8px;">$24,000 Y1 + $11,200/yr Y2–5 · lodging cost avoided at conservative Stratton 5-bed comps</div>
       <div class="waterfall-row total">
         <div>
-          <div class="waterfall-label fw-bold">Total 5-Yr Wealth</div>
-          <div style="font-size:0.72rem; color:var(--muted)">On $119,275 cash invested</div>
+          <div class="waterfall-label fw-bold">Total 5-Yr Return</div>
+          <div style="font-size:0.72rem; color:var(--muted)">Financial wealth + lifestyle value · on $119,275 invested</div>
         </div>
-        <span class="waterfall-amount col-green fw-bold" style="font-size:1.1rem;">+$301,238</span>
+        <span class="waterfall-amount col-green fw-bold" style="font-size:1.1rem;">+$370,038</span>
       </div>
+      <div style="font-size:0.72rem; color:var(--muted); margin-top:2px; margin-bottom:8px; text-align:right;">Financial wealth only: +$301,238 · Lifestyle value adds: +$68,800</div>
       <div class="wealth-bar-container mt-12">
-        <div class="wealth-seg" style="flex:188; background:var(--green); opacity:0.8;"></div>
-        <div class="wealth-seg" style="flex:51; background:var(--teal); opacity:0.8;"></div>
-        <div class="wealth-seg" style="flex:38; background:var(--red); opacity:0.8;"></div>
+        <div class="wealth-seg" style="flex:188; background:var(--green); opacity:0.8;" title="Appreciation"></div>
+        <div class="wealth-seg" style="flex:51; background:var(--teal); opacity:0.8;" title="Principal"></div>
+        <div class="wealth-seg" style="flex:62; background:#22c55e; opacity:0.6;" title="Cash flow"></div>
+        <div class="wealth-seg" style="flex:69; background:#a78bfa; opacity:0.9;" title="Personal use"></div>
       </div>
-      <div style="display:flex; gap:16px; margin-top:6px; font-size:0.68rem; color:var(--muted);">
-        <span>🟢 Appreciation</span>
-        <span style="color:var(--teal)">🟢 Principal</span>
-        <span>🔴 Cash drag</span>
+      <div style="display:flex; gap:16px; margin-top:6px; font-size:0.68rem; color:var(--muted); flex-wrap:wrap;">
+        <span>🟢 Appreciation $188K</span>
+        <span style="color:var(--teal)">🟢 Principal $51K</span>
+        <span style="color:#4ade80">🟢 Cash Flow $62K</span>
+        <span style="color:#a78bfa">🟣 Lifestyle $69K</span>
       </div>
-      <div class="mt-12 text-center">
-        <span style="font-size:0.8rem; color:var(--muted);">ROI on cash invested: </span>
-        <span style="font-size:1.1rem; font-weight:800; color:var(--green);">253%</span>
+      <div class="mt-12" style="display:flex; gap:24px; justify-content:center; text-align:center;">
+        <div>
+          <div style="font-size:0.72rem; color:var(--muted);">Financial ROI</div>
+          <div style="font-size:1.05rem; font-weight:800; color:var(--green);">253%</div>
+        </div>
+        <div style="border-left:1px solid var(--border);"></div>
+        <div>
+          <div style="font-size:0.72rem; color:var(--muted);">Total Return ROI</div>
+          <div style="font-size:1.05rem; font-weight:800; color:#a78bfa;">310%</div>
+        </div>
       </div>
     </div>
 
@@ -798,6 +795,91 @@
         <span class="waterfall-label">Closing Timeline</span>
         <span class="waterfall-amount">45 Days</span>
       </div>
+
+  <!-- ===== LIFESTYLE VALUE SECTION ===== -->
+  <div class="card" style="margin-top:20px; border-color:#6d28d9; border-width:1px; border-style:solid; background:linear-gradient(135deg,#13161f,#1a1135);">
+    <div class="card-title" style="color:#c4b5fd;">🎿 Lifestyle Enhancement Analysis</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:16px;">This isn't just an investment — it's a platform for 5+ years of family ski weekends. Below is what you'd pay on the open market for equivalent access.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
+      <thead>
+        <tr style="background:#1e1535;">
+          <th style="padding:8px 12px;text-align:left;color:#a78bfa;border-bottom:1px solid #6d28d9;">Component</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 1<br><span style="font-size:0.7rem;font-weight:400">~30 nights</span></th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 2</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 3</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 4</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 5</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">5-Yr Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 12px;color:var(--text2);">Nights at mountain<br><span style="font-size:0.68rem;color:var(--muted)">Y1 LTR transition; Y2-5 owner usage</span></td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">~30</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">~86</td>
+        </tr>
+        <tr style="background:#1e1535;">
+          <td style="padding:8px 12px;color:var(--text2);">Lodging cost avoided<br><span style="font-size:0.68rem;color:var(--muted)">$800/night · conservative Stratton 5-bed comp<br>Peak rates: $2,000–$3,000/night</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;font-weight:700;">+$24,000</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$68,800</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;color:var(--text2);">Ski day ticket value avoided<br><span style="font-size:0.68rem;color:var(--muted)">2 adults $225 + 2 kids $100/day vs. window rate<br>Ikon pass ($4,136/yr) already in financial model</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$19,500</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$55,900</td>
+        </tr>
+        <tr style="background:#1e1535; border-top:1px solid #6d28d9;">
+          <td style="padding:9px 12px;color:#c4b5fd;font-weight:700;">Total Lifestyle Value</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$43,500</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:800;font-size:1.05rem;">+$124,700</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Financial Wealth</div>
+        <div style="font-size:1.1rem;font-weight:800;color:var(--green);">+$301,238</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Appreciation + equity + cash</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Personal Use Value</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#a78bfa;">+$68,800</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Lodging avoided (conservative)</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Total 5-Yr Return</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#c4b5fd;">+$370,038</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Financial + lodging · 310% ROI</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Full Lifestyle Value</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#f0abfc;">+$124,700</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Lodging + ski tickets combined</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:#1e1535;border-radius:8px;border-left:3px solid #a78bfa;font-size:0.8rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:#c4b5fd;">Key framing:</strong> At $800/night conservative — actual Stratton 5-bedroom peak bookings run $2,000–$3,000/night. Your 14 annual owner nights are effectively free relative to the investment thesis. Year 1, with ~30 nights of flexibility during the LTR-to-STR transition, returns roughly <strong style="color:#c4b5fd;">$43,500</strong> in lifestyle value alone — more than covering the Year 1 cash deficit.
+    </div>
+  </div>
+
       <div class="alert alert-gold mt-12" style="font-size:0.8rem;">
         <strong>Signal:</strong> Two competing offers exist and seller pushed the meeting back — sign of controlled process, not panic. Escalation to $875K keeps you competitive without overpaying.
       </div>
