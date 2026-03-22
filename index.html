@@ -183,6 +183,7 @@
   <button class="tab-btn" onclick="showTab('financing')" style="color:#f87171;font-weight:700;">💼 How To Buy This NOW</button>
   <button class="tab-btn" onclick="showTab('rules')">📋 Winhall STR Rules</button>
   <button class="tab-btn" onclick="showTab('mortgage')" style="color:#a78bfa;font-weight:700;">🏦 MORTGAGE OPTIONS</button>
+  <button class="tab-btn" onclick="showTab('comps')" style="color:#34d399;font-weight:700;">🔬 COMP ANALYSIS</button>
 </div>
 
 <div class="content">
@@ -3242,6 +3243,396 @@
 
 
   
+  <div class="tab-pane" id="tab-comps">
+  <div class="content">
+
+    <div style="font-size:11px;color:#34d399;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Deep Comp Analysis & Price Target Model</div>
+    <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px;">What Is 24 Sugarbush Drive Actually Worth?</div>
+    <div style="font-size:13px;color:#9ca3af;margin-bottom:24px;">Subject: 24 Sugarbush Dr, Winhall VT · 5 bed / 3 bath / 2,897 sqft / 1.26 ac / Built 1974 / No garage / Renovated / Stratton views · List price: $849,000</div>
+
+    <!-- HEADLINE VERDICT -->
+    <div style="background:linear-gradient(135deg,#052e16 0%,#0c1a3a 100%);border:2px solid #34d399;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;">
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Adjusted Comp Model</div>
+          <div style="font-size:22px;font-weight:800;color:#34d399;">$1,045,000</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">Avg of 3 adjusted 5-bed solds</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Raw 5-Bed Comp Avg</div>
+          <div style="font-size:22px;font-weight:800;color:#60a5fa;">$992,000</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">No adjustments, 3 Oct–Feb solds</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">CMA Range (Seller's Agent)</div>
+          <div style="font-size:22px;font-weight:800;color:#fbbf24;">$845K–$934K</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">Midpoint: $889K · Gillian 3/20/26</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Weighted Price Target</div>
+          <div style="font-size:22px;font-weight:800;color:#f87171;">$983,000</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">60% adj comp / 40% CMA</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #1e3a5f;margin-top:16px;padding-top:14px;font-size:12px;color:#e4e4e7;line-height:1.8;">
+        <strong style="color:#34d399;">Bottom line:</strong> The list price of $849,000 is approximately <strong style="color:#fff;">$134,000–$196,000 below the property's indicated fair market value</strong> based on comparable 5-bedroom sales from the past 5 months. The seller's own CMA significantly understates market value relative to what these properties are actually transacting at. Your offer ceiling of $875K buys you a property worth $983K. That is an exceptional entry point.
+      </div>
+    </div>
+
+    <!-- COMP TABLE -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">All Comparable Sales — Winhall VT (2023–2026)</div>
+    <div style="overflow-x:auto;margin-bottom:24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="background:#0f1117;">
+          <th style="padding:9px 12px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Address</th>
+          <th style="padding:9px 12px;text-align:center;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Status</th>
+          <th style="padding:9px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Price</th>
+          <th style="padding:9px 12px;text-align:center;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Bed/Ba</th>
+          <th style="padding:9px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">SqFt</th>
+          <th style="padding:9px 12px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">$/SqFt</th>
+          <th style="padding:9px 12px;text-align:center;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">Date</th>
+          <th style="padding:9px 12px;text-align:center;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;white-space:nowrap;">DOM</th>
+          <th style="padding:9px 12px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Relevance / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- SUBJECT -->
+        <tr style="background:#0c1a3a;border-left:3px solid #60a5fa;">
+          <td style="padding:8px 12px;color:#60a5fa;font-weight:800;">📍 24 Sugarbush Dr (SUBJECT)</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">ACTIVE</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#60a5fa;font-weight:700;">$849,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">5 / 3</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,897</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">$293</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">Mar 2026</td>
+          <td style="padding:8px 12px;text-align:center;color:#fbbf24;">Extended</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Views, renovated, game room, 2 kitchens, 1974 vintage, no garage</td>
+        </tr>
+        <!-- TIER 1: 5-bed solds — highest weight -->
+        <tr style="background:#052e16;border-left:3px solid #34d399;">
+          <td style="padding:8px 12px;color:#34d399;font-weight:700;">14 Mountain Haunts Rd</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;font-weight:700;">$951,014</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">5 / 3</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,230</td>
+          <td style="padding:8px 12px;text-align:right;color:#f87171;font-weight:700;">$426</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Oct 2025</td>
+          <td style="padding:8px 12px;text-align:center;color:#4ade80;font-weight:700;">5</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">⭐ Tier 1. Same beds/baths. 5 DOM = bidding war. Smaller sqft (667 less). No garage. Same street area.</td>
+        </tr>
+        <tr style="background:#052e16;border-left:3px solid #34d399;">
+          <td style="padding:8px 12px;color:#34d399;font-weight:700;">6 Chad Circle</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;font-weight:700;">$1,050,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">5 / 4</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,952</td>
+          <td style="padding:8px 12px;text-align:right;color:#fbbf24;">$356</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Feb 2026</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">—</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">⭐ Tier 1. Most recent sold. 5-bed/4-bath, 1 garage advantage. Slightly larger sqft. Feb 2026.</td>
+        </tr>
+        <tr style="background:#052e16;border-left:3px solid #34d399;">
+          <td style="padding:8px 12px;color:#34d399;font-weight:700;">20 Jamie Lane</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;font-weight:700;">$975,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">5 / 3.5</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,500</td>
+          <td style="padding:8px 12px;text-align:right;color:#f87171;font-weight:700;">$390</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Nov 2025</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">—</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">⭐ Tier 1. 5-bed, 2 garages. Subject has no garage (disadvantage). 397 sqft smaller than subject.</td>
+        </tr>
+        <!-- TIER 2: 4-bed solds -->
+        <tr style="background:#0f1117;border-left:3px solid #fbbf24;">
+          <td style="padding:8px 12px;color:#fbbf24;">22 Mountain View Rd</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;">$1,050,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">4 / 3.5</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,817</td>
+          <td style="padding:8px 12px;text-align:right;color:#fbbf24;">$373</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Jan 2023</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">—</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Tier 2. 4-bed, Stratton Mountain oasis. Adjust +12% for time → ~$1.18M equivalent today.</td>
+        </tr>
+        <tr style="background:#0f1117;border-left:3px solid #fbbf24;">
+          <td style="padding:8px 12px;color:#fbbf24;">5 Stratton Ridge Rd</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;">$770,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">4 / 3</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">3,676</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$209</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Jul 2025</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">—</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Tier 2 (low weight). 4-bed, larger sqft, 2 miles from resort — farther location drags price/sqft.</td>
+        </tr>
+        <tr style="background:#0f1117;border-left:3px solid #fbbf24;">
+          <td style="padding:8px 12px;color:#fbbf24;">32 Benson Fuller Dr</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">SOLD</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#4ade80;">$696,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">4 / 3.5</td>
+          <td style="padding:8px 12px;text-align:right;color:#e4e4e7;">2,878</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$242</td>
+          <td style="padding:8px 12px;text-align:center;color:#e4e4e7;">Jul 2023</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">—</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Tier 2. 4-bed, 2023 vintage. Adjust +12% for time → ~$780K equivalent today.</td>
+        </tr>
+        <!-- Actives for context -->
+        <tr style="background:#0f1117;opacity:0.7;">
+          <td style="padding:8px 12px;color:#9ca3af;">13 Betty Johnson Ln</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:10px;">ACTIVE</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$849,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">4 / 3</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">2,458</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$345</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">Jan 2026</td>
+          <td style="padding:8px 12px;text-align:center;color:#f87171;">89</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Active/not selling. 4-bed, sitting 89 DOM — overpriced or inferior. Competitor to subject.</td>
+        </tr>
+        <tr style="background:#0f1117;opacity:0.7;">
+          <td style="padding:8px 12px;color:#9ca3af;">25 Benson Fuller Rd</td>
+          <td style="padding:8px 12px;text-align:center;"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:10px;">ACTIVE</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$860,000</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">4 / 3.5</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">4,104</td>
+          <td style="padding:8px 12px;text-align:right;color:#9ca3af;">$209</td>
+          <td style="padding:8px 12px;text-align:center;color:#9ca3af;">Jun 2025</td>
+          <td style="padding:8px 12px;text-align:center;color:#f87171;">Extended</td>
+          <td style="padding:8px 12px;color:#9ca3af;font-size:11px;">Active, not moving. 4-bed, massive sqft — price/sqft penalty for size. Different buyer profile.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- ADJUSTMENT MODEL -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Adjustment Model: Tier 1 Comps Adjusted to Subject</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+      <div style="background:#052e16;border:1px solid #14532d;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#34d399;margin-bottom:10px;">14 Mountain Haunts Rd</div>
+        <div style="font-size:11px;color:#9ca3af;line-height:1.9;">
+          Base price: <span style="color:#fff;">$951,014</span><br>
+          Sqft diff (+667 sqft × $200): <span style="color:#4ade80;">+$133,400</span><br>
+          Lot (1.26 vs 1.20 ac): <span style="color:#4ade80;">+$1,200</span><br>
+          Age diff (1987 vs 1974, 13yr): <span style="color:#f87171;">−$13,000</span><br>
+          Views (comparable): <span style="color:#9ca3af;">$0</span><br>
+          <span style="border-top:1px solid #1e2332;display:block;margin:6px 0;"></span>
+          <strong style="color:#34d399;font-size:13px;">Adjusted: $1,072,614</strong>
+        </div>
+      </div>
+      <div style="background:#052e16;border:1px solid #14532d;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#34d399;margin-bottom:10px;">6 Chad Circle</div>
+        <div style="font-size:11px;color:#9ca3af;line-height:1.9;">
+          Base price: <span style="color:#fff;">$1,050,000</span><br>
+          Sqft diff (−55 sqft × $200): <span style="color:#f87171;">−$11,000</span><br>
+          Garage (1 garage, −1 vs comp): <span style="color:#4ade80;">+$25,000</span><br>
+          Bath (3 vs 4 ba): <span style="color:#f87171;">−$15,000</span><br>
+          Views (unknown, +partial): <span style="color:#4ade80;">+$17,500</span><br>
+          <span style="border-top:1px solid #1e2332;display:block;margin:6px 0;"></span>
+          <strong style="color:#34d399;font-size:13px;">Adjusted: $1,036,700</strong>
+        </div>
+      </div>
+      <div style="background:#052e16;border:1px solid #14532d;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#34d399;margin-bottom:10px;">20 Jamie Lane</div>
+        <div style="font-size:11px;color:#9ca3af;line-height:1.9;">
+          Base price: <span style="color:#fff;">$975,000</span><br>
+          Sqft diff (+397 sqft × $200): <span style="color:#4ade80;">+$79,400</span><br>
+          Garage (2 garages, −2 vs comp): <span style="color:#4ade80;">+$50,000</span><br>
+          Bath (3 vs 3.5 ba): <span style="color:#f87171;">−$10,000</span><br>
+          Views (unknown, +partial): <span style="color:#4ade80;">+$17,500</span><br>
+          Lot (1.26 vs 1.0 ac): <span style="color:#4ade80;">+$5,200</span><br>
+          <span style="border-top:1px solid #1e2332;display:block;margin:6px 0;"></span>
+          <strong style="color:#34d399;font-size:13px;">Adjusted: $1,027,100</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY FINDINGS -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Key Findings</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:10px;">Why The List Price Is Below Market</div>
+        <div style="font-size:11px;color:#d1d5db;line-height:1.9;">
+          1. <strong style="color:#fff;">CMA used flawed comp weighting.</strong> Gillian included two 4-bed actives that aren't selling and a 3-bed pending ($650K) — all pulling the range down. Excluding them, 5-bed sold average is $992K.<br><br>
+          2. <strong style="color:#fff;">Extended DOM creates seller psychology.</strong> The longer a property sits, the lower sellers mentally anchor their expectations, even if the underlying value hasn't changed. The 5-bed comps suggest this property is underpriced by ~$140K at ask.<br><br>
+          3. <strong style="color:#fff;">Seasonality window.</strong> End of ski season (March) is the seller's last motivated-buyer window. They likely priced to move this weekend rather than maximize value.
+        </div>
+      </div>
+      <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:10px;">Subject's Premium Features (vs Comps)</div>
+        <div style="font-size:11px;color:#d1d5db;line-height:1.9;">
+          <span style="color:#4ade80;">✓</span> <strong>Largest sqft</strong> in the core 5-bed set (2,897 vs 2,230–2,952)<br>
+          <span style="color:#4ade80;">✓</span> <strong>Largest lot</strong> (1.26 ac vs 1.0–1.2 ac in comps)<br>
+          <span style="color:#4ade80;">✓</span> <strong>Confirmed Stratton Mountain views</strong> — not universal in comps<br>
+          <span style="color:#4ade80;">✓</span> <strong>Game room</strong> — significant STR premium, untranslated in comp model<br>
+          <span style="color:#4ade80;">✓</span> <strong>Two kitchens</strong> — dual-unit utility for STR<br>
+          <span style="color:#4ade80;">✓</span> <strong>Renovated</strong> — recent updates<br>
+          <span style="color:#f87171;">✗</span> <strong>No garage</strong> — disadvantage vs 2 of 3 core comps<br>
+          <span style="color:#f87171;">✗</span> <strong>1974 vintage</strong> — oldest in set<br>
+          <span style="color:#fbbf24;">◐</span> <strong>No hot tub</strong> — fixable Day 1, $10K capex
+        </div>
+      </div>
+    </div>
+
+    <!-- OFFER VS VALUE TABLE -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Your Offer Scenarios vs Estimated Market Value</div>
+    <div style="overflow-x:auto;margin-bottom:24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="background:#0f1117;">
+          <th style="padding:9px 14px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Offer Price</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">% of Raw Comp Avg ($992K)</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">% of Adjusted Model ($1.045M)</th>
+          <th style="padding:9px 14px;text-align:right;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Discount to Weighted Target ($983K)</th>
+          <th style="padding:9px 14px;text-align:left;color:#6b7280;font-weight:600;border-bottom:1px solid #1e2332;">Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$820,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">82.7%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">78.5%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">−$163K</td>
+          <td style="padding:8px 14px;color:#9ca3af;font-size:11px;">Excellent value if it wins. Risk: sub-ask opener may be dismissed with 2 offers in.</td>
+        </tr>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$849,000 (ask)</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">85.6%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">81.2%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">−$134K</td>
+          <td style="padding:8px 14px;color:#9ca3af;font-size:11px;">Strong entry. Full ask signals seriousness. Still $134K below estimated value.</td>
+        </tr>
+        <tr style="background:#052e16;border-bottom:1px solid #1a1d27;border-left:2px solid #34d399;">
+          <td style="padding:8px 14px;color:#34d399;font-weight:800;">$875,000 (your cap)</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;font-weight:700;">88.2%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;font-weight:700;">83.7%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;font-weight:700;">−$108K</td>
+          <td style="padding:8px 14px;color:#4ade80;font-size:11px;font-weight:600;">Still $108K below estimated value. Extremely strong position at your ceiling.</td>
+        </tr>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#e4e4e7;font-weight:700;">$900,000</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">90.7%</td>
+          <td style="padding:8px 14px;text-align:right;color:#4ade80;">86.1%</td>
+          <td style="padding:8px 14px;text-align:right;color:#fbbf24;">−$83K</td>
+          <td style="padding:8px 14px;color:#9ca3af;font-size:11px;">At pre-approval ceiling. Still comfortably below market. Context: if bidding escalates.</td>
+        </tr>
+        <tr style="background:#0f1117;border-bottom:1px solid #1a1d27;">
+          <td style="padding:8px 14px;color:#9ca3af;">$983,000 (target)</td>
+          <td style="padding:8px 14px;text-align:right;color:#fbbf24;">99.1%</td>
+          <td style="padding:8px 14px;text-align:right;color:#fbbf24;">94.1%</td>
+          <td style="padding:8px 14px;text-align:right;color:#fbbf24;">—</td>
+          <td style="padding:8px 14px;color:#9ca3af;font-size:11px;">Estimated fair market value. Comp-supported ceiling — above pre-approval.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- FORWARD PRICE PROJECTION -->
+    <div style="font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;">Forward Price Projection — This Property Specifically</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:12px;">Why 6%/yr May Be Conservative for 24 Sugarbush</div>
+      <div style="font-size:12px;color:#d1d5db;line-height:1.85;margin-bottom:16px;">
+        The 6% annual appreciation assumption in the financial model is based on the broad Stratton market. Three factors suggest this property may outperform:
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div style="background:#0f1117;border-radius:8px;padding:14px;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;margin-bottom:6px;">Market Momentum</div>
+          <div style="font-size:13px;font-weight:700;color:#4ade80;">+6.6%</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">Winhall $/sqft YoY (Redfin)</div>
+        </div>
+        <div style="background:#0f1117;border-radius:8px;padding:14px;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;margin-bottom:6px;">5-Bed Sold Avg vs. Ask</div>
+          <div style="font-size:13px;font-weight:700;color:#4ade80;">101%</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">Sales-to-list ratio on 5-bed comps</div>
+        </div>
+        <div style="background:#0f1117;border-radius:8px;padding:14px;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;margin-bottom:6px;">Entry Discount</div>
+          <div style="font-size:13px;font-weight:700;color:#4ade80;">~16%</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:3px;">Below estimated value at $875K</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:#0f1117;">
+            <th style="padding:7px 12px;text-align:left;color:#6b7280;border-bottom:1px solid #1e2332;">Year</th>
+            <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Conservative (5%/yr)</th>
+            <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Base Case (6%/yr)</th>
+            <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Optimistic (8%/yr)</th>
+            <th style="padding:7px 12px;text-align:right;color:#6b7280;border-bottom:1px solid #1e2332;">Equity Gain vs $875K</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#9ca3af;">Now (purchase)</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$875,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$875,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$875,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">+$108K (immediate, vs est. value)</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#9ca3af;">Year 1 (2027)</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$918,750</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$927,500</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$945,000</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">+$44–70K</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#9ca3af;">Year 2 (2028)</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$964,688</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$983,150</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$1,020,600</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">+$90–146K</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;background:#052e16;">
+            <td style="padding:7px 12px;color:#4ade80;font-weight:700;">Year 3 (2029)</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">$1,012,922</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;font-weight:700;">$1,042,139</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;">$1,102,248</td>
+            <td style="padding:7px 12px;text-align:right;color:#4ade80;font-weight:700;">+$138–227K · PMI drops</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a1d27;">
+            <td style="padding:7px 12px;color:#9ca3af;">Year 5 (2031)</td>
+            <td style="padding:7px 12px;text-align:right;color:#60a5fa;">$1,116,602</td>
+            <td style="padding:7px 12px;text-align:right;color:#60a5fa;font-weight:700;">$1,170,948</td>
+            <td style="padding:7px 12px;text-align:right;color:#60a5fa;">$1,285,257</td>
+            <td style="padding:7px 12px;text-align:right;color:#60a5fa;font-weight:700;">+$242–410K appreciation alone</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px;color:#9ca3af;">Year 7 (2033)</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$1,229,965</td>
+            <td style="padding:7py 12px;text-align:right;color:#e4e4e7;">$1,316,244</td>
+            <td style="padding:7px 12px;text-align:right;color:#e4e4e7;">$1,499,745</td>
+            <td style="padding:7px 12px;text-align:right;color:#fbbf24;">ARM adjustment year — refi or sell</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- EARNEST MONEY ANALYSIS -->
+    <div style="background:#1c0505;border:1px solid #dc2626;border-radius:10px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:#f87171;margin-bottom:10px;">🔴 $85K Earnest Money — How to Think About It</div>
+      <div style="font-size:12px;color:#d1d5db;line-height:1.85;">
+        <strong style="color:#fff;">Standard Vermont EMD: 1–3% ($8.5K–$25K).</strong> $85K is a 10% EMD — unusual and aggressive. This tells you one of three things:<br><br>
+        <ol style="margin:8px 0 8px 18px;line-height:2.0;">
+          <li>A previous deal fell through and the seller wants a buyer who's truly committed</li>
+          <li>The seller's agent is testing your commitment because the current offers are unimpressive</li>
+          <li>The seller genuinely needs to know the buyer won't walk post-inspection</li>
+        </ol>
+        <strong style="color:#fbbf24;">Push back first:</strong> Counter with $25K–$35K EMD and a strong offer. That's standard market, shows good faith, and preserves your liquidity. If they insist on $85K, options:<br><br>
+        <ul style="margin:8px 0 8px 18px;line-height:2.0;">
+          <li><strong style="color:#fff;">401K loan:</strong> Typically up to 50% of vested balance, max $50K, repaid over 5 years at prime rate. No tax impact if repaid. Annoying but viable.</li>
+          <li><strong style="color:#fff;">Family bridge:</strong> Short-term loan, returned at closing when EMD applies to down payment. Zero cost if family doesn't charge interest.</li>
+          <li><strong style="color:#fff;">HELOC:</strong> If you have existing HELOC availability, $85K is accessible today. Rate is higher but it's only for 30–45 days.</li>
+        </ul>
+        <strong style="color:#4ade80;">Key point: The EMD applies toward your down payment at closing. It's not lost — it's just locked up for 45 days.</strong> The real risk is only if you walk away after the inspection contingency expires.
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
   <div class="tab-pane" id="tab-mortgage">
   <div class="content">
 
