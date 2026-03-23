@@ -1209,18 +1209,87 @@
 
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">Closing Cost Breakdown (LTR Rate)</div>
+      <div class="card-title">Closing Cost Breakdown — LTR Rate (1.47%)</div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Vermont Transfer Tax</div>
       <div class="waterfall-row">
-        <span class="waterfall-label">VT Transfer Tax (1.47%)</span>
+        <div><div class="waterfall-label">VT Property Transfer Tax (1.47%)</div><div style="font-size:0.68rem;color:var(--muted)">LTR close rate · $870K × 1.47% · saves $18,705 vs 3% rate</div></div>
         <span class="waterfall-amount col-red">$12,789</span>
       </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Lender Fees</div>
       <div class="waterfall-row">
-        <span class="waterfall-label">Other Closing Fees (title, legal, etc.)</span>
-        <span class="waterfall-amount col-red">$7,486</span>
+        <span class="waterfall-label">Loan Origination (0.5% of $783K)</span>
+        <span class="waterfall-amount col-red">$3,915</span>
       </div>
-      <div class="waterfall-row total">
+      <div class="waterfall-row">
+        <span class="waterfall-label">Appraisal</span>
+        <span class="waterfall-amount col-red">$750</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Underwriting Fee</span>
+        <span class="waterfall-amount col-red">$1,095</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Processing + Credit + Flood + Tax Service</span>
+        <span class="waterfall-amount col-red">$775</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Lender Fees Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$6,535</span>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Title &amp; Third-Party Fees</div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Title Search</span>
+        <span class="waterfall-amount col-red">$400</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Lender's Title Insurance</span>
+        <span class="waterfall-amount col-red">$2,349</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Owner's Title Insurance</span>
+        <span class="waterfall-amount col-red">$3,480</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">VT Attorney Closing Fee</span>
+        <span class="waterfall-amount col-red">$1,200</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Recording Fees (Deed + Mortgage)</span>
+        <span class="waterfall-amount col-red">$240</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Title &amp; Third-Party Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$7,669</span>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Prepaids &amp; Escrows</div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Prepaid Interest (15 days @ 6.375%)</div><div style="font-size:0.68rem;color:var(--muted)">$783K × 6.375% ÷ 365 × 15 days</div></div>
+        <span class="waterfall-amount col-red">$2,051</span>
+      </div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Homeowners Insurance (14 months prepaid)</div><div style="font-size:0.68rem;color:var(--muted)">12 mo policy + 2 mo escrow reserve</div></div>
+        <span class="waterfall-amount col-red">$1,400</span>
+      </div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Property Tax Escrow (6 months)</div><div style="font-size:0.68rem;color:var(--muted)">$9,576/yr ÷ 2 = $4,788</div></div>
+        <span class="waterfall-amount col-red">$4,788</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">First Month PMI</span>
+        <span class="waterfall-amount col-red">$210</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Prepaids &amp; Escrows Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$8,449</span>
+      </div>
+
+      <div class="waterfall-row total" style="margin-top:12px;">
         <span class="waterfall-label fw-bold">Total Closing Costs</span>
-        <span class="waterfall-amount fw-bold">$20,275</span>
+        <span class="waterfall-amount fw-bold col-red">$35,442</span>
       </div>
       <div class="divider"></div>
       <div class="waterfall-row">
@@ -1229,18 +1298,14 @@
       </div>
       <div class="waterfall-row">
         <span class="waterfall-label">Total Closing Costs</span>
-        <span class="waterfall-amount col-red">$20,275</span>
-      </div>
-      <div class="waterfall-row">
-        <span class="waterfall-label">STR Launch Budget</span>
-        <span class="waterfall-amount col-red">$12,000</span>
+        <span class="waterfall-amount col-red">$35,442</span>
       </div>
       <div class="waterfall-row total">
         <span class="waterfall-label fw-bold">Total Cash to Close</span>
-        <span class="waterfall-amount fw-bold col-gold" style="font-size:1.2rem;">$119,275</span>
+        <span class="waterfall-amount fw-bold col-gold" style="font-size:1.2rem;">$122,442</span>
       </div>
       <div class="alert alert-blue mt-12" style="font-size:0.8rem;">
-        <strong>Funding:</strong> HELOC draw + liquid savings. Compare to STR-rate close: $31,494 transfer tax would add $18,705 to this number.
+        <strong>Funding:</strong> HELOC draw + liquid savings. LTR close saves $18,705 vs. 3% STR rate ($31,494 transfer tax). Prepaids/escrows ($8,449) are reserves returned over time — not sunk costs.
       </div>
     </div>
 
