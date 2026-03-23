@@ -1304,8 +1304,19 @@
         <span class="waterfall-label fw-bold">Total Cash to Close</span>
         <span class="waterfall-amount fw-bold col-gold" style="font-size:1.2rem;">$118,962</span>
       </div>
-      <div class="alert alert-blue mt-12" style="font-size:0.8rem;">
-        <strong>Funding:</strong> HELOC draw + liquid savings. LTR close saves $18,705 vs. 3% STR rate ($31,494 transfer tax). Prepaids/escrows ($8,449) are reserves returned over time — not sunk costs.
+      <div style="margin-top:14px;padding:12px;background:#0a1a0a;border-radius:8px;border:1px solid #14532d;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.4px;">✅ Funding Confirmed — No HELOC Required</div>
+        <div style="font-size:0.72rem;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text2);">Checking Account</strong> → $20,000 (First EMD — already deployed)<br>
+          <strong style="color:var(--text2);">Kevin 401(k) Loan ($50K)</strong> → $40,000 second EMD + $10,000 to close<br>
+          <strong style="color:var(--text2);">Sarah 401(k) Loan ($50K)</strong> → $50,000 to close<br>
+          <div style="border-top:1px solid #14532d;margin-top:6px;padding-top:6px;">
+            EMD credited at close: <strong style="color:var(--green);">$60,000</strong> &nbsp;·&nbsp;
+            Wire at close: <strong style="color:var(--text2);">$58,962</strong> &nbsp;·&nbsp;
+            Available: <strong style="color:var(--green);">$60,000</strong> &nbsp;·&nbsp;
+            Surplus: <strong style="color:var(--green);">+$1,038</strong>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1357,26 +1368,139 @@
   </div>
 
   <div class="card">
-    <div class="card-title">Earnest Money Strategy</div>
-    <div class="grid-3">
+    <div class="card-title">Funding Plan — Confirmed Sources</div>
+
+    <!-- Summary stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px;">
       <div class="stat-box">
-        <div class="stat-label">Target EMD (push for)</div>
-        <div class="stat-val col-green">$25–35K</div>
-        <div class="stat-sub">Negotiate down from standard</div>
+        <div class="stat-label">Cash to Close</div>
+        <div class="stat-val col-gold">$118,962</div>
+        <div class="stat-sub">Total required</div>
       </div>
       <div class="stat-box">
-        <div class="stat-label">Worst Case Ready</div>
-        <div class="stat-val col-gold">$85,000</div>
-        <div class="stat-sub">Have liquid or HELOC ready</div>
+        <div class="stat-label">Checking (First EMD)</div>
+        <div class="stat-val col-green">$20,000</div>
+        <div class="stat-sub">Already deployed</div>
       </div>
       <div class="stat-box">
-        <div class="stat-label">Applied to Close</div>
-        <div class="stat-val col-blue">Yes</div>
-        <div class="stat-sub">EMD credited at closing</div>
+        <div class="stat-label">Kevin 401(k) Loan</div>
+        <div class="stat-val col-teal">$50,000</div>
+        <div class="stat-sub">$40K EMD + $10K close</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Sarah 401(k) Loan</div>
+        <div class="stat-val col-teal">$50,000</div>
+        <div class="stat-sub">All to close</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Surplus at Close</div>
+        <div class="stat-val col-green">+$1,038</div>
+        <div class="stat-sub">Buffer remaining</div>
       </div>
     </div>
-    <div class="alert alert-gold mt-12" style="font-size:0.8rem;">
-      EMD is credited toward your $119,275 total cash to close — it's not additional. Push back on EMD amount; two competing offers means seller has leverage but so do you if your financing is clean.
+
+    <!-- Waterfall -->
+    <div style="font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Deployment Waterfall</div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Checking Account → First EMD</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Wired at ratification · credited at close</div>
+      </div>
+      <span class="waterfall-amount col-red">$20,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Kevin 401(k) Loan → Second EMD</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Funded from $50K loan · wired after inspection contingency clears</div>
+      </div>
+      <span class="waterfall-amount col-red">$40,000</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;">
+      <div>
+        <div class="waterfall-label" style="color:var(--green);">Total EMD (credited at close)</div>
+      </div>
+      <span class="waterfall-amount col-green fw-bold">$60,000</span>
+    </div>
+    <div style="height:10px;"></div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Wire at closing — Down payment balance</div>
+        <div style="font-size:0.68rem;color:var(--muted)">$87,000 down − $60,000 EMD = $27,000</div>
+      </div>
+      <span class="waterfall-amount col-red">$27,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Wire at closing — Closing costs</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Transfer tax + lender fees + title + prepaids</div>
+      </div>
+      <span class="waterfall-amount col-red">$31,962</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;">
+      <div>
+        <div class="waterfall-label" style="color:var(--green);">Wire total needed at close</div>
+      </div>
+      <span class="waterfall-amount col-green fw-bold">$58,962</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Kevin 401(k) remaining (after $40K EMD)</div>
+        <div style="font-size:0.68rem;color:var(--muted)">$50K loan − $40K EMD = $10K available for wire</div>
+      </div>
+      <span class="waterfall-amount col-teal">$10,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Sarah 401(k) Loan (full amount to wire)</div>
+        <div style="font-size:0.68rem;color:var(--muted)">All $50K deployed at closing wire</div>
+      </div>
+      <span class="waterfall-amount col-teal">$50,000</span>
+    </div>
+    <div class="waterfall-row total">
+      <div>
+        <div class="waterfall-label fw-bold">Available for Wire</div>
+      </div>
+      <span class="waterfall-amount fw-bold col-green">$60,000</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;border-top:none;">
+      <div>
+        <div class="waterfall-label fw-bold" style="color:var(--green);">Surplus at Close</div>
+      </div>
+      <span class="waterfall-amount fw-bold col-green">+$1,038</span>
+    </div>
+
+    <!-- 401k repayment section -->
+    <div style="margin-top:18px;padding:14px;background:#0a0a1a;border-radius:8px;border:1px solid #1e2332;">
+      <div style="font-size:0.75rem;font-weight:700;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.4px;">401(k) Loan Repayment Structure</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.72rem;margin-bottom:10px;">
+        <div style="background:var(--surface2);padding:10px;border-radius:6px;">
+          <div style="color:var(--muted);">Kevin's loan</div>
+          <div style="font-weight:700;color:var(--text);">$50,000 · 5yr · ~8.5%</div>
+          <div style="color:var(--accent);">~$1,026/mo payroll deduction</div>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:6px;">
+          <div style="color:var(--muted);">Sarah's loan</div>
+          <div style="font-weight:700;color:var(--text);">$50,000 · 5yr · ~8.5%</div>
+          <div style="color:var(--accent);">~$1,026/mo payroll deduction</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:0.72rem;margin-bottom:10px;">
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Combined monthly</div>
+          <div style="font-weight:800;color:var(--gold);">$2,052/mo</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Annual repayment</div>
+          <div style="font-weight:800;color:var(--gold);">$24,624/yr</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Interest paid to</div>
+          <div style="font-weight:800;color:var(--green);">Yourself ✓</div>
+        </div>
+      </div>
+      <div style="font-size:0.7rem;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:8px;">
+        <strong style="color:var(--text2);">Key risks to manage:</strong> (1) Job loss triggers immediate repayment or the balance becomes a taxable distribution with 10% penalty — maintain 3-month emergency fund. (2) Opportunity cost: $100K not invested during repayment period. At 7% market return, ~$40K in foregone growth over 5 years — partially offset by the STR returns this capital enables. (3) Loans must be fully repaid before any plan distributions — confirm with plan administrator before pulling.
+      </div>
     </div>
   </div>
 
