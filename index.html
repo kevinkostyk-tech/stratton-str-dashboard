@@ -1948,6 +1948,125 @@ function showTab(idx) {
     </div>
   </div>
 
+  
+  <!-- Comp Map -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:16px 20px 12px;">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Comparable Sales — Map View</div>
+      <div style="font-size:0.72rem;color:var(--muted);">All comps within ~3 miles of subject. On-mountain comps (North Brookwood) carry a significant location premium vs. off-mountain Forest Farms/Winhall. Subject coordinates approximate (Sugarbush Dr not in OSM).</div>
+    </div>
+    <div id="comp-map" style="height:420px;width:100%;"></div>
+    <div style="padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px;font-size:0.72rem;border-top:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#f59e0b;display:inline-block;border:2px solid #fff;"></span> Subject — 24 Sugarbush Dr</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#22c55e;display:inline-block;border:2px solid #fff;"></span> Primary comps (used in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#14b8a6;display:inline-block;border:2px solid #fff;"></span> Supporting refs (not in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#6b7280;display:inline-block;border:2px solid #fff;"></span> Active (not sold)</div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function() {
+    // Init map centered on subject area
+    var map = L.map('comp-map', {
+      center: [43.132, -72.880],
+      zoom: 13,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    function makeIcon(color, size) {
+      size = size || 14;
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + color + ';border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.5);"></div>',
+        iconSize: [size, size],
+        iconAnchor: [size/2, size/2],
+        popupAnchor: [0, -(size/2 + 4)]
+      });
+    }
+
+    var props = [
+      {
+        lat: 43.1330, lon: -72.8710,
+        color: '#f59e0b', size: 18,
+        title: '24 Sugarbush Drive — SUBJECT',
+        body: '<b>Offer: $870,000</b><br>2,897 sqft · 5bd/3ba · $300/sqft<br>Forest Farms, Winhall<br>Mountain views · 2 fireplaces · game room<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1364, lon: -72.8680,
+        color: '#22c55e', size: 16,
+        title: '20 Jamie Lane — SOLD Nov '25',
+        body: '<b>$975,000</b><br>3,252 sqft · 5bd/3.5ba · $299/sqft<br>Adj. value: <b>$858,600</b><br>Hot tub + barrel sauna'
+      },
+      {
+        lat: 43.1348, lon: -72.8784,
+        color: '#22c55e', size: 16,
+        title: '6 Chad Circle — SOLD Feb '26',
+        body: '<b>$1,050,000</b><br>4,788 sqft · 5bd/4ba · $219/sqft<br>Listed $1.1M · large floor plan · garage<br><i style="color:#aaa;">Excluded from adj. model (too large)</i>'
+      },
+      {
+        lat: 43.1368, lon: -72.8690,
+        color: '#22c55e', size: 16,
+        title: '14 Mountain Haunts — SOLD Oct '25',
+        body: '<b>$951,014</b><br>3,238 sqft · 5bd/3ba · $294/sqft<br>Adj. value: <b>$885,534</b><br>Listed $875K · sold +8.7% in 5 DOM<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1178, lon: -72.9142,
+        color: '#14b8a6', size: 14,
+        title: '6 Roundtree Rd — SOLD Jul '24',
+        body: '<b>$775,000</b><br>1,908 sqft · 4bd/2ba · $406/sqft<br>Supporting ref · older sale · 4bd'
+      },
+      {
+        lat: 43.1177, lon: -72.9118,
+        color: '#14b8a6', size: 14,
+        title: '7 North Brookwood — SOLD '25/'26',
+        body: '<b>$850,000</b><br>4bd · Sqft unverified · $419/sqft est.<br><b>ON-MOUNTAIN</b> — location premium<br>Adj. −20% for off-mountain · not in model'
+      },
+      {
+        lat: 43.1364, lon: -72.8954,
+        color: '#14b8a6', size: 14,
+        title: '5 Stratton Ridge Rd — SOLD Jul '25',
+        body: '<b>$770,000</b><br>3,676 sqft · 4bd · $209/sqft<br>Supporting ref · 4bd, larger, inferior'
+      },
+      {
+        lat: 43.1347, lon: -72.8716,
+        color: '#6b7280', size: 12,
+        title: '13 Betty Johnson Ln — ACTIVE',
+        body: '<b>$849,000 (asking)</b><br>4bd · 89 days on market · not moving<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1307, lon: -72.8713,
+        color: '#6b7280', size: 12,
+        title: '25 Benson Fuller — ACTIVE',
+        body: '<b>$860,000 (asking)</b><br>4bd · 273 days on market · massively stale'
+      }
+    ];
+
+    props.forEach(function(p) {
+      L.marker([p.lat, p.lon], {icon: makeIcon(p.color, p.size)})
+        .addTo(map)
+        .bindPopup('<div style="font-size:0.82rem;min-width:220px;"><b style="font-size:0.88rem;">' + p.title + '</b><br><hr style="margin:6px 0;border-color:#ddd;">' + p.body + '</div>', {maxWidth: 280});
+    });
+
+    // Stratton Mountain marker
+    L.marker([43.1050, -72.9211], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:#1e2332;color:#e8eaf0;font-size:0.65rem;font-weight:700;padding:3px 7px;border-radius:4px;border:1px solid #4f8ef7;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.5);">⛷ Stratton Mountain</div>',
+        iconSize: [130, 22],
+        iconAnchor: [65, 11]
+      })
+    }).addTo(map);
+
+  })();
+  </script>
+
   <!-- Sales Comparison Adjustment Grid -->
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
     <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Sales Comparison Approach — Adjustment Grid</div>
