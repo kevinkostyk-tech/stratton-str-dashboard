@@ -330,7 +330,8 @@
   <button class="tab-btn" onclick="showTab(2)">🎯 Offer Strategy</button>
   <button class="tab-btn" onclick="showTab(3)">🏦 Financing &amp; Close</button>
   <button class="tab-btn" onclick="showTab(4)">🔨 ROI Projects</button>
-</div>
+<button class="tab-btn" onclick="showTab(5)">📊 Appraisal Model</button>
+  </div>
 
 <!-- ===== TAB 1: THE PROPERTY ===== -->
 <div class="tab-content active" id="tab-0">
@@ -1825,6 +1826,7 @@
   </div>
 
 </div>
+</div>
 
 <script>
 function showTab(idx) {
@@ -1836,5 +1838,300 @@ function showTab(idx) {
   });
 }
 </script>
+
+<!-- ===== TAB 6: APPRAISAL / FAIR VALUE SECTION ===== -->
+<div class="tab-content" id="tab-5">
+<div style="max-width:100%;padding:0;" id="appraisal-section">
+
+  <div style="border-bottom:2px solid var(--accent);padding-bottom:12px;margin-bottom:24px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:6px;">Fair Value Analysis</div>
+    <div style="font-size:1.2rem;font-weight:800;color:var(--text);">Appraisal-Grade Pricing Model — 24 Sugarbush Drive</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Sales Comparison Approach · All sqft verified from MLS source data · Data as of March 2026</div>
+  </div>
+
+  <!-- Subject Property Data Table -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:16px;">Subject Property — Verified Characteristics</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Address</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">24 Sugarbush Drive, Winhall VT 05340</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">GLA (Above Grade)</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1,837 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Finished Below Grade</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1,060 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Total Finished Sqft</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">2,897 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Bedrooms / Baths</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">5 bd / 3 ba</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Year Built</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1974 (renovated)</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Lot Size</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1.26 acres</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Neighborhood</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">Forest Farms, Winhall</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Style</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">Chalet / 3-story</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Annual Property Tax</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">$9,574.84</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">MLS #</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">5079331 (Active UC)</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">List Price</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;color:var(--gold);">$849,000 ($293/sqft)</div></div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.2);border-radius:8px;font-size:0.8rem;color:var(--muted);">
+      <strong style="color:var(--text);">Key amenities (value-positive):</strong> Mountain views (wall of glass), 2 wood-burning fireplaces, dual-use game room/family room, ski mudroom, updated kitchen, hardwood floors throughout main level, walk-out finished basement, deck, metal roof, 1.26-acre lot. No garage. Oil/baseboard heat.
+    </div>
+  </div>
+
+  <!-- Verified Comp Grid -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Comparable Sales — Verified MLS Data</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;">All sqft figures sourced directly from PrimeMLS IDX listings. $/sqft calculated from verified sqft.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Property</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sale Date</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sale Price</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sqft (src)</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">$/sqft</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Beds/Ba</th>
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Proximity / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(245,158,11,0.06);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:700;color:var(--gold);">24 Sugarbush Dr <span style="font-size:0.65rem;background:var(--gold-dim);color:var(--gold);padding:1px 5px;border-radius:3px;margin-left:4px;">SUBJECT</span></td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Active UC</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--gold);">$870,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">2,897 <span style="font-size:0.65rem;color:var(--accent);">MLS 5079331 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--gold);">$300</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Forest Farms, Winhall · 1.26 ac · views · 2 FP · game room · mudroom</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">14 Mountain Haunts</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Oct 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$951,014</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,238 <span style="font-size:0.65rem;color:var(--accent);">MLS 5060721 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$294</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · 1.2 ac · Listed $875K, sold +8.7% in 5 DOM · 341 sqft larger than subject</td>
+        </tr>
+        <tr style="background:var(--card);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">20 Jamie Lane</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Nov 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$975,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,500 <span style="font-size:0.65rem;color:var(--accent);">MLS 5060091 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$279</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3.5ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Sold exact ask · hot tub + barrel sauna · 603 sqft larger than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Chad Circle</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Feb 2026</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$1,050,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">4,788 <span style="font-size:0.65rem;color:var(--accent);">MLS 5063440 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$219</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/4ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes</td>
+        </tr>
+        <tr style="background:var(--card);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Roundtree Rd</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Jul 2024</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$775,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">1,908 <span style="font-size:0.65rem;color:var(--accent);">MLS 5002362 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$406</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/2ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Jul 2024 (older) · 4bd, 1 bath fewer · 989 sqft smaller than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">5 Stratton Ridge Rd</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Jul 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$770,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,676 <span style="font-size:0.65rem;color:var(--accent);">MLS 5033484 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$209</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · 4bd (inferior) · 779 sqft larger · supporting reference only</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:10px;font-size:0.7rem;color:var(--muted);padding:8px 10px;background:rgba(79,142,247,0.06);border-radius:6px;">
+      <strong style="color:var(--accent);">Note on 7 North Brookwood ($849K):</strong> Sqft not verifiable from public sources. On-mountain location makes it a poor direct comp regardless — excluded from quantitative model. Referenced only for market ceiling confirmation.
+    </div>
+  </div>
+
+  <!-- Sales Comparison Adjustment Grid -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Sales Comparison Approach — Adjustment Grid</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;">Adjustments applied at $280/sqft (midpoint of verified comp range). Positive = subject superior; Negative = subject inferior.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;min-width:200px;">Adjustment Factor</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">14 Mtn Haunts<br><span style="font-weight:400;">$951,014</span></th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">20 Jamie Lane<br><span style="font-weight:400;">$975,000</span></th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">6 Chad Circle<br><span style="font-weight:400;">$1,050,000</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Sale Price</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$951,014</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$975,000</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$1,050,000</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--muted);font-size:0.72rem;">Sqft (verified)</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">3,238</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">3,500</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">4,788</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Size Adjustment<br><span style="font-size:0.68rem;color:var(--muted);">Subject 2,897 sqft · delta × $280/sqft</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−341 sqft<br><span style="font-weight:700;">−$95,480</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−603 sqft<br><span style="font-weight:700;">−$168,840</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−1,891 sqft<br><span style="font-weight:700;">−$529,480</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Bathroom Adjustment<br><span style="font-size:0.68rem;color:var(--muted);">Subject 3ba · $10K per bath differential</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Same<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject − 0.5ba<br><span style="font-weight:700;color:var(--red);">−$5,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject − 1ba<br><span style="font-weight:700;color:var(--red);">−$10,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Garage<br><span style="font-size:0.68rem;color:var(--muted);">Comp has garage; subject does not</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$15,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Hot Tub / Amenity<br><span style="font-size:0.68rem;color:var(--muted);">Subject no hot tub (yet); comps have</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$12,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$12,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Mountain Views<br><span style="font-size:0.68rem;color:var(--muted);">Wall of glass · documented in listing</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject superior<br><span style="font-weight:700;color:var(--green);">+$20,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Dual Kitchen<br><span style="font-size:0.68rem;color:var(--muted);">Subject has 2 kitchens; comps do not</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject superior<br><span style="font-weight:700;color:var(--green);">+$15,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject superior<br><span style="font-weight:700;color:var(--green);">+$15,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <td style="padding:8px 10px;color:var(--text);">Age / Condition<br><span style="font-size:0.68rem;color:var(--muted);">Subject 1974; comps 1983–1987 · but subject renovated</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="background:#052e16;border-top:1px solid #14532d;">
+          <td style="padding:10px 10px;font-weight:700;color:var(--text);">Net Adjusted Value</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$890,534</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$804,160</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$483,520</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:12px;padding:10px 12px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:6px;font-size:0.75rem;color:var(--muted);">
+      <strong style="color:var(--red);">⚠️ Chad Circle excluded from final estimate:</strong> At 4,788 sqft (65% larger than subject), the size adjustment is so large ($529K) it consumes most of the sale price, producing an unreliable result ($483K). Chad Circle is useful for market ceiling confirmation only — not a reliable adjusted comp for a 2,897 sqft property. Mountain Haunts and Jamie Lane are the primary comps.
+    </div>
+  </div>
+
+  <!-- Final Value Reconciliation -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:16px;">Value Reconciliation — Appraiser's Conclusion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+      <div style="padding:16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">14 Mountain Haunts<br>Adj. Value</div>
+        <div style="font-size:1.4rem;font-weight:800;color:var(--green);">$890,534</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Weight: 50%<br>Strongest comp · same beds/baths · 5 DOM · most recent 5-bed</div>
+      </div>
+      <div style="padding:16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">20 Jamie Lane<br>Adj. Value</div>
+        <div style="font-size:1.4rem;font-weight:800;color:var(--green);">$804,160</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Weight: 50%<br>Clean market signal · sold at ask · includes hot tub & sauna advantage</div>
+      </div>
+      <div style="padding:16px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Weighted Average<br>Fair Market Value</div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--gold);">$847,347</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">50/50 weighting · Mountain Haunts + Jamie Lane only</div>
+      </div>
+    </div>
+
+    <!-- The Final Box -->
+    <div style="background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(34,197,94,0.1));border:2px solid var(--accent);border-radius:10px;padding:20px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:8px;">Estimated Appraised Value</div>
+      <div style="font-size:2.2rem;font-weight:900;color:var(--text);letter-spacing:-0.02em;">$830,000 – $870,000</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-top:8px;">Point estimate: <strong style="color:var(--text);">~$850,000</strong> · Offer price of $870K is at the <strong style="color:var(--gold);">top of the range</strong></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.78rem;">
+      <div style="padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;">
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">Appraisal Risk Flags</div>
+        <div style="color:var(--muted);line-height:1.7;">
+          <div>⚠️ Only 2 reliable 5-bed comps in the market (thin comp set — appraiser may note)</div>
+          <div>⚠️ Offer ($870K) is 2.4% above point estimate — minor risk of appraisal gap</div>
+          <div>⚠️ No garage lowers adjusted value vs. some comps</div>
+          <div>⚠️ 1974 vintage; appraiser will scrutinize renovation quality</div>
+          <div>⚠️ Below-grade sqft (1,060 sqft) valued at 50–70% of above-grade rate by most appraisers</div>
+        </div>
+      </div>
+      <div style="padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;">
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">Appraisal Support Factors</div>
+        <div style="color:var(--muted);line-height:1.7;">
+          <div>✅ Active UC = market has already validated ~$849K ask</div>
+          <div>✅ Mountain Haunts sold +8.7% over ask → hot market dynamic</div>
+          <div>✅ Dual kitchen unique in comp set → functional utility premium</div>
+          <div>✅ 2 fireplaces, views, mudroom → documented amenity superiority</div>
+          <div>✅ Renovated condition mitigates 1974 year built</div>
+          <div>✅ Property tax $9,574 consistent with ~$850K market value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Below-Grade Adjustment Note -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:12px;">Appraiser's Methodology Notes — What to Expect</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:0.78rem;">
+      <div>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;font-size:0.82rem;">Above vs. Below Grade Adjustment</div>
+        <div style="color:var(--muted);line-height:1.7;margin-bottom:12px;">Appraisers value above-grade and below-grade sqft differently. Typical adjustment: above-grade at $280–$320/sqft; finished below-grade at $140–$180/sqft (50–60% of above-grade rate). Applied to subject:</div>
+        <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;font-size:0.75rem;">
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">Above grade: 1,837 × $300</span><span style="color:var(--text);font-weight:600;">$551,100</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">Below grade: 1,060 × $160 (est.)</span><span style="color:var(--text);font-weight:600;">$169,600</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;"><span style="color:var(--muted);">Cost approach subtotal</span><span style="color:var(--gold);font-weight:700;">$720,700</span></div>
+          <div style="font-size:0.68rem;color:var(--muted);margin-top:6px;">+ site/land value + amenities → reconciles to $830K–$870K range</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;font-size:0.82rem;">What to Hand an Appraiser</div>
+        <div style="color:var(--muted);line-height:1.8;">
+          <div>1. <strong style="color:var(--text);">This comp grid</strong> with MLS numbers and sqft sources</div>
+          <div>2. <strong style="color:var(--text);">Renovation documentation</strong> — what was updated and when</div>
+          <div>3. <strong style="color:var(--text);">Photos of views</strong> — wall of glass, mountain backdrop</div>
+          <div>4. <strong style="color:var(--text);">Dual kitchen documentation</strong> — permits if available</div>
+          <div>5. <strong style="color:var(--text);">Rental history</strong> if any — STR comps for income approach</div>
+          <div>6. <strong style="color:var(--text);">Chimney/fireplace inspection</strong> reports (shows condition)</div>
+          <div>7. <strong style="color:var(--text);">Property tax card</strong> — $9,574 assessment is consistent with value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Line -->
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(79,142,247,0.08));border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:12px;">Bottom Line — Offer vs. Appraised Value</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:16px;text-align:center;">
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Offer Price</div><div style="font-size:1.3rem;font-weight:800;color:var(--gold);margin-top:4px;">$870,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Est. Appraised Value</div><div style="font-size:1.3rem;font-weight:800;color:var(--text);margin-top:4px;">~$850,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Potential Gap</div><div style="font-size:1.3rem;font-weight:800;color:var(--red);margin-top:4px;">~$20,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Gap as % of Offer</div><div style="font-size:1.3rem;font-weight:800;color:var(--red);margin-top:4px;">2.3%</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Appraisal Risk</div><div style="font-size:1.3rem;font-weight:800;color:var(--gold);margin-top:4px;">LOW–MOD</div></div>
+    </div>
+    <div style="font-size:0.8rem;color:var(--muted);line-height:1.7;">
+      A $20K gap is manageable: (1) seller credits to close the gap, (2) you pay the difference out of pocket ($20K against a $119K cash deployment is acceptable), or (3) the appraisal comes in at $870K — Mountain Haunts sold +8.7% over ask in an active market, giving an appraiser cover to land at $870K. The more significant scenario to model: if appraiser uses below-grade sqft discount aggressively and excludes the dual-kitchen premium, value could come in at $820K–$830K — $40–50K gap. Have $50K in reserve for that scenario. <strong style="color:var(--text);">The deal does not fall apart at any of these numbers.</strong>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>
