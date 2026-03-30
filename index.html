@@ -432,10 +432,10 @@
           <td>7 North Brookwood</td>
           <td><span class="badge badge-green">SOLD '25/'26</span></td>
           <td class="col-green fw-bold">$850,000</td>
-          <td>$419 ⚠️</td>
+          <td>$419</td>
           <td>4bd</td>
           <td>—</td>
-          <td>ON MOUNTAIN — location premium; adj -20% for off-mtn · sqft unverified</td>
+          <td>ON MOUNTAIN — location premium; adj -20% for off-mtn · 2,028 sqft confirmed</td>
         </tr>
         <tr class="row-green">
           <td>6 Roundtree Rd</td>
@@ -1157,8 +1157,8 @@
         <tr class="row-green">
           <td>7 North Brookwood (4bd, on-mtn)</td>
           <td class="col-green">$850,000</td>
-          <td>$419 ⚠️</td>
-          <td style="font-size:0.78rem;">ON MOUNTAIN premium — adj −20% for off-mountain · sqft unverified</td>
+          <td>$419</td>
+          <td style="font-size:0.78rem;">ON MOUNTAIN premium — adj −20% for off-mountain · 2,028 sqft confirmed</td>
           <td class="col-muted">~$679K adj'd (not primary comp)</td>
         </tr>
         <tr class="row-gold">
@@ -1920,7 +1920,7 @@ function showTab(idx) {
           <td style="padding:9px 10px;text-align:right;color:var(--text);">4,788 <span style="font-size:0.65rem;color:var(--accent);">MLS 5063440 ✓</span></td>
           <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$219</td>
           <td style="padding:9px 10px;text-align:right;">5bd/4ba</td>
-          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes · excluded from adj. model (size gap too large)</td>
         </tr>
         <tr style="background:var(--card);border-bottom:1px solid var(--border);">
           <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Roundtree Rd</td>
@@ -1930,6 +1930,15 @@ function showTab(idx) {
           <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$406</td>
           <td style="padding:9px 10px;text-align:right;">4bd/2ba</td>
           <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Jul 2024 (older) · 4bd, 1 bath fewer · 989 sqft smaller than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">7 North Brookwood</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">'25/'26</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$850,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">2,028 <span style="font-size:0.65rem;color:var(--accent);">confirmed ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$419</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/—</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Stratton · <strong style="color:#f59e0b;">ON-MOUNTAIN</strong> · 40% $/sqft premium vs. off-mountain · excl. from adj. model</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
           <td style="padding:9px 10px;font-weight:600;color:var(--text);">5 Stratton Ridge Rd</td>
@@ -1944,7 +1953,7 @@ function showTab(idx) {
     </table>
     </div>
     <div style="margin-top:10px;font-size:0.7rem;color:var(--muted);padding:8px 10px;background:rgba(79,142,247,0.06);border-radius:6px;">
-      <strong style="color:var(--accent);">Note on 7 North Brookwood ($850K):</strong> Sqft not verifiable from public sources. On-mountain location makes it a poor direct comp regardless — excluded from quantitative model. Referenced only for market ceiling confirmation.
+      <strong style="color:var(--accent);">On-Mountain Premium Note:</strong> 7 North Brookwood at $419/sqft is ~40% above off-mountain comps ($294–$299/sqft). This gap is the quantified value of ski-in/ski-out access. Subject property at $300/sqft in Forest Farms (off-mountain, 5 min drive) is correctly benchmarked against the off-mountain comp set.
     </div>
   </div>
 
@@ -2026,7 +2035,7 @@ function showTab(idx) {
         lat: 43.1177, lon: -72.9118,
         color: '#14b8a6', size: 14,
         title: '7 North Brookwood — SOLD '25/'26',
-        body: '<b>$850,000</b><br>4bd · Sqft unverified · $419/sqft est.<br><b>ON-MOUNTAIN</b> — location premium<br>Adj. −20% for off-mountain · not in model'
+        body: '<b>$850,000</b><br>2,028 sqft · 4bd · $419/sqft<br><b>ON-MOUNTAIN</b> — ski-in/ski-out location premium (~40% vs. off-mountain)<br>Excluded from adj. model · market ceiling ref'
       },
       {
         lat: 43.1364, lon: -72.8954,
