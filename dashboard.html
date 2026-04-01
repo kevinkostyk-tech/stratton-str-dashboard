@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ski Rental Acquisition Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e4e4e7; min-height: 100vh; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0f1117 100%); border-bottom: 1px solid #2a2d3a; padding: 24px 32px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header .sub { font-size: 13px; color: #6b7280; margin-top: 4px; }
+  .header .meta { display: flex; gap: 24px; margin-top: 16px; }
+  .meta-pill { background: #1e2332; border: 1px solid #2a2d3a; border-radius: 8px; padding: 8px 14px; font-size: 12px; }
+  .meta-pill .label { color: #6b7280; display: block; margin-bottom: 2px; }
+  .meta-pill .value { color: #fff; font-weight: 600; }
+
+  /* Nav tabs */
+  .nav { display: flex; background: #0f1117; border-bottom: 1px solid #1e2332; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 12px 16px; font-size: 12px; font-weight: 500; color: #6b7280; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .tab-btn:hover { color: #d1d5db; }
+  .tab-btn.active { color: #60a5fa; border-bottom-color: #60a5fa; }
+  .tab-btn .flag { margin-right: 5px; }
+
+  /* Content */
+  .content { padding: 24px 32px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* Overview table */
+  .section-title { font-size: 14px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview-table th { text-align: left; padding: 10px 12px; color: #6b7280; font-weight: 500; border-bottom: 1px solid #1e2332; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .overview-table td { padding: 11px 12px; border-bottom: 1px solid #1a1d27; vertical-align: middle; }
+  .overview-table tr:hover td { background: #14172080; }
+  .overview-table tr td:first-child { font-weight: 600; color: #e4e4e7; }
+  .rank { color: #4b5563; font-size: 11px; font-weight: 500; margin-right: 6px; }
+  .market-link { cursor: pointer; color: #60a5fa; text-decoration: none; }
+  .market-link:hover { text-decoration: underline; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: #052e16; color: #4ade80; border: 1px solid #14532d; }
+  .badge-yellow { background: #1c1500; color: #fbbf24; border: 1px solid #3d2c00; }
+  .badge-red { background: #1f0505; color: #f87171; border: 1px solid #450a0a; }
+  .badge-blue { background: #0c1a3a; color: #60a5fa; border: 1px solid #1e3a5f; }
+
+  /* Stars */
+  .stars { color: #fbbf24; letter-spacing: -2px; }
+  .stars-dim { color: #2a2d3a; }
+
+  /* Detail pane */
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media(max-width: 768px) { .detail-grid { grid-template-columns: 1fr; } }
+  .detail-card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; }
+  .detail-card h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a1d27; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 13px; color: #9ca3af; }
+  .stat-value { font-size: 13px; font-weight: 600; color: #e4e4e7; text-align: right; }
+  .stat-value.green { color: #4ade80; }
+  .stat-value.yellow { color: #fbbf24; }
+  .stat-value.red { color: #f87171; }
+
+  .verdict-box { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .verdict-box h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .verdict-text { font-size: 14px; color: #d1d5db; line-height: 1.6; }
+  .verdict-pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .pros h4 { color: #4ade80; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+  .cons h4 { color: #f87171; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+  .pros li, .cons li { font-size: 12px; color: #9ca3af; margin-bottom: 5px; list-style: none; padding-left: 14px; position: relative; }
+  .pros li::before { content: '+'; position: absolute; left: 0; color: #4ade80; font-weight: 700; }
+  .cons li::before { content: '−'; position: absolute; left: 0; color: #f87171; font-weight: 700; }
+
+  .market-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .market-flag { font-size: 36px; }
+  .market-title h2 { font-size: 22px; font-weight: 700; color: #fff; }
+  .market-title p { font-size: 13px; color: #6b7280; margin-top: 3px; }
+  .market-score { margin-left: auto; text-align: center; background: #1e2332; border-radius: 10px; padding: 12px 20px; }
+  .market-score .score-num { font-size: 28px; font-weight: 800; color: #60a5fa; }
+  .market-score .score-label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  .full-width-card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .full-width-card h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+
+  .budget-bar-wrap { margin-top: 6px; }
+  .budget-bar { height: 6px; background: #1e2332; border-radius: 3px; overflow: hidden; }
+  .budget-fill { height: 100%; border-radius: 3px; }
+
+  /* Responsive nav */
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #6b7280; cursor: pointer; padding: 6px 10px; background: #1a1d27; border-radius: 6px; border: 1px solid #2a2d3a; margin-bottom: 20px; transition: all 0.15s; }
+  .back-btn:hover { color: #d1d5db; }
+
+  .updated { font-size: 11px; color: #374151; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⛷️ Ski Rental Acquisition Dashboard</h1>
+  <div class="sub">Top 20 Global Markets — SFH Preferred · $650K Target · $850K Ceiling</div>
+  <div class="meta">
+    <div class="meta-pill"><span class="label">Budget</span><span class="value">$650K–$850K</span></div>
+    <div class="meta-pill"><span class="label">Type</span><span class="value">SFH Preferred</span></div>
+    <div class="meta-pill"><span class="label">Markets</span><span class="value">20 Ranked</span></div>
+    <div class="meta-pill"><span class="label">Focus</span><span class="value">US + Europe</span></div>
+    <div class="meta-pill"><span class="label">Updated</span><span class="value">Mar 2026</span></div>
+  </div>
+</div>
+
+<div class="nav" id="mainNav">
+  <button class="tab-btn active" onclick="showTab('overview')">📊 Overview</button>
+  <button class="tab-btn" onclick="showTab('m1')"><span class="flag">🇫🇷</span>St Jean d'Aulps</button>
+  <button class="tab-btn" onclick="showTab('m2')"><span class="flag">🇫🇷</span>Morzine</button>
+  <button class="tab-btn" onclick="showTab('m3')"><span class="flag">🇧🇬</span>Bansko</button>
+  <button class="tab-btn" onclick="showTab('m4')"><span class="flag">🇦🇹</span>Söll / SkiWelt</button>
+  <button class="tab-btn" onclick="showTab('m5')"><span class="flag">🇺🇸</span>Schweitzer, ID</button>
+  <button class="tab-btn" onclick="showTab('m6')"><span class="flag">🇦🇹</span>Bad Gastein</button>
+  <button class="tab-btn" onclick="showTab('m7')"><span class="flag">🇫🇷</span>Les Gets</button>
+  <button class="tab-btn" onclick="showTab('m8')"><span class="flag">🇺🇸</span>Winter Park, CO</button>
+  <button class="tab-btn" onclick="showTab('m9')"><span class="flag">🇮🇹</span>Livigno</button>
+  <button class="tab-btn" onclick="showTab('m10')"><span class="flag">🇦🇩</span>Andorra</button>
+  <button class="tab-btn" onclick="showTab('m11')"><span class="flag">🇫🇷</span>La Plagne</button>
+  <button class="tab-btn" onclick="showTab('m12')"><span class="flag">🇦🇹</span>Zell am See</button>
+  <button class="tab-btn" onclick="showTab('m13')"><span class="flag">🇺🇸</span>Crested Butte, CO</button>
+  <button class="tab-btn" onclick="showTab('m14')"><span class="flag">🇺🇸</span>Whitefish, MT</button>
+  <button class="tab-btn" onclick="showTab('m15')"><span class="flag">🇮🇹</span>Bormio</button>
+  <button class="tab-btn" onclick="showTab('m16')"><span class="flag">🇫🇷</span>Alpe d'Huez</button>
+  <button class="tab-btn" onclick="showTab('m17')"><span class="flag">🇨🇭</span>Saas-Fee</button>
+  <button class="tab-btn" onclick="showTab('m18')"><span class="flag">🇺🇸</span>Steamboat, CO</button>
+  <button class="tab-btn" onclick="showTab('m19')"><span class="flag">🇪🇸</span>Sierra Nevada</button>
+  <button class="tab-btn" onclick="showTab('m20')"><span class="flag">🇫🇷</span>Chamonix</button>
+  <button class="tab-btn" onclick="showTab('home-appraisal')">🏠 Home Appraisal</button>
+</div>
+
+<div class="content">
+
+<!-- ============================================================ OVERVIEW ============================================================ -->
+<div class="tab-pane active" id="tab-overview">
+  <p class="section-title">All 20 Markets — Ranked by Fit Score</p>
+  <table class="overview-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Market</th>
+        <th>Country</th>
+        <th>Budget Fit</th>
+        <th>SFH/Chalet Avail.</th>
+        <th>Entry Price</th>
+        <th>STR Yield</th>
+        <th>Regulation</th>
+        <th>Season</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="rank">1</span></td>
+        <td><a class="market-link" onclick="showTab('m1')">🇫🇷 St Jean d'Aulps</a></td>
+        <td>France</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-green">Good</span></td>
+        <td>~€650K–€800K</td>
+        <td>5–8%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">2</span></td>
+        <td><a class="market-link" onclick="showTab('m2')">🇫🇷 Morzine</a></td>
+        <td>France</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-yellow">Limited</span></td>
+        <td>€700K–€1.2M</td>
+        <td>6–9%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">3</span></td>
+        <td><a class="market-link" onclick="showTab('m3')">🇧🇬 Bansko</a></td>
+        <td>Bulgaria</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-green">Excellent</span></td>
+        <td>€80K–€300K</td>
+        <td>4–11%</td>
+        <td><span class="badge badge-green">Very Permissive</span></td>
+        <td>Dec–Mar</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">4</span></td>
+        <td><a class="market-link" onclick="showTab('m4')">🇦🇹 Söll / SkiWelt</a></td>
+        <td>Austria</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-green">Good</span></td>
+        <td>€400K–€750K</td>
+        <td>4–7%</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">5</span></td>
+        <td><a class="market-link" onclick="showTab('m5')">🇺🇸 Schweitzer, ID</a></td>
+        <td>USA</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-green">Good</span></td>
+        <td>$450K–$800K</td>
+        <td>5–8%</td>
+        <td><span class="badge badge-green">Light</span></td>
+        <td>Nov–Apr</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">6</span></td>
+        <td><a class="market-link" onclick="showTab('m6')">🇦🇹 Bad Gastein</a></td>
+        <td>Austria</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>€300K–€700K</td>
+        <td>4–6%</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">7</span></td>
+        <td><a class="market-link" onclick="showTab('m7')">🇫🇷 Les Gets</a></td>
+        <td>France</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-yellow">Limited</span></td>
+        <td>€750K–€1.5M</td>
+        <td>5–8%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">8</span></td>
+        <td><a class="market-link" onclick="showTab('m8')">🇺🇸 Winter Park, CO</a></td>
+        <td>USA</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-yellow">Limited</span></td>
+        <td>$750K–$1.1M</td>
+        <td>5–7%</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>Nov–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">9</span></td>
+        <td><a class="market-link" onclick="showTab('m9')">🇮🇹 Livigno</a></td>
+        <td>Italy</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-yellow">Limited</span></td>
+        <td>€600K–€1M</td>
+        <td>4–6%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Nov–May</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">10</span></td>
+        <td><a class="market-link" onclick="showTab('m10')">🇦🇩 Andorra</a></td>
+        <td>Andorra</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>€350K–€700K</td>
+        <td>3–6%</td>
+        <td><span class="badge badge-green">Very Permissive</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">11</span></td>
+        <td><a class="market-link" onclick="showTab('m11')">🇫🇷 La Plagne</a></td>
+        <td>France</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-red">Mostly Apts</span></td>
+        <td>€500K–€900K</td>
+        <td>5–7%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">12</span></td>
+        <td><a class="market-link" onclick="showTab('m12')">🇦🇹 Zell am See</a></td>
+        <td>Austria</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>€400K–€800K</td>
+        <td>3–6%</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">13</span></td>
+        <td><a class="market-link" onclick="showTab('m13')">🇺🇸 Crested Butte, CO</a></td>
+        <td>USA</td>
+        <td><span class="badge badge-red">Over Budget</span></td>
+        <td><span class="badge badge-red">Scarce</span></td>
+        <td>$1.1M–$2M+</td>
+        <td>4–6%</td>
+        <td><span class="badge badge-green">Light</span></td>
+        <td>Nov–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">14</span></td>
+        <td><a class="market-link" onclick="showTab('m14')">🇺🇸 Whitefish, MT</a></td>
+        <td>USA</td>
+        <td><span class="badge badge-red">Over Budget</span></td>
+        <td><span class="badge badge-red">Scarce at Budget</span></td>
+        <td>$1.2M–$2M+</td>
+        <td>5–7%</td>
+        <td><span class="badge badge-green">Light</span></td>
+        <td>Nov–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">15</span></td>
+        <td><a class="market-link" onclick="showTab('m15')">🇮🇹 Bormio</a></td>
+        <td>Italy</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>€300K–€700K</td>
+        <td>3–5%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">16</span></td>
+        <td><a class="market-link" onclick="showTab('m16')">🇫🇷 Alpe d'Huez</a></td>
+        <td>France</td>
+        <td><span class="badge badge-yellow">Tight</span></td>
+        <td><span class="badge badge-red">Mostly Apts</span></td>
+        <td>€600K–€1.1M</td>
+        <td>5–7%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">17</span></td>
+        <td><a class="market-link" onclick="showTab('m17')">🇨🇭 Saas-Fee</a></td>
+        <td>Switzerland</td>
+        <td><span class="badge badge-red">Over Budget</span></td>
+        <td><span class="badge badge-red">Very Limited</span></td>
+        <td>CHF 900K–2M+</td>
+        <td>2–4%</td>
+        <td><span class="badge badge-red">Restrictive</span></td>
+        <td>Year-round</td>
+        <td><span class="stars">★★</span><span class="stars-dim">★★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">18</span></td>
+        <td><a class="market-link" onclick="showTab('m18')">🇺🇸 Steamboat, CO</a></td>
+        <td>USA</td>
+        <td><span class="badge badge-red">Over Budget</span></td>
+        <td><span class="badge badge-red">Scarce</span></td>
+        <td>$1.5M–$3M+</td>
+        <td>4–6%</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>Nov–Apr</td>
+        <td><span class="stars">★★</span><span class="stars-dim">★★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">19</span></td>
+        <td><a class="market-link" onclick="showTab('m19')">🇪🇸 Sierra Nevada</a></td>
+        <td>Spain</td>
+        <td><span class="badge badge-green">✓ In Budget</span></td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+        <td>€200K–€600K</td>
+        <td>3–5%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr</td>
+        <td><span class="stars">★★</span><span class="stars-dim">★★★</span></td>
+      </tr>
+      <tr>
+        <td><span class="rank">20</span></td>
+        <td><a class="market-link" onclick="showTab('m20')">🇫🇷 Chamonix</a></td>
+        <td>France</td>
+        <td><span class="badge badge-red">Over Budget</span></td>
+        <td><span class="badge badge-red">Scarce</span></td>
+        <td>€12K+/m²</td>
+        <td>5–8%</td>
+        <td><span class="badge badge-green">Friendly</span></td>
+        <td>Dec–Apr / Summer</td>
+        <td><span class="stars">★★</span><span class="stars-dim">★★★</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================ MARKET PANES ============================================================ -->
+
+<!-- M1: St Jean d'Aulps -->
+<div class="tab-pane" id="tab-m1">
+  <div class="market-header">
+    <div class="market-flag">🇫🇷</div>
+    <div class="market-title">
+      <h2>St Jean d'Aulps <span style="font-size:14px;font-weight:400;color:#6b7280">— Vallée d'Aulps, France</span></h2>
+      <p>Access to Portes du Soleil · 15 min to Morzine · Sweet spot at €700K</p>
+    </div>
+    <div class="market-score"><div class="score-num">9.1</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">The most compelling market on this list for your budget. St Jean d'Aulps sits in the Vallée d'Aulps, 15 minutes from Morzine and plugged into the Portes du Soleil — 650km of linked skiing across France and Switzerland. Chalets here have seen <strong>30% value appreciation in the past year</strong> with a buyer sweet spot around €700K (~$756K). That's directly in your target range. Unlike Morzine proper, SFH chalets exist at this price point. France's STR regulations are generally permissive, French mortgage rates are now below 4%, and the market has robust British and international rental demand during peak ski weeks.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>Chalets available at €650–800K</li>
+          <li>30% price growth YoY (2025 data)</li>
+          <li>Access to 650km Portes du Soleil</li>
+          <li>French mortgage rates &lt;4%</li>
+          <li>Strong UK/EU rental demand</li>
+          <li>Less crowded than Morzine</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>Not directly on piste (shuttle needed)</li>
+          <li>Prices rising fast — window narrowing</li>
+          <li>Currency risk (EUR/USD)</li>
+          <li>Foreign purchase process (notaire)</li>
+          <li>Seasonal demand (winter-heavy)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">Chalet entry price</span><span class="stat-value green">~€650–800K</span></div>
+      <div class="stat-row"><span class="stat-label">Price trend (2025)</span><span class="stat-value yellow">+30% YoY</span></div>
+      <div class="stat-row"><span class="stat-label">Avg price/m²</span><span class="stat-value">€5,000–7,000</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value green">5–8%</span></div>
+      <div class="stat-row"><span class="stat-label">Peak weekly rental</span><span class="stat-value">€2,000–4,500</span></div>
+      <div class="stat-row"><span class="stat-label">French mortgage rate</span><span class="stat-value green">&lt;4%</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Geneva (GVA)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~55 min</span></div>
+      <div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Portes du Soleil (650km)</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Dec – Apr</span></div>
+      <div class="stat-row"><span class="stat-label">Distance to Morzine</span><span class="stat-value">~15 min</span></div>
+      <div class="stat-row"><span class="stat-label">Summer demand</span><span class="stat-value yellow">Moderate</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value green">Permissive (France)</span></div>
+      <div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed</span></div>
+      <div class="stat-row"><span class="stat-label">Purchase process</span><span class="stat-value">Via Notaire (~3 months)</span></div>
+      <div class="stat-row"><span class="stat-label">Property tax</span><span class="stat-value">Low–Moderate</span></div>
+      <div class="stat-row"><span class="stat-label">Rental income tax</span><span class="stat-value yellow">French income tax</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">✓ Strong match</span></div>
+      <div class="stat-row"><span class="stat-label">Target (~$650K)</span><span class="stat-value green">~€601K — feasible</span></div>
+      <div class="stat-row"><span class="stat-label">Ceiling ($850K)</span><span class="stat-value green">~€787K — solid options</span></div>
+      <div class="stat-row"><span class="stat-label">SFH chalet availability</span><span class="stat-value green">Good</span></div>
+      <div class="stat-row"><span class="stat-label">USD/EUR headwind</span><span class="stat-value yellow">Monitor rate</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M2: Morzine -->
+<div class="tab-pane" id="tab-m2">
+  <div class="market-header">
+    <div class="market-flag">🇫🇷</div>
+    <div class="market-title">
+      <h2>Morzine <span style="font-size:14px;font-weight:400;color:#6b7280">— Haute-Savoie, France</span></h2>
+      <p>Portes du Soleil hub · Strong UK market · 650km linked skiing</p>
+    </div>
+    <div class="market-score"><div class="score-num">8.4</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">Morzine is the most established Anglo market in the French Alps. Enormous rental demand, year-round appeal (hiking, MTB in summer), and plug-in access to the massive Portes du Soleil ski area. The downside: apartment prices rose 28% in 2025, and mid-range chalets (€1M+) are now slightly over budget unless you catch a deal. The real play is finding an apartment at €600–700K that still commands strong nightly rates — some 2-bed options exist. Full chalets at budget are essentially gone in the village proper. Go to St Jean d'Aulps instead for SFH. Use Morzine as a benchmark for rental rates.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>Highest rental demand of any French resort</li>
+          <li>Year-round income potential</li>
+          <li>Strong resale market / liquidity</li>
+          <li>Direct flights to Geneva year-round</li>
+          <li>Well-established property management ecosystem</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>Chalets now €1M+ at entry</li>
+          <li>+28% apartment price growth (2025) — buying at top?</li>
+          <li>Very competitive buyer market</li>
+          <li>Crowded resort in peak weeks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">Chalet entry price</span><span class="stat-value yellow">€900K–€1.2M</span></div>
+      <div class="stat-row"><span class="stat-label">Apartment entry</span><span class="stat-value green">€350K–€700K</span></div>
+      <div class="stat-row"><span class="stat-label">Price trend (2025)</span><span class="stat-value yellow">Apts +28% / Chalets +8%</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value green">6–9%</span></div>
+      <div class="stat-row"><span class="stat-label">Peak weekly rental</span><span class="stat-value">€2,500–6,000</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Geneva (GVA)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~90 min</span></div>
+      <div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Portes du Soleil (650km)</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Dec – Apr + Summer</span></div>
+      <div class="stat-row"><span class="stat-label">Summer demand</span><span class="stat-value green">Strong (MTB/hiking)</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">✗ Over budget</span></div>
+      <div class="stat-row"><span class="stat-label">Budget fit (apartment)</span><span class="stat-value yellow">Possible at 2bd</span></div>
+      <div class="stat-row"><span class="stat-label">SFH chalet availability</span><span class="stat-value red">Very limited at budget</span></div>
+      <div class="stat-row"><span class="stat-label">Recommendation</span><span class="stat-value yellow">Consider St Jean d'Aulps</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value green">Permissive</span></div>
+      <div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed</span></div>
+      <div class="stat-row"><span class="stat-label">Purchase process</span><span class="stat-value">Via Notaire (~3 months)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M3: Bansko -->
+<div class="tab-pane" id="tab-m3">
+  <div class="market-header">
+    <div class="market-flag">🇧🇬</div>
+    <div class="market-title">
+      <h2>Bansko <span style="font-size:14px;font-weight:400;color:#6b7280">— Blagoevgrad Province, Bulgaria</span></h2>
+      <p>EU member · Low entry prices · 4–11% rental yield · 75km skiing</p>
+    </div>
+    <div class="market-score"><div class="score-num">8.0</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">Bansko is the highest-yield, lowest-entry market on this list. At €1,100–1,500/m², your entire $850K budget buys a significant property — potentially a standalone villa with land. The 4–11% rental yield is the widest range here and genuinely achievable with a well-managed turnkey property. Bulgaria is an EU member (though not on the euro), so property rights are solid. The risks: smaller mountain than alpine alternatives (75km runs), oversupply concerns, and more limited premium rental demand. Best used as a high-cash-flow play rather than a trophy asset.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>Drastically lower entry price (€80–300K)</li>
+          <li>Highest potential yield (up to 11%)</li>
+          <li>EU property rights protection</li>
+          <li>Year-round appeal (hiking, spa)</li>
+          <li>Very low property taxes</li>
+          <li>Budget buys a large property</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>Smaller mountain (75km vs 650km)</li>
+          <li>Oversupply risk flagged by analysts</li>
+          <li>Lower nightly rates than Alps</li>
+          <li>Less premium rental market</li>
+          <li>Longer flight from US</li>
+          <li>Less liquidity on resale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">Avg price/m²</span><span class="stat-value green">€1,100–€1,500</span></div>
+      <div class="stat-row"><span class="stat-label">Entry apartment</span><span class="stat-value green">~€80–200K</span></div>
+      <div class="stat-row"><span class="stat-label">Villa / SFH entry</span><span class="stat-value green">€200–400K</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value green">4–11%</span></div>
+      <div class="stat-row"><span class="stat-label">Avg monthly rental</span><span class="stat-value">€400–€700</span></div>
+      <div class="stat-row"><span class="stat-label">Price trend</span><span class="stat-value yellow">Rising, some oversupply</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Sofia (SOF)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~2 hrs</span></div>
+      <div class="stat-row"><span class="stat-label">Mountain size</span><span class="stat-value">75km of runs</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Dec – Mar</span></div>
+      <div class="stat-row"><span class="stat-label">Summer demand</span><span class="stat-value yellow">Moderate (hiking)</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">✓ Excellent — buys a lot</span></div>
+      <div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value green">Strong</span></div>
+      <div class="stat-row"><span class="stat-label">At $650K target</span><span class="stat-value green">Large villa possible</span></div>
+      <div class="stat-row"><span class="stat-label">Diversification play</span><span class="stat-value green">Could buy 2–3 units</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value green">Very permissive</span></div>
+      <div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed (EU rules)</span></div>
+      <div class="stat-row"><span class="stat-label">Property tax</span><span class="stat-value green">Very low</span></div>
+      <div class="stat-row"><span class="stat-label">Rental income tax</span><span class="stat-value green">10% flat rate</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M4: Söll -->
+<div class="tab-pane" id="tab-m4">
+  <div class="market-header">
+    <div class="market-flag">🇦🇹</div>
+    <div class="market-title">
+      <h2>Söll / SkiWelt <span style="font-size:14px;font-weight:400;color:#6b7280">— Tyrol, Austria</span></h2>
+      <p>280km SkiWelt circuit · Traditional Tyrolean village · Good value vs Kitzbühel</p>
+    </div>
+    <div class="market-score"><div class="score-num">8.0</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">Söll is the entry point to the SkiWelt — at 280km of linked terrain, Europe's largest interconnected ski area. It's a proper traditional Austrian village with significantly lower prices than Kitzbühel (which starts at €8,000/m²). Houses and chalets exist in the €400–750K range. Austria has strong tourism infrastructure, great road/rail connectivity, and a reliable mid-market rental clientele. The main limitation: Austrian STR rules require permits in some Tyrolean districts, and some areas restrict rentals to primary residents. Due diligence needed by municipality.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>Access to 280km SkiWelt (Europe's largest circuit)</li>
+          <li>Authentic Tyrolean village character</li>
+          <li>Houses exist at €400–750K</li>
+          <li>Strong German/Dutch rental market</li>
+          <li>Innsbruck airport 60 min away</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>Austrian Freizeitwohnsitz restrictions</li>
+          <li>Some municipalities restrict STR</li>
+          <li>Less US/UK rental market awareness</li>
+          <li>German language navigation for purchase</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">House/chalet entry</span><span class="stat-value green">€400–750K</span></div>
+      <div class="stat-row"><span class="stat-label">Price trend</span><span class="stat-value yellow">Stable–Moderate growth</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value green">4–7%</span></div>
+      <div class="stat-row"><span class="stat-label">Peak weekly rental</span><span class="stat-value">€1,500–3,500</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Innsbruck (INN)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~60 min</span></div>
+      <div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">SkiWelt (280km linked)</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Dec – Apr</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">✓ Good match</span></div>
+      <div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value green">Moderate–Good</span></div>
+      <div class="stat-row"><span class="stat-label">Key risk</span><span class="stat-value red">Verify STR permit eligibility</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value yellow">Moderate — varies by district</span></div>
+      <div class="stat-row"><span class="stat-label">Freizeitwohnsitz rules</span><span class="stat-value red">Must verify per municipality</span></div>
+      <div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed (EU)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M5: Schweitzer -->
+<div class="tab-pane" id="tab-m5">
+  <div class="market-header">
+    <div class="market-flag">🇺🇸</div>
+    <div class="market-title">
+      <h2>Schweitzer / Sandpoint, ID <span style="font-size:14px;font-weight:400;color:#6b7280">— Idaho, USA</span></h2>
+      <p>Underrated US ski market · SFH in budget · Light STR rules · Lake Pend Oreille</p>
+    </div>
+    <div class="market-score"><div class="score-num">7.9</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">Schweitzer Mountain sits above Sandpoint, ID — a genuine mountain town on Lake Pend Oreille with a median home value of $872K (right at budget ceiling). SFHs exist well under $850K, regulation is light, and Schweitzer is one of the most criminally underrated ski resorts in the US — 2,900 acres, consistently strong snow, and low crowds. The Spokane airport is 80 minutes away. Year-round appeal is growing (lake, hiking, MTB). If you want a US market where your budget actually works and you can get a real house, this is the best domestic option.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>SFH available well within budget</li>
+          <li>Light STR regulation</li>
+          <li>2,900 acres — serious mountain</li>
+          <li>Year-round demand (lake town)</li>
+          <li>No crowds vs CO/UT resorts</li>
+          <li>Domestic — no currency risk</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>Less name recognition than Vail/Tahoe</li>
+          <li>Spokane airport — not a hub</li>
+          <li>Smaller rental market than major resorts</li>
+          <li>Market value rising — window closing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">Sandpoint median home</span><span class="stat-value green">$872K</span></div>
+      <div class="stat-row"><span class="stat-label">SFH entry price</span><span class="stat-value green">$450–800K</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value green">5–8%</span></div>
+      <div class="stat-row"><span class="stat-label">Avg annual STR revenue</span><span class="stat-value">~$60–90K</span></div>
+      <div class="stat-row"><span class="stat-label">Price trend</span><span class="stat-value yellow">Rising moderately</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Spokane (GEG)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~80 min</span></div>
+      <div class="stat-row"><span class="stat-label">Mountain size</span><span class="stat-value">2,900 acres</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Nov – Apr</span></div>
+      <div class="stat-row"><span class="stat-label">Summer appeal</span><span class="stat-value green">Strong (Lake Pend Oreille)</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">✓ Excellent</span></div>
+      <div class="stat-row"><span class="stat-label">SFH at $650K</span><span class="stat-value green">Solid options</span></div>
+      <div class="stat-row"><span class="stat-label">SFH at $850K</span><span class="stat-value green">Good selection</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value green">Light (county level)</span></div>
+      <div class="stat-row"><span class="stat-label">Permit required</span><span class="stat-value yellow">Basic registration</span></div>
+      <div class="stat-row"><span class="stat-label">Ownership restrictions</span><span class="stat-value green">None</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M6: Bad Gastein -->
+<div class="tab-pane" id="tab-m6">
+  <div class="market-header">
+    <div class="market-flag">🇦🇹</div>
+    <div class="market-title">
+      <h2>Bad Gastein <span style="font-size:14px;font-weight:400;color:#6b7280">— Salzburgerland, Austria</span></h2>
+      <p>Historic Belle Époque spa town · 200km skiing · Undervalued vs Zell am See</p>
+    </div>
+    <div class="market-score"><div class="score-num">7.5</div><div class="score-label">Fit Score /10</div></div>
+  </div>
+  <div class="verdict-box">
+    <h3>Verdict</h3>
+    <p class="verdict-text">Bad Gastein is having a moment. The historic Habsburg-era spa resort has attracted a growing creative/luxury crowd from Vienna, Munich, and beyond. Prices start from ~€5,000/m² in Salzburgerland resort areas, and entry-level houses exist in the €300–700K range. The thermal spa culture extends the season and differentiates it from pure ski markets. Some risk: the STR rules in Salzburgerland require permits and there's been municipal pushback in some areas. Still, one of the more interesting value plays in Austria.</p>
+    <div class="verdict-pros-cons">
+      <div class="pros"><h4>Pros</h4>
+        <ul>
+          <li>Houses in budget range</li>
+          <li>Year-round thermal spa appeal</li>
+          <li>Growing cultural cachet</li>
+          <li>Access to Gastein Valley ski area (200km)</li>
+          <li>Salzburg airport 90 min</li>
+        </ul>
+      </div>
+      <div class="cons"><h4>Cons</h4>
+        <ul>
+          <li>STR permits required — verify</li>
+          <li>Less international name recognition</li>
+          <li>Some areas restricting holiday homes</li>
+          <li>Renovation needed on older stock</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3>
+      <div class="stat-row"><span class="stat-label">Entry price/m²</span><span class="stat-value green">€5,000+</span></div>
+      <div class="stat-row"><span class="stat-label">House entry</span><span class="stat-value green">€300–700K</span></div>
+      <div class="stat-row"><span class="stat-label">STR gross yield</span><span class="stat-value">4–6%</span></div>
+      <div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Year-round (spa)</span></div>
+    </div>
+    <div class="detail-card"><h3>Logistics</h3>
+      <div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Salzburg (SZG)</span></div>
+      <div class="stat-row"><span class="stat-label">Drive from airport</span><span class="stat-value">~90 min</span></div>
+      <div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Gastein Valley (200km)</span></div>
+    </div>
+    <div class="detail-card"><h3>Budget Assessment</h3>
+      <div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">✓ Good match</span></div>
+      <div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value yellow">Moderate</span></div>
+    </div>
+    <div class="detail-card"><h3>Regulatory Environment</h3>
+      <div class="stat-row"><span class="stat-label">STR regulation</span><span class="stat-value yellow">Permit required</span></div>
+      <div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed (EU)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- M7–M20: Condensed detail panes -->
+
+<!-- M7: Les Gets -->
+<div class="tab-pane" id="tab-m7">
+  <div class="market-header"><div class="market-flag">🇫🇷</div><div class="market-title"><h2>Les Gets <span style="font-size:14px;font-weight:400;color:#6b7280">— Haute-Savoie, France</span></h2><p>Family-focused resort · Portes du Soleil · Strong rental market</p></div><div class="market-score"><div class="score-num">7.4</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Les Gets is a well-regarded family resort in the Portes du Soleil. Strong rental demand (especially British families), great village atmosphere, and direct gondola links to Morzine. The problem: chalet prices start at €750K–€1M+ for anything meaningful. At budget you're looking at smaller apartments, not SFH. Good market fundamentals but the SFH window has closed at your price point. Better as an apartment play or if you can stretch slightly over ceiling.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Top-ranked family resort in France</li><li>Strong year-round demand</li><li>650km Portes du Soleil access</li><li>High rental occupancy</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Chalets above budget at entry</li><li>Smaller supply than Morzine</li><li>Prices up significantly post-COVID</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Chalet entry</span><span class="stat-value yellow">€750K–€1.2M</span></div><div class="stat-row"><span class="stat-label">Apartment entry</span><span class="stat-value green">€350–600K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value green">5–8%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Geneva (GVA) ~75 min</span></div><div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Portes du Soleil (650km)</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Over budget</span></div><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value yellow">Possible</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive (France)</span></div><div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed</span></div></div>
+  </div>
+</div>
+
+<!-- M8: Winter Park -->
+<div class="tab-pane" id="tab-m8">
+  <div class="market-header"><div class="market-flag">🇺🇸</div><div class="market-title"><h2>Winter Park, CO <span style="font-size:14px;font-weight:400;color:#6b7280">— Grand County, Colorado</span></h2><p>Closest major ski resort to Denver · Underperforming market · Some homes at budget</p></div><div class="market-score"><div class="score-num">6.8</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Winter Park's median is ~$985K — the most accessible of the major Colorado ski resorts. The market is underperforming relative to Vail and Steamboat counties, which could mean opportunity. Being 90 min from Denver means a strong weekend drive-market. Some SFH listings appear in the $750K–$900K range, though inventory is thin. Grand County STR rules are moderate — permit required but not prohibitive. A reasonable domestic fallback if you want Colorado skiing.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Closest major CO resort to Denver</li><li>Some SFH approaching budget</li><li>Strong drive-to market</li><li>Underperforming = potential upside</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Median SFH ~$985K — still tight</li><li>Grand County STR permit required</li><li>Smaller mountain than Vail/Steamboat</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Median home price</span><span class="stat-value yellow">~$985K</span></div><div class="stat-row"><span class="stat-label">SFH at budget</span><span class="stat-value yellow">Few — stretch needed</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">5–7%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Denver (DEN) ~90 min</span></div><div class="stat-row"><span class="stat-label">Mountain</span><span class="stat-value">3,081 acres</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value yellow">Tight — possible at ceiling</span></div><div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value yellow">Limited</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value yellow">Permit required (Grand Co.)</span></div></div>
+  </div>
+</div>
+
+<!-- M9: Livigno -->
+<div class="tab-pane" id="tab-m9">
+  <div class="market-header"><div class="market-flag">🇮🇹</div><div class="market-title"><h2>Livigno <span style="font-size:14px;font-weight:400;color:#6b7280">— Lombardy, Italy (duty-free zone)</span></h2><p>No VAT duty-free zone · 115km skiing · Growing luxury profile</p></div><div class="market-score"><div class="score-num">6.6</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Livigno is unique — it's a duty-free zone in the Italian Alps, which drives tourism and retail but also inflates property prices somewhat. At €5,000–8,000/m² it's pricier than you'd expect for Italy. Hosting World Cup events and growing its luxury segment. 115km of skiing, good snow record, long season (Nov–May). SFH chalets are at or slightly above budget. Best for apartment investment or if you can stretch. Italian property purchase process can be complex.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Duty-free zone — high tourism</li><li>Long season (Nov–May)</li><li>Growing luxury profile</li><li>Good snow reliability (altitude)</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Prices at/above budget for SFH</li><li>Remote — 3hr from Milan/Zurich</li><li>Italian bureaucracy complex</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Price/m²</span><span class="stat-value yellow">€5,000–8,000</span></div><div class="stat-row"><span class="stat-label">SFH entry</span><span class="stat-value yellow">€700K–€1.1M</span></div><div class="stat-row"><span class="stat-label">Apt entry</span><span class="stat-value green">€350–600K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">4–6%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Milan BGY or Zurich ~3hr</span></div><div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Nov – May</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value yellow">Tight</span></div><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value green">Good</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Relatively permissive</span></div><div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed (EU)</span></div></div>
+  </div>
+</div>
+
+<!-- M10: Andorra -->
+<div class="tab-pane" id="tab-m10">
+  <div class="market-header"><div class="market-flag">🇦🇩</div><div class="market-title"><h2>Andorra (Grandvalira) <span style="font-size:14px;font-weight:400;color:#6b7280">— Principality of Andorra</span></h2><p>Tax haven · 210km Grandvalira · Apartments in budget · Unique jurisdiction</p></div><div class="market-score"><div class="score-num">6.4</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Andorra is a micro-state between France and Spain with no income tax, no inheritance tax, and low property taxes. Grandvalira is the largest ski area in the Pyrenees (210km). Apartments are well within budget at €350–700K. Houses are harder to find. The rental market is primarily Spanish and French skiers. As a tax-advantaged investment vehicle it's interesting but niche — foreign buyer rules and residency requirements add complexity.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>No income tax, no inheritance tax</li><li>Largest Pyrenees ski area (210km)</li><li>Apartments well within budget</li><li>Growing luxury real estate market</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>SFH harder to find</li><li>Complex foreign buyer rules</li><li>Smaller international rental market</li><li>Not EU — different legal framework</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Apt entry</span><span class="stat-value green">€350–700K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">3–6%</span></div><div class="stat-row"><span class="stat-label">Tax advantages</span><span class="stat-value green">Significant</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Nearest airport</span><span class="stat-value">Barcelona/Toulouse ~3hr</span></div><div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Grandvalira (210km)</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value green">Strong</span></div><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value yellow">Limited</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Very permissive</span></div><div class="stat-row"><span class="stat-label">Foreign buyer rules</span><span class="stat-value yellow">Verify — unique jurisdiction</span></div></div>
+  </div>
+</div>
+
+<!-- M11: La Plagne -->
+<div class="tab-pane" id="tab-m11">
+  <div class="market-header"><div class="market-flag">🇫🇷</div><div class="market-title"><h2>La Plagne <span style="font-size:14px;font-weight:400;color:#6b7280">— Savoie, France</span></h2><p>Paradiski (420km) · Mostly apartment market · Affordable vs Méribel</p></div><div class="market-score"><div class="score-num">6.3</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">La Plagne is part of Paradiski (420km linked with Les Arcs). Price per m² is lower than Morzine or Les Gets, making apartments accessible at €500–900K. However, La Plagne's architecture is predominantly purpose-built apartment blocks — SFH chalets are rare and mostly at higher price points. Best for apartment investment with strong rental returns given the ski area size.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Access to 420km Paradiski</li><li>Lower price/m² than Savoie premium resorts</li><li>Strong rental occupancy</li><li>Apartments in budget range</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Mostly apartment blocks — no SFH character</li><li>Ski-season heavy — limited summer</li><li>Purpose-built resort aesthetic</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Apt entry</span><span class="stat-value green">€500–900K</span></div><div class="stat-row"><span class="stat-label">SFH chalet</span><span class="stat-value red">Rare at budget</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">5–7%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Geneva or Lyon ~2.5hr</span></div><div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Paradiski (420km)</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value yellow">Moderate</span></div><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Poor</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive (France)</span></div></div>
+  </div>
+</div>
+
+<!-- M12: Zell am See -->
+<div class="tab-pane" id="tab-m12">
+  <div class="market-header"><div class="market-flag">🇦🇹</div><div class="market-title"><h2>Zell am See <span style="font-size:14px;font-weight:400;color:#6b7280">— Salzburgerland, Austria</span></h2><p>Year-round lake resort · Glacier skiing · Salzburg airport 90min</p></div><div class="market-score"><div class="score-num">6.2</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Zell am See is a well-known Austrian resort town with a lake, glacier skiing (Kitzsteinhorn), and year-round tourism. Prices are roughly half of Kitzbühel. Entry-level apartments from €200K, houses possible in the €400–800K range. Year-round demand from lake summer tourism makes the income story more interesting than pure ski markets. Austrian STR permit rules apply — must verify by specific municipality.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Year-round demand (lake + ski + glacier)</li><li>Below Kitzbühel pricing</li><li>Houses in budget range</li><li>Salzburg airport 90 min</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>STR permit required</li><li>Less prestige than Kitzbühel</li><li>Some oversaturation in town</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">House entry</span><span class="stat-value green">€400–800K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">3–6%</span></div><div class="stat-row"><span class="stat-label">Season</span><span class="stat-value green">Year-round</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Salzburg (SZG) ~90 min</span></div><div class="stat-row"><span class="stat-label">Ski area</span><span class="stat-value">Schmittenhöhe + Glacier</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">Good</span></div><div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value yellow">Moderate</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value yellow">Permit required — verify</span></div></div>
+  </div>
+</div>
+
+<!-- M13: Crested Butte -->
+<div class="tab-pane" id="tab-m13">
+  <div class="market-header"><div class="market-flag">🇺🇸</div><div class="market-title"><h2>Crested Butte, CO <span style="font-size:14px;font-weight:400;color:#6b7280">— Gunnison County, Colorado</span></h2><p>Extreme terrain · Charming town · Over budget for SFH</p></div><div class="market-score"><div class="score-num">5.8</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Crested Butte has incredible skiing (steep, uncrowded, authentic) and a beloved historic town. However, median SFH is $1.19M — well over budget. The market has more character than most CO resorts and the town itself is a UNESCO Historic District. If your budget ever expands to $1.2M+ this becomes very interesting. At $850K ceiling you're looking at condos or land, not SFH. Flagged as a market to watch.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Authentic town character (not cookie-cutter)</li><li>World-class extreme terrain</li><li>Less crowded than Breckenridge/Vail</li><li>Forbes top CO resort</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>SFH median $1.19M — over budget</li><li>Remote — GUC airport limited flights</li><li>Small permanent rental market</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Median SFH</span><span class="stat-value red">$1.19M</span></div><div class="stat-row"><span class="stat-label">SFH at $850K</span><span class="stat-value red">Essentially none</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">4–6%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">GUC (small) or Denver ~4hr</span></div><div class="stat-row"><span class="stat-label">Mountain</span><span class="stat-value">1,547 acres</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Over budget</span></div><div class="stat-row"><span class="stat-label">Watchlist</span><span class="stat-value yellow">Monitor if budget expands</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Relatively light (Gunnison Co.)</span></div></div>
+  </div>
+</div>
+
+<!-- M14: Whitefish -->
+<div class="tab-pane" id="tab-m14">
+  <div class="market-header"><div class="market-flag">🇺🇸</div><div class="market-title"><h2>Whitefish, MT <span style="font-size:14px;font-weight:400;color:#6b7280">— Flathead County, Montana</span></h2><p>Glacier NP proximity · Strong brand · Over budget for SFH</p></div><div class="market-score"><div class="score-num">5.5</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Whitefish has excellent bones — proximity to Glacier National Park, a charming downtown, and real skiing at Whitefish Mountain Resort. Median home price of $1.6M puts SFH well out of reach at budget. However, it's a market worth watching: if you could find a fixer or outlier property under $900K it would be compelling. Currently not viable at $850K for a proper SFH rental investment.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Glacier NP drives year-round tourism</li><li>Strong STR market and infrastructure</li><li>Authentic Montana town feel</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Median SFH $1.6M — way over budget</li><li>Kalispell airport — limited direct flights</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Median home</span><span class="stat-value red">$1.6M</span></div><div class="stat-row"><span class="stat-label">SFH at budget</span><span class="stat-value red">Not viable</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">5–7%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Kalispell (FCA) ~30 min</span></div><div class="stat-row"><span class="stat-label">Glacier NP</span><span class="stat-value">~30 min</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Over budget</span></div><div class="stat-row"><span class="stat-label">Watchlist</span><span class="stat-value yellow">Monitor for outliers</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Light (Flathead County)</span></div></div>
+  </div>
+</div>
+
+<!-- M15: Bormio -->
+<div class="tab-pane" id="tab-m15">
+  <div class="market-header"><div class="market-flag">🇮🇹</div><div class="market-title"><h2>Bormio <span style="font-size:14px;font-weight:400;color:#6b7280">— Lombardy, Italy</span></h2><p>World Cup downhill venue · Thermal spa town · Lower prices than Livigno</p></div><div class="market-score"><div class="score-num">6.0</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Bormio is a historic Italian spa town that hosts World Cup downhill races. More affordable than Livigno, with properties in the €300–700K range. The thermal baths extend the rental season. Smaller mountain than Livigno but more authentic Italian village character. A sleeper market with room for price appreciation, especially with the 2026 Cortina Winter Olympics bringing attention to the Italian Alps.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Affordable entry vs Livigno</li><li>Thermal spa drives year-round stays</li><li>2026 Winter Olympics proximity</li><li>Authentic Italian village</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Smaller mountain</li><li>Lower international rental awareness</li><li>Remote — 3hr from Milan</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Property entry</span><span class="stat-value green">€300–700K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">3–5%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Milan (MXP/BGY) ~3hr</span></div><div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Dec–Apr + spa year-round</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">Good</span></div><div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value yellow">Moderate</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive (Italy)</span></div></div>
+  </div>
+</div>
+
+<!-- M16: Alpe d'Huez -->
+<div class="tab-pane" id="tab-m16">
+  <div class="market-header"><div class="market-flag">🇫🇷</div><div class="market-title"><h2>Alpe d'Huez <span style="font-size:14px;font-weight:400;color:#6b7280">— Isère, France</span></h2><p>250km ski area · One of France's sunniest resorts · Apartment-dominated</p></div><div class="market-score"><div class="score-num">5.8</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Alpe d'Huez has the sunshine record among French resorts (300 days/year claimed) and 250km of skiing. Strong British rental market. However, it's primarily an apartment resort — SFH chalets are rare and mostly above budget. Grenoble airport makes access easy. A solid apartment investment but not a SFH play.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Sunniest resort in French Alps</li><li>250km skiing</li><li>Strong rental demand</li><li>Grenoble airport 90 min</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Mostly apartment blocks</li><li>SFH chalets above budget</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Apt entry</span><span class="stat-value green">€400–800K</span></div><div class="stat-row"><span class="stat-label">Chalet entry</span><span class="stat-value red">€900K+</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">5–7%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Grenoble (GNB) ~90 min</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Over budget</span></div><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value yellow">Possible</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive (France)</span></div></div>
+  </div>
+</div>
+
+<!-- M17: Saas-Fee -->
+<div class="tab-pane" id="tab-m17">
+  <div class="market-header"><div class="market-flag">🇨🇭</div><div class="market-title"><h2>Saas-Fee <span style="font-size:14px;font-weight:400;color:#6b7280">— Valais, Switzerland</span></h2><p>Car-free glacier village · Year-round skiing · Swiss restrictions on foreign buyers</p></div><div class="market-score"><div class="score-num">4.8</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Beautiful car-free glacier village with year-round skiing. But Switzerland severely restricts foreign property purchases (Lex Koller legislation) — non-residents can only buy in specific designated tourist areas with annual quotas. Properties that are available to foreigners often come with restrictions on rental and resale. Add CHF pricing (property starts ~CHF 900K+) and this market is effectively inaccessible at your budget for a STR investment. Noted for completeness only.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Year-round glacier skiing</li><li>Iconic Swiss alpine village</li><li>Strong rental rates when permitted</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Lex Koller — major foreign buyer restrictions</li><li>CHF pricing above budget</li><li>Strict rental rules</li><li>Very limited foreign buyer quota</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Entry price</span><span class="stat-value red">CHF 900K–2M+</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">2–4%</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value red">Over budget</span></div><div class="stat-row"><span class="stat-label">Foreign buyer rules</span><span class="stat-value red">Severely restricted</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">Lex Koller</span><span class="stat-value red">Major restriction on foreign buyers</span></div></div>
+    <div class="detail-card"><h3>Verdict</h3><div class="stat-row"><span class="stat-label">Recommendation</span><span class="stat-value red">Skip — regulatory & budget barriers</span></div></div>
+  </div>
+</div>
+
+<!-- M18: Steamboat -->
+<div class="tab-pane" id="tab-m18">
+  <div class="market-header"><div class="market-flag">🇺🇸</div><div class="market-title"><h2>Steamboat Springs, CO <span style="font-size:14px;font-weight:400;color:#6b7280">— Routt County, Colorado</span></h2><p>Champagne powder · Strong market · Well over budget</p></div><div class="market-score"><div class="score-num">4.5</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Steamboat is one of the top ski markets in the US — famous champagne powder, a real working ranching town, and strong year-round demand. But with a median of $1.64M, SFH is inaccessible at $850K. Listed here because if budget ever reaches $1.2M+ it becomes one of the stronger US plays. For now: out of range.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Best powder in Colorado</li><li>Authentic western town character</li><li>Yampa Valley airport (direct flights)</li><li>Strong market fundamentals</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Median SFH $1.64M — 2x budget</li><li>STR permitting getting tighter</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Median SFH</span><span class="stat-value red">$1.64M</span></div><div class="stat-row"><span class="stat-label">SFH at $850K</span><span class="stat-value red">None</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value red">Significantly over budget</span></div><div class="stat-row"><span class="stat-label">Watchlist</span><span class="stat-value yellow">If budget reaches $1.2M+</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value yellow">Permit required, tightening</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Yampa Valley (HDN) direct flights</span></div></div>
+  </div>
+</div>
+
+<!-- M19: Sierra Nevada -->
+<div class="tab-pane" id="tab-m19">
+  <div class="market-header"><div class="market-flag">🇪🇸</div><div class="market-title"><h2>Sierra Nevada <span style="font-size:14px;font-weight:400;color:#6b7280">— Granada, Spain</span></h2><p>Spain's largest ski resort · Europe's southernmost skiing · Mild climate</p></div><div class="market-score"><div class="score-num">5.2</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Sierra Nevada is Europe's southernmost major ski resort, sitting above Granada. Entry prices are attractive (€200–600K) and the summer season adds Alhambra tourism uplift. But the ski season is shorter and less reliable than alpine markets. Rental yields are lower. A decent budget market but not the strongest investment case vs. French or Austrian alternatives. Best if you have personal Spain ties or want a lifestyle/summer hybrid.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>Very affordable entry prices</li><li>Year-round Alhambra/Granada tourism</li><li>Mild climate — pleasant off-season</li><li>Easy budget stretch to SFH</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>Shorter, less reliable ski season</li><li>Lower nightly rates vs Alps</li><li>Smaller international rental market</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Property entry</span><span class="stat-value green">€200–600K</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">3–5%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Granada (GRX) ~45 min</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit</span><span class="stat-value green">Strong — budget goes far</span></div><div class="stat-row"><span class="stat-label">SFH availability</span><span class="stat-value green">Good</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive</span></div><div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed (EU)</span></div></div>
+  </div>
+</div>
+
+<!-- M20: Chamonix -->
+<div class="tab-pane" id="tab-m20">
+  <div class="market-header"><div class="market-flag">🇫🇷</div><div class="market-title"><h2>Chamonix <span style="font-size:14px;font-weight:400;color:#6b7280">— Haute-Savoie, France</span></h2><p>The most iconic ski town in the world · Out of budget for SFH</p></div><div class="market-score"><div class="score-num">4.2</div><div class="score-label">Fit Score /10</div></div></div>
+  <div class="verdict-box"><h3>Verdict</h3><p class="verdict-text">Chamonix needs no introduction — Mont Blanc, the Vallée Blanche, year-round climbing and hiking. But at €12,000/m² average, a 70m² apartment costs €840K. SFH chalets start at €1.5M+. The market has risen 40%+ over the past decade. Your budget buys a studio or tiny apartment here. Listed for completeness because of its iconic status, but not a viable investment market at $850K for any meaningful property. Noted: if you find a deal below market or a distressed property, the rental rates are exceptional.</p>
+  <div class="verdict-pros-cons"><div class="pros"><h4>Pros</h4><ul><li>World's most recognized ski destination</li><li>Year-round tourism (climbing/hiking)</li><li>Exceptional rental rates</li><li>Strong long-term appreciation</li></ul></div><div class="cons"><h4>Cons</h4><ul><li>€12,000/m² — budget buys ~70m²</li><li>SFH effectively inaccessible at budget</li><li>Extremely competitive buyer market</li><li>40% appreciation already baked in</li></ul></div></div></div>
+  <div class="detail-grid">
+    <div class="detail-card"><h3>Market Data</h3><div class="stat-row"><span class="stat-label">Avg price/m²</span><span class="stat-value red">€12,000+</span></div><div class="stat-row"><span class="stat-label">Chalet entry</span><span class="stat-value red">€1.5M+</span></div><div class="stat-row"><span class="stat-label">STR yield</span><span class="stat-value">5–8%</span></div><div class="stat-row"><span class="stat-label">Price growth (10yr)</span><span class="stat-value red">+40%</span></div></div>
+    <div class="detail-card"><h3>Logistics</h3><div class="stat-row"><span class="stat-label">Airport</span><span class="stat-value">Geneva (GVA) ~60 min</span></div><div class="stat-row"><span class="stat-label">Season</span><span class="stat-value">Year-round</span></div></div>
+    <div class="detail-card"><h3>Budget Assessment</h3><div class="stat-row"><span class="stat-label">Budget fit (SFH)</span><span class="stat-value red">Not viable</span></div><div class="stat-row"><span class="stat-label">Budget fit (apt)</span><span class="stat-value red">Very small unit only</span></div></div>
+    <div class="detail-card"><h3>Regulation</h3><div class="stat-row"><span class="stat-label">STR</span><span class="stat-value green">Permissive (France)</span></div><div class="stat-row"><span class="stat-label">Foreign ownership</span><span class="stat-value green">Allowed</span></div></div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const tabMap = {
+    'overview': 0, 'm1': 1, 'm2': 2, 'm3': 3, 'm4': 4, 'm5': 5,
+    'm6': 6, 'm7': 7, 'm8': 8, 'm9': 9, 'm10': 10, 'm11': 11,
+    'm12': 12, 'm13': 13, 'm14': 14, 'm15': 15, 'm16': 16,
+    'm17': 17, 'm18': 18, 'm19': 19, 'm20': 20,
+    'home-appraisal': 21
+  };
+  if (btns[tabMap[id]]) {
+    btns[tabMap[id]].classList.add('active');
+    btns[tabMap[id]].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+}
+</script>
+</body>
+</html>
