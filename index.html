@@ -331,7 +331,6 @@
   <button class="tab-btn" onclick="showTab(3)">🏦 Financing &amp; Close</button>
   <button class="tab-btn" onclick="showTab(4)">🔨 ROI Projects</button>
 <button class="tab-btn" onclick="showTab(5)">📊 Appraisal Model</button>
-  <button class="tab-btn" onclick="showTab(6)">🏠 Home Appraisal</button>
   </div>
 
 <!-- ===== TAB 1: THE PROPERTY ===== -->
@@ -433,10 +432,10 @@
           <td>7 North Brookwood</td>
           <td><span class="badge badge-green">SOLD '25/'26</span></td>
           <td class="col-green fw-bold">$850,000</td>
-          <td>$419 ⚠️</td>
+          <td>$419</td>
           <td>4bd</td>
           <td>—</td>
-          <td>ON MOUNTAIN — location premium; adj -20% for off-mtn · sqft unverified</td>
+          <td>ON MOUNTAIN — location premium; adj -20% for off-mtn · 2,028 sqft confirmed</td>
         </tr>
         <tr class="row-green">
           <td>6 Roundtree Rd</td>
@@ -1158,8 +1157,8 @@
         <tr class="row-green">
           <td>7 North Brookwood (4bd, on-mtn)</td>
           <td class="col-green">$850,000</td>
-          <td>$419 ⚠️</td>
-          <td style="font-size:0.78rem;">ON MOUNTAIN premium — adj −20% for off-mountain · sqft unverified</td>
+          <td>$419</td>
+          <td style="font-size:0.78rem;">ON MOUNTAIN premium — adj −20% for off-mountain · 2,028 sqft confirmed</td>
           <td class="col-muted">~$679K adj'd (not primary comp)</td>
         </tr>
         <tr class="row-gold">
@@ -1921,7 +1920,7 @@ function showTab(idx) {
           <td style="padding:9px 10px;text-align:right;color:var(--text);">4,788 <span style="font-size:0.65rem;color:var(--accent);">MLS 5063440 ✓</span></td>
           <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$219</td>
           <td style="padding:9px 10px;text-align:right;">5bd/4ba</td>
-          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes · excluded from adj. model (size gap too large)</td>
         </tr>
         <tr style="background:var(--card);border-bottom:1px solid var(--border);">
           <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Roundtree Rd</td>
@@ -1931,6 +1930,15 @@ function showTab(idx) {
           <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$406</td>
           <td style="padding:9px 10px;text-align:right;">4bd/2ba</td>
           <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Jul 2024 (older) · 4bd, 1 bath fewer · 989 sqft smaller than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">7 North Brookwood</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">'25/'26</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$850,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">2,028 <span style="font-size:0.65rem;color:var(--accent);">confirmed ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$419</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/—</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Stratton · <strong style="color:#f59e0b;">ON-MOUNTAIN</strong> · 40% $/sqft premium vs. off-mountain · excl. from adj. model</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
           <td style="padding:9px 10px;font-weight:600;color:var(--text);">5 Stratton Ridge Rd</td>
@@ -1945,9 +1953,128 @@ function showTab(idx) {
     </table>
     </div>
     <div style="margin-top:10px;font-size:0.7rem;color:var(--muted);padding:8px 10px;background:rgba(79,142,247,0.06);border-radius:6px;">
-      <strong style="color:var(--accent);">Note on 7 North Brookwood ($850K):</strong> Sqft not verifiable from public sources. On-mountain location makes it a poor direct comp regardless — excluded from quantitative model. Referenced only for market ceiling confirmation.
+      <strong style="color:var(--accent);">On-Mountain Premium Note:</strong> 7 North Brookwood at $419/sqft is ~40% above off-mountain comps ($294–$299/sqft). This gap is the quantified value of ski-in/ski-out access. Subject property at $300/sqft in Forest Farms (off-mountain, 5 min drive) is correctly benchmarked against the off-mountain comp set.
     </div>
   </div>
+
+  
+  <!-- Comp Map -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:16px 20px 12px;">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Comparable Sales — Map View</div>
+      <div style="font-size:0.72rem;color:var(--muted);">All comps within ~3 miles of subject. On-mountain comps (North Brookwood) carry a significant location premium vs. off-mountain Forest Farms/Winhall. Subject coordinates approximate (Sugarbush Dr not in OSM).</div>
+    </div>
+    <div id="comp-map" style="height:420px;width:100%;"></div>
+    <div style="padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px;font-size:0.72rem;border-top:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#f59e0b;display:inline-block;border:2px solid #fff;"></span> Subject — 24 Sugarbush Dr</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#22c55e;display:inline-block;border:2px solid #fff;"></span> Primary comps (used in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#14b8a6;display:inline-block;border:2px solid #fff;"></span> Supporting refs (not in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#6b7280;display:inline-block;border:2px solid #fff;"></span> Active (not sold)</div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function() {
+    // Init map centered on subject area
+    var map = L.map('comp-map', {
+      center: [43.132, -72.880],
+      zoom: 13,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    function makeIcon(color, size) {
+      size = size || 14;
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + color + ';border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.5);"></div>',
+        iconSize: [size, size],
+        iconAnchor: [size/2, size/2],
+        popupAnchor: [0, -(size/2 + 4)]
+      });
+    }
+
+    var props = [
+      {
+        lat: 43.1330, lon: -72.8710,
+        color: '#f59e0b', size: 18,
+        title: '24 Sugarbush Drive — SUBJECT',
+        body: '<b>Offer: $870,000</b><br>2,897 sqft · 5bd/3ba · $300/sqft<br>Forest Farms, Winhall<br>Mountain views · 2 fireplaces · game room<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1364, lon: -72.8680,
+        color: '#22c55e', size: 16,
+        title: '20 Jamie Lane — SOLD Nov '25',
+        body: '<b>$975,000</b><br>3,252 sqft · 5bd/3.5ba · $299/sqft<br>Adj. value: <b>$858,600</b><br>Hot tub + barrel sauna'
+      },
+      {
+        lat: 43.1348, lon: -72.8784,
+        color: '#22c55e', size: 16,
+        title: '6 Chad Circle — SOLD Feb '26',
+        body: '<b>$1,050,000</b><br>4,788 sqft · 5bd/4ba · $219/sqft<br>Listed $1.1M · large floor plan · garage<br><i style="color:#aaa;">Excluded from adj. model (too large)</i>'
+      },
+      {
+        lat: 43.1368, lon: -72.8690,
+        color: '#22c55e', size: 16,
+        title: '14 Mountain Haunts — SOLD Oct '25',
+        body: '<b>$951,014</b><br>3,238 sqft · 5bd/3ba · $294/sqft<br>Adj. value: <b>$885,534</b><br>Listed $875K · sold +8.7% in 5 DOM<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1178, lon: -72.9142,
+        color: '#14b8a6', size: 14,
+        title: '6 Roundtree Rd — SOLD Jul '24',
+        body: '<b>$775,000</b><br>1,908 sqft · 4bd/2ba · $406/sqft<br>Supporting ref · older sale · 4bd'
+      },
+      {
+        lat: 43.1177, lon: -72.9118,
+        color: '#14b8a6', size: 14,
+        title: '7 North Brookwood — SOLD '25/'26',
+        body: '<b>$850,000</b><br>2,028 sqft · 4bd · $419/sqft<br><b>ON-MOUNTAIN</b> — ski-in/ski-out location premium (~40% vs. off-mountain)<br>Excluded from adj. model · market ceiling ref'
+      },
+      {
+        lat: 43.1364, lon: -72.8954,
+        color: '#14b8a6', size: 14,
+        title: '5 Stratton Ridge Rd — SOLD Jul '25',
+        body: '<b>$770,000</b><br>3,676 sqft · 4bd · $209/sqft<br>Supporting ref · 4bd, larger, inferior'
+      },
+      {
+        lat: 43.1347, lon: -72.8716,
+        color: '#6b7280', size: 12,
+        title: '13 Betty Johnson Ln — ACTIVE',
+        body: '<b>$849,000 (asking)</b><br>4bd · 89 days on market · not moving<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1307, lon: -72.8713,
+        color: '#6b7280', size: 12,
+        title: '25 Benson Fuller — ACTIVE',
+        body: '<b>$860,000 (asking)</b><br>4bd · 273 days on market · massively stale'
+      }
+    ];
+
+    props.forEach(function(p) {
+      L.marker([p.lat, p.lon], {icon: makeIcon(p.color, p.size)})
+        .addTo(map)
+        .bindPopup('<div style="font-size:0.82rem;min-width:220px;"><b style="font-size:0.88rem;">' + p.title + '</b><br><hr style="margin:6px 0;border-color:#ddd;">' + p.body + '</div>', {maxWidth: 280});
+    });
+
+    // Stratton Mountain marker
+    L.marker([43.1050, -72.9211], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:#1e2332;color:#e8eaf0;font-size:0.65rem;font-weight:700;padding:3px 7px;border-radius:4px;border:1px solid #4f8ef7;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.5);">⛷ Stratton Mountain</div>',
+        iconSize: [130, 22],
+        iconAnchor: [65, 11]
+      })
+    }).addTo(map);
+
+  })();
+  </script>
 
   <!-- Sales Comparison Adjustment Grid -->
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
@@ -2129,128 +2256,6 @@ function showTab(idx) {
     </div>
   </div>
 
-</div>
-
-
-<!-- HOME APPRAISAL TAB -->
-<div class="tab-content" id="tab-6">
-<div style="padding:24px;">
-
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-    <div>
-      <div style="font-size:1.2rem;font-weight:800;color:var(--text);">6705 Briarcroft St, Clifton VA 20124</div>
-      <div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Primary Residence &middot; HELOC Assessment &middot; Full Custom Rebuild 2022 &middot; C2 Condition</div>
-    </div>
-    <div style="text-align:center;background:rgba(79,142,247,0.1);border:2px solid var(--accent);border-radius:10px;padding:14px 28px;">
-      <div style="font-size:1.8rem;font-weight:900;color:var(--accent);">$2,700,000</div>
-      <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;margin-top:2px;">Point Estimate</div>
-      <div style="font-size:0.72rem;color:var(--muted);">Range: $2.60M &ndash; $2.85M</div>
-    </div>
-  </div>
-
-  <div class="alert alert-blue" style="margin-bottom:20px;line-height:1.7;">
-    <strong>Opinion of Value &mdash; April 2026.</strong> Sales Comparison Approach (primary) + Cost Approach (secondary). The 2022 full custom rebuild makes this effectively new construction. All public data (Zillow, Redfin, Fairfax County) reflects the <em>prior</em> structure &mdash; the prior $850K sale is not a valid comparable and must be excluded.
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-title">Property Details</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Address</td><td style="padding:7px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">6705 Briarcroft St, Clifton VA 20124</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Total Finished Area</td><td style="padding:7px 0;font-weight:700;color:var(--accent);text-align:right;border-bottom:1px solid var(--border);">5,900 sqft</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Above Grade GLA</td><td style="padding:7px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">3,900 sqft</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Below Grade Finished</td><td style="padding:7px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">2,000 sqft</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Bedrooms</td><td style="padding:7px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">9 total (6 AG / 3 BG)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Bathrooms</td><td style="padding:7px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">5 full</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">In-Law Suite</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Yes &mdash; full kitchen</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);">Lot Size</td><td style="padding:7px 0;font-weight:600;text-align:right;">&sim;5 acres, Clifton VA</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <div class="card-title">Construction &amp; Condition</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Effective Year Built</td><td style="padding:7px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">2022 (full custom rebuild)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Effective Age</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">~4 years</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Construction Quality</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Q1&ndash;Q2 (Custom Luxury)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Condition Rating</td><td style="padding:7px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">C2 &mdash; Excellent</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Depreciation</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Minimal (~2&ndash;3%)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Custom Glass</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Large expanses &mdash; est. +$100&ndash;150K</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);">In-Law Suite Premium</td><td style="padding:7px 0;font-weight:600;color:var(--green);text-align:right;">Est. +$40&ndash;60K value</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-title">Sales Comparison Approach</div>
-    <div style="overflow-x:auto;">
-    <table>
-      <thead><tr><th>Property</th><th>Sale Price</th><th>GLA</th><th>$/sqft</th><th>Condition</th><th>Adjusted Value</th></tr></thead>
-      <tbody>
-        <tr class="row-blue"><td><strong>SUBJECT: 6705 Briarcroft</strong></td><td class="col-blue fw-bold">Est. $2,700,000</td><td>3,900 AG / 2,000 BG</td><td>~$460 AG</td><td><span class="badge badge-green">C2</span></td><td>&mdash;</td></tr>
-        <tr><td>6501 Clifton Rd, Clifton VA</td><td>$2,500,000</td><td>6,488 sqft</td><td>$385</td><td>C3</td><td class="col-green fw-bold">$2,650&ndash;2,700K</td></tr>
-        <tr class="row-gold"><td>6500 Briarcroft St, Clifton VA</td><td>$2,999,900</td><td>13,850 sqft</td><td>$217</td><td>C2&ndash;C3</td><td class="col-green fw-bold">$2,500&ndash;2,800K</td></tr>
-        <tr><td>Clifton Luxury Market (Active)</td><td>$2.4M&ndash;$4.75M</td><td>5,000&ndash;16,600</td><td>$280&ndash;$450+</td><td>C2&ndash;C3</td><td class="col-green fw-bold">$2,600&ndash;2,850K</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-title">Cost Approach</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Above Grade: 3,900 sqft @ $460/sqft</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$1,794,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Below Grade: 2,000 sqft @ $200/sqft</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$400,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Custom Glass + In-Law Premium</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">+$175,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Depreciation (~2.5%)</td><td style="padding:7px 0;color:var(--red);text-align:right;border-bottom:1px solid var(--border);">&minus;$59,225</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Land Value (~5 acres)</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">+$350,000&ndash;$500,000</td></tr>
-        <tr><td style="padding:7px 0;font-weight:700;">Cost Approach Indicated Value</td><td style="padding:7px 0;font-weight:800;color:var(--green);text-align:right;">$2,660,000&ndash;$2,810,000</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <div class="card-title">HELOC Capacity</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Estimated Market Value</td><td style="padding:7px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">$2,700,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">80% LTV Max Loan Basis</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$,160,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">85% LTV Max Loan Basis</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$,295,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Less First Mortgage Balance</td><td style="padding:7px 0;color:var(--gold);text-align:right;border-bottom:1px solid var(--border);">Subtract existing balance</td></tr>
-        <tr><td style="padding:7px 0;font-weight:700;">Estimated Available HELOC</td><td style="padding:7px 0;font-weight:700;color:var(--green);text-align:right;">Likely $500K&ndash;$1M+</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-title">Reconciliation</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Sales Comparison (70% weight)</td><td style="padding:7px 0;color:var(--green);font-weight:600;text-align:right;border-bottom:1px solid var(--border);">$2,650,000&ndash;$2,750,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Cost Approach (30% weight)</td><td style="padding:7px 0;color:var(--green);font-weight:600;text-align:right;border-bottom:1px solid var(--border);">$,660,000&ndash;$2,810,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Conservative Floor</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$,600,000</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Optimistic Ceiling</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$,850,000</td></tr>
-        <tr><td style="padding:7px 0;font-weight:700;">Point Estimate</td><td style="padding:7px 0;font-weight:900;color:var(--accent);text-align:right;font-size:1rem;">$2,700,000</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <div class="card-title">Market Context &mdash; Fairfax County / 20124</div>
-      <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Median Sale Price (20124)</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$880,860 (Feb 2026)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">YoY Trend (20124)</td><td style="padding:7px 0;color:var(--red);font-weight:600;text-align:right;border-bottom:1px solid var(--border);">&minus;5.9%</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border);">Fairfax Co. Avg PSF</td><td style="padding:7px 0;text-align:right;border-bottom:1px solid var(--border);">$,374 (Nov 2024)</td></tr>
-        <tr><td style="padding:7px 0;color:var(--muted);">Fairfax Co. Assessment Increase</td><td style="padding:7px 0;color:var(--green);font-weight:600;text-align:right;">+6.65% (2025)</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="alert alert-gold" style="line-height:1.8;">
-    <strong>Critical Notes for HELOC Appraisal</strong><br><br>
-    <strong>1. Brief the appraiser before they pull public records.</strong> Zillow, Redfin, and county records show the prior structure. Provide contractor invoices from 2022, current photos, and Fairfax County permit records.<br><br>
-    <strong>2. The prior $850K sale is a comp trap.</strong> Reflects the old structure &mdash; must be excluded entirely.<br><br>
-    <strong>3. Document C2 condition.</strong> Photos of finishes and custom glass justify the quality rating.<br><br>
-    <strong>4. In-law suite documentation.</strong> Confirm permits and egress so the 2,000 BG sqft counts toward finished GLA.<br><br>
-    <strong>5. HELOC math:</strong> At $2.7M value, 80% LTV = $2.16M loan basis. Subtract outstanding first mortgage to get available HELOC line.
-  </div>
-
-</div>
 </div>
 
 </body>
