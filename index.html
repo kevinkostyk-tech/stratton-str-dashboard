@@ -2267,98 +2267,107 @@ function showTab(idx) {
 
 <!-- ===== TAB 7: HOME APPRAISAL ===== -->
 <div class="tab-content" id="tab-6">
-  <div class="market-header">
-    <div class="market-flag">🏠</div>
-    <div class="market-title">
-      <h2>6705 Briarcroft St, Clifton VA 20124 <span style="font-size:14px;font-weight:400;color:#6b7280">— Primary Residence Appraisal</span></h2>
-      <p>URAR-Methodology Independent Assessment for HELOC — Full Custom Rebuild 2022 · Effective Age: 4 Years · C2 Condition</p>
+<div style="max-width:1100px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--text);">6705 Briarcroft St, Clifton VA 20124</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Primary Residence · URAR-Methodology HELOC Assessment · Full Custom Rebuild 2022 · C2 Condition</div>
     </div>
-    <div class="market-score"><div class="score-num" style="font-size:20px;">$2.60M–$2.85M</div><div class="score-label">Estimated Market Value Range</div></div>
+    <div style="text-align:center;background:rgba(79,142,247,0.1);border:1px solid var(--accent);border-radius:10px;padding:14px 24px;">
+      <div style="font-size:1.8rem;font-weight:900;color:var(--accent);">$2,700,000</div>
+      <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;">Estimated Market Value</div>
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">Range: $2.60M – $2.85M</div>
+    </div>
   </div>
 
   <!-- Opinion of Value -->
-  <div class="verdict-box">
-    <h3>Opinion of Value — As of April 2026</h3>
-    <p class="verdict-text">
-      <strong>Point Estimate: $2,700,000</strong><br>
-      Range: $2,600,000 – $2,850,000<br><br>
-      This estimate is derived using the Sales Comparison Approach as the primary method, supported by the Cost Approach for a luxury custom rebuild in Fairfax County, VA. The property is a fully custom 2022 rebuild on an existing foundation — effectively functioning as new construction for appraisal purposes. The existing online data (Redfin, Zillow, public records) reflects the <em>prior</em> structure and is substantially understated. The prior sale at ~$850K / 3,902 sqft is irrelevant to current value given the complete rebuild. The subject property's true comparables are other large custom luxury homes in Clifton and the broader Fairfax County estate market.
-    </p>
-    <div class="verdict-pros-cons">
-      <div class="pros"><h4>Value Drivers (Positive)</h4>
-        <ul>
-          <li>Full custom rebuild 2022 — effectively new construction</li>
-          <li>5,950 total finished sqft (3,900 above grade + 2,000 below)</li>
-          <li>Luxury finishes throughout: custom glass, high-spec materials</li>
-          <li>9 Bedrooms / 5 Bathrooms total — exceptional for the market</li>
-          <li>Full in-law suite with separate kitchen — adds independent utility</li>
-          <li>C2 condition rating — highest quality tier for existing homes</li>
-          <li>Clifton, VA — one of Fairfax County's most desirable rural enclaves</li>
-          <li>Large lot (~5 acres), private, wooded setting</li>
-        </ul>
+  <div class="alert alert-blue" style="margin-bottom:20px;line-height:1.7;">
+    <strong>Opinion of Value — April 2026</strong><br>
+    Point estimate <strong>$2,700,000</strong> (range $2.60M–$2.85M). Primary method: Sales Comparison Approach, supported by Cost Approach cross-check for luxury new construction in Fairfax County. The 2022 full custom rebuild makes this effectively new construction for appraisal purposes. All existing public data (Zillow, Redfin, Fairfax County records) reflects the <em>prior</em> structure — the prior $850K / 3,902 sqft sale is not a valid comparable. True comps are large custom luxury homes in the Clifton / Fairfax County estate market.
+  </div>
+
+  <!-- Property Details Grid -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title">Property Identification</div>
+      <table style="width:100%;font-size:0.82rem;">
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Address</td><td style="padding:6px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">6705 Briarcroft St, Clifton VA 20124</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">County</td><td style="padding:6px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">Fairfax County, VA</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Lot Size (Est.)</td><td style="padding:6px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">~5 acres</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Zoning (Est.)</td><td style="padding:6px 0;font-weight:600;text-align:right;border-bottom:1px solid var(--border);">RC — Rural Cluster / Residential</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);">Neighborhood</td><td style="padding:6px 0;font-weight:600;text-align:right;">Clifton / Briarcroft</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Construction &amp; Condition</div>
+      <table style="width:100%;font-size:0.82rem;">
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Effective Year Built</td><td style="padding:6px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">2022 (full custom rebuild)</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Effective Age</td><td style="padding:6px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">~4 years</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Construction Quality</td><td style="padding:6px 0;font-weight:600;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Q1–Q2 (Custom / Luxury)</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Condition Rating</td><td style="padding:6px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">C2 — Excellent (near-new)</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);">Depreciation</td><td style="padding:6px 0;font-weight:600;color:var(--green);text-align:right;">Minimal — ~2–3%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Room Count Grid -->
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="stat-box">
+      <div class="stat-label">Total Finished Area</div>
+      <div class="stat-val col-blue">5,900 sqft</div>
+      <div class="stat-sub">3,900 AG + 2,000 BG</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Bedrooms</div>
+      <div class="stat-val col-green">9 Total</div>
+      <div class="stat-sub">6 above / 3 below grade</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Bathrooms</div>
+      <div class="stat-val col-green">5 Full</div>
+      <div class="stat-sub">3 above / 2 below grade</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">In-Law Suite</div>
+      <div class="stat-val col-green">Full</div>
+      <div class="stat-sub">Separate kitchen, half-below grade</div>
+    </div>
+  </div>
+
+  <!-- Special Features -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title">Special Features &amp; Value Drivers</div>
+    <div class="grid-4">
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:1.4rem;margin-bottom:4px;">🪟</div>
+        <div style="font-weight:700;color:var(--text);font-size:0.82rem;">Custom Glass</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Large expanses throughout · est. +$100–150K premium</div>
       </div>
-      <div class="cons"><h4>Limiting Factors</h4>
-        <ul>
-          <li>Below-grade GLA applies a value discount (~50–60% of above-grade PSF)</li>
-          <li>Clifton micro-market is small — limited direct luxury comps</li>
-          <li>Public records do not reflect 2022 rebuild — appraiser must adjust</li>
-          <li>Market softened slightly: 20124 median down 5.9% YoY (Redfin Feb 2026)</li>
-          <li>No formal URAR appraisal on record post-rebuild — HELOC lender will require one</li>
-        </ul>
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:1.4rem;margin-bottom:4px;">✨</div>
+        <div style="font-weight:700;color:var(--text);font-size:0.82rem;">Luxury Finishes</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Throughout — Q1 quality materials and workmanship</div>
+      </div>
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:1.4rem;margin-bottom:4px;">🏠</div>
+        <div style="font-weight:700;color:var(--text);font-size:0.82rem;">In-Law Suite</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Full kitchen · est. +$40–60K value · half-below grade</div>
+      </div>
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:1.4rem;margin-bottom:4px;">🌲</div>
+        <div style="font-weight:700;color:var(--text);font-size:0.82rem;">~5 Acre Lot</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Private, wooded setting · Clifton land premium</div>
       </div>
     </div>
   </div>
 
-  <!-- URAR Property Details -->
-  <p class="section-title" style="margin-top:8px;">Subject Property — URAR Data Grid</p>
-  <div class="detail-grid">
-    <div class="detail-card">
-      <h3>Property Identification</h3>
-      <div class="stat-row"><span class="stat-label">Address</span><span class="stat-value">6705 Briarcroft St, Clifton VA 20124</span></div>
-      <div class="stat-row"><span class="stat-label">County</span><span class="stat-value">Fairfax County, VA</span></div>
-      <div class="stat-row"><span class="stat-label">Legal Description</span><span class="stat-value">Single Family Residential</span></div>
-      <div class="stat-row"><span class="stat-label">Census Tract</span><span class="stat-value">Fairfax County</span></div>
-      <div class="stat-row"><span class="stat-label">Neighborhood</span><span class="stat-value">Clifton / Briarcroft</span></div>
-      <div class="stat-row"><span class="stat-label">Lot Size (Est.)</span><span class="stat-value">~5 acres</span></div>
-      <div class="stat-row"><span class="stat-label">Zoning</span><span class="stat-value">Residential (RC — Rural Cluster est.)</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>Improvements — Subject</h3>
-      <div class="stat-row"><span class="stat-label">Year Built (Actual)</span><span class="stat-value">Prior structure; foundation reused</span></div>
-      <div class="stat-row"><span class="stat-label">Effective Year Built</span><span class="stat-value green">2022 (full custom rebuild)</span></div>
-      <div class="stat-row"><span class="stat-label">Effective Age</span><span class="stat-value green">~4 years</span></div>
-      <div class="stat-row"><span class="stat-label">Design / Style</span><span class="stat-value">Custom contemporary luxury</span></div>
-      <div class="stat-row"><span class="stat-label">Foundation</span><span class="stat-value">Existing foundation (rebuilt from)</span></div>
-      <div class="stat-row"><span class="stat-label">Construction Quality</span><span class="stat-value green">Q1–Q2 (Custom luxury)</span></div>
-      <div class="stat-row"><span class="stat-label">Condition Rating</span><span class="stat-value green">C2 (Excellent)</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>Room Count &amp; Area</h3>
-      <div class="stat-row"><span class="stat-label">Above Grade GLA</span><span class="stat-value">3,900 sqft</span></div>
-      <div class="stat-row"><span class="stat-label">Below Grade Finished</span><span class="stat-value">2,000 sqft</span></div>
-      <div class="stat-row"><span class="stat-label">Total Finished Area</span><span class="stat-value">5,900 sqft</span></div>
-      <div class="stat-row"><span class="stat-label">Bedrooms Above Grade</span><span class="stat-value">6</span></div>
-      <div class="stat-row"><span class="stat-label">Bathrooms Above Grade</span><span class="stat-value">3 full</span></div>
-      <div class="stat-row"><span class="stat-label">Bedrooms Below Grade</span><span class="stat-value">3</span></div>
-      <div class="stat-row"><span class="stat-label">Bathrooms Below Grade</span><span class="stat-value">2 full</span></div>
-      <div class="stat-row"><span class="stat-label">In-Law Suite</span><span class="stat-value green">Yes — full kitchen, half-below grade</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>Special Features / Amenities</h3>
-      <div class="stat-row"><span class="stat-label">Custom Glass</span><span class="stat-value green">Large expanses — significant premium</span></div>
-      <div class="stat-row"><span class="stat-label">Luxury Finishes</span><span class="stat-value green">Throughout — C2/Q1 quality</span></div>
-      <div class="stat-row"><span class="stat-label">In-Law Suite Kitchen</span><span class="stat-value green">Full kitchen — adds $30–60K value</span></div>
-      <div class="stat-row"><span class="stat-label">Garage</span><span class="stat-value">Likely 2–3 car (est.)</span></div>
-      <div class="stat-row"><span class="stat-label">Acreage Premium</span><span class="stat-value green">~5 acres — privacy / land value</span></div>
-      <div class="stat-row"><span class="stat-label">Rebuild Year</span><span class="stat-value green">2022 — minimal deferred maintenance</span></div>
-    </div>
-  </div>
-
-  <!-- Sales Comparison Approach -->
-  <p class="section-title" style="margin-top:8px;">Sales Comparison Approach — Comparable Sales Grid</p>
-  <div class="full-width-card">
-    <h3>Adjusted Comparable Sales</h3>
-    <table class="overview-table">
+  <!-- Comps Table -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title">Sales Comparison Approach — Comparable Sales Grid</div>
+    <div style="overflow-x:auto;">
+    <table>
       <thead>
         <tr>
           <th>Property</th>
@@ -2372,118 +2381,139 @@ function showTab(idx) {
         </tr>
       </thead>
       <tbody>
-        <tr style="background:#0c1a3a22;">
+        <tr class="row-blue">
           <td><strong>Subject: 6705 Briarcroft St</strong></td>
-          <td><span class="badge badge-blue">Est. $2,700,000</span></td>
+          <td class="col-blue fw-bold">Est. $2,700,000</td>
           <td>3,900 AG / 2,000 BG</td>
           <td>~$460 (AG)</td>
-          <td>2022 (rebuild)</td>
+          <td>2022 rebuild</td>
           <td><span class="badge badge-green">C2</span></td>
           <td>—</td>
           <td>—</td>
         </tr>
         <tr>
-          <td>Comp 1: 6501 Clifton Rd, Clifton VA</td>
-          <td>$2,500,000 (listed)</td>
+          <td>Comp 1: 6501 Clifton Rd</td>
+          <td>$2,500,000</td>
           <td>6,488</td>
           <td>$385</td>
           <td>1997</td>
-          <td>C3 (Est.)</td>
-          <td><span class="badge badge-green">+$150–200K: newer age, C2 vs C3, custom finishes</span></td>
-          <td>$2,650–2,700K</td>
+          <td>C3 (est.)</td>
+          <td class="col-green">+$150–200K: newer age, C2 vs C3, custom finishes</td>
+          <td class="col-green fw-bold">$2,650–2,700K</td>
         </tr>
-        <tr>
-          <td>Comp 2: 6500 Briarcroft St, Clifton VA</td>
+        <tr class="row-gold">
+          <td>Comp 2: 6500 Briarcroft St</td>
           <td>$2,999,900</td>
           <td>13,850</td>
           <td>$217</td>
           <td>2010</td>
           <td>C2–C3</td>
-          <td><span class="badge badge-yellow">Larger, older; adjusted down for sqft</span></td>
-          <td>$2,500–2,800K</td>
+          <td class="col-gold">Adj. down for size — still validates $2.5M+ floor</td>
+          <td class="col-green fw-bold">$2,500–2,800K</td>
         </tr>
         <tr>
-          <td>Comp 3: 12414 Fairfax Station Rd (Est.)</td>
-          <td>~$1,365,000</td>
-          <td>~3,500</td>
-          <td>$394</td>
-          <td>Est. 2000s</td>
-          <td>C3</td>
-          <td><span class="badge badge-green">+$400K+ (size, condition, finishes)</span></td>
-          <td>$1,700–1,800K (smaller comp)</td>
-        </tr>
-        <tr>
-          <td>Comp 4: Clifton / Fairfax Co. Luxury Market (General)</td>
-          <td>$2.4M–$4.75M (active)</td>
+          <td>Comp 3: Clifton / Fairfax Co. Luxury (Active)</td>
+          <td>$2.4M–$4.75M</td>
           <td>5,000–16,600</td>
           <td>$280–$450+</td>
           <td>Varies</td>
           <td>C2–C3</td>
-          <td><span class="badge badge-blue">Subject falls mid-range</span></td>
-          <td>$2,600–2,850K</td>
+          <td class="col-blue">Subject falls mid-range of active luxury inventory</td>
+          <td class="col-green fw-bold">$2,600–2,850K</td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <!-- Cost Approach -->
-  <p class="section-title" style="margin-top:8px;">Cost Approach — New Construction Support</p>
-  <div class="detail-grid">
-    <div class="detail-card">
-      <h3>Replacement Cost New (RCN)</h3>
-      <div class="stat-row"><span class="stat-label">Above Grade (3,900 sqft) @ $460/sqft avg luxury</span><span class="stat-value">$1,794,000</span></div>
-      <div class="stat-row"><span class="stat-label">Below Grade Finished (2,000 sqft) @ $200/sqft (50% factor)</span><span class="stat-value">$400,000</span></div>
-      <div class="stat-row"><span class="stat-label">Custom Glass Premium</span><span class="stat-value">Est. +$100,000–$150,000</span></div>
-      <div class="stat-row"><span class="stat-label">In-Law Suite Premium</span><span class="stat-value">Est. +$40,000–$60,000</span></div>
-      <div class="stat-row"><span class="stat-label">Total RCN (Est.)</span><span class="stat-value green">~$2,350,000–$2,500,000</span></div>
-      <div class="stat-row"><span class="stat-label">Depreciation (Effective age 4yr)</span><span class="stat-value green">Minimal — ~2–3%</span></div>
-      <div class="stat-row"><span class="stat-label">Depreciated Improvement Value</span><span class="stat-value green">~$2,280,000–$2,430,000</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>Land Value + Final Cost Approach</h3>
-      <div class="stat-row"><span class="stat-label">Land Value (Est. ~5 acres, Clifton)</span><span class="stat-value">$300,000–$500,000</span></div>
-      <div class="stat-row"><span class="stat-label">Cost Approach Indicated Value</span><span class="stat-value green">$2,580,000–$2,930,000</span></div>
-      <div class="stat-row"><span class="stat-label">Fairfax Co. High-End Build Cost Range</span><span class="stat-value">$340–$520/sqft (Karma Construction, 2025)</span></div>
-      <div class="stat-row"><span class="stat-label">Corroborates</span><span class="stat-value green">Sales Comparison estimate</span></div>
-      <div class="stat-row"><span class="stat-label">Weight in Final Value</span><span class="stat-value yellow">30% (secondary to Sales Comparison)</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>Market Context — 20124 / Fairfax County</h3>
-      <div class="stat-row"><span class="stat-label">Median Sale Price (20124, all types)</span><span class="stat-value">$880,860 (Redfin, Feb 2026)</span></div>
-      <div class="stat-row"><span class="stat-label">YoY Change (20124)</span><span class="stat-value red">-5.9% (softening broadly)</span></div>
-      <div class="stat-row"><span class="stat-label">Fairfax Co. Avg PSF (all homes)</span><span class="stat-value">$374 (FFXnow, Nov 2024)</span></div>
-      <div class="stat-row"><span class="stat-label">Fairfax Co. Avg Assessment Increase</span><span class="stat-value green">+6.65% (2025 assessment cycle)</span></div>
-      <div class="stat-row"><span class="stat-label">Luxury Segment (20124 active)</span><span class="stat-value">$950K median listing; top at $4.75M</span></div>
-      <div class="stat-row"><span class="stat-label">Avg Days on Market (20124)</span><span class="stat-value">28 days — healthy velocity</span></div>
-    </div>
-    <div class="detail-card">
-      <h3>HELOC Implications</h3>
-      <div class="stat-row"><span class="stat-label">Estimated Market Value</span><span class="stat-value green">$2,700,000</span></div>
-      <div class="stat-row"><span class="stat-label">Typical HELOC LTV (80–85%)</span><span class="stat-value">$2,160,000–$2,295,000 max loan basis</span></div>
-      <div class="stat-row"><span class="stat-label">Less Outstanding Mortgage (Est.)</span><span class="stat-value yellow">Subtract existing balance</span></div>
-      <div class="stat-row"><span class="stat-label">Available HELOC Credit (Est.)</span><span class="stat-value green">Substantial — depends on balance</span></div>
-      <div class="stat-row"><span class="stat-label">Note</span><span class="stat-value yellow">Lender requires licensed URAR appraisal</span></div>
-      <div class="stat-row"><span class="stat-label">Key Risk</span><span class="stat-value red">Public records lag — appraiser briefing critical</span></div>
     </div>
   </div>
 
-  <!-- Appraiser Briefing Notes -->
-  <div class="verdict-box" style="margin-top:8px;">
-    <h3>⚠️ Critical Notes for HELOC Appraisal Process</h3>
-    <p class="verdict-text">
-      <strong>1. Brief the appraiser before they pull public records.</strong> All online data (Zillow, Redfin, Fairfax County records) shows the prior structure — not the 2022 rebuild. If the appraiser uses the old sqft, bedroom count, or prior sale price as anchors, they will severely undervalue the property. You should provide: (a) a dated construction summary or contractor invoice summary showing the scope of the 2022 rebuild, (b) photos of current finishes, (c) permit records from Fairfax County confirming the rebuild scope.
-      <br><br>
-      <strong>2. The prior $850K sale is a comp trap.</strong> That sale reflects the prior structure. It must be excluded or explicitly adjusted away.
-      <br><br>
-      <strong>3. Establish C2 condition in writing.</strong> The property was previously rated C2. Provide documentation or photos confirming that condition has been maintained / improved post-rebuild.
-      <br><br>
-      <strong>4. HELOC lenders typically cap at 80–85% CLTV.</strong> At $2.7M value and 80% LTV = $2.16M loan basis. Subtract your outstanding first mortgage to get your available HELOC line.
-      <br><br>
-      <strong>5. The half-below-grade in-law suite</strong> requires clear documentation that it meets finished living space standards (egress, permits, etc.) to count toward GLA. This will affect the appraiser's above-grade vs. below-grade square footage allocation.
-    </p>
+  <!-- Cost Approach + HELOC -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title">Cost Approach — Replacement Cost New</div>
+      <table style="width:100%;font-size:0.82rem;">
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Above Grade: 3,900 sqft @ $460/sqft</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">$1,794,000</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Below Grade: 2,000 sqft @ $200/sqft</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">$400,000</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Custom Glass Premium</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">+$125,000</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">In-Law Suite Premium</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">+$50,000</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Depreciation (~2.5%)</td><td style="padding:6px 0;text-align:right;color:var(--red);border-bottom:1px solid var(--border);">−$59,225</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Land Value (~5 acres, Clifton)</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">+$350,000–$500,000</td></tr>
+        <tr><td style="padding:6px 0;font-weight:700;color:var(--text);">Cost Approach Indicated Value</td><td style="padding:6px 0;font-weight:800;color:var(--green);text-align:right;">$2,660,000–$2,810,000</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">HELOC Borrowing Capacity</div>
+      <table style="width:100%;font-size:0.82rem;">
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Estimated Market Value</td><td style="padding:6px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">$2,700,000</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">HELOC LTV @ 80%</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">$2,160,000 max basis</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">HELOC LTV @ 85%</td><td style="padding:6px 0;text-align:right;border-bottom:1px solid var(--border);">$2,295,000 max basis</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Less First Mortgage Balance</td><td style="padding:6px 0;color:var(--gold);text-align:right;border-bottom:1px solid var(--border);">Subtract existing balance</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);border-bottom:1px solid var(--border);">Available HELOC (est.)</td><td style="padding:6px 0;font-weight:700;color:var(--green);text-align:right;border-bottom:1px solid var(--border);">Likely $500K–$1M+ depending on balance</td></tr>
+        <tr><td style="padding:6px 0;color:var(--muted);">Lender Requirement</td><td style="padding:6px 0;color:var(--red);font-weight:600;text-align:right;">Licensed URAR appraisal required</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Market Context -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title">Market Context — Fairfax County / 20124</div>
+    <div class="grid-4">
+      <div class="stat-box">
+        <div class="stat-label">Median Sale Price (20124)</div>
+        <div class="stat-val" style="font-size:1.2rem;">$880,860</div>
+        <div class="stat-sub">All types, Redfin Feb 2026</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">YoY Trend (20124)</div>
+        <div class="stat-val col-red" style="font-size:1.2rem;">−5.9%</div>
+        <div class="stat-sub">Broad market softening</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Fairfax Co. Avg PSF</div>
+        <div class="stat-val" style="font-size:1.2rem;">$374</div>
+        <div class="stat-sub">All homes, Nov 2024</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Fairfax Co. Assessment</div>
+        <div class="stat-val col-green" style="font-size:1.2rem;">+6.65%</div>
+        <div class="stat-sub">2025 avg residential increase</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reconciliation -->
+  <div class="card" style="margin-bottom:20px;border-color:var(--accent);">
+    <div class="card-title">Reconciliation</div>
+    <div class="grid-4">
+      <div style="padding:12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Sales Comparison<br>(70% weight)</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--green);">$2,650K–$2,750K</div>
+      </div>
+      <div style="padding:12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Cost Approach<br>(30% weight)</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--green);">$2,660K–$2,810K</div>
+      </div>
+      <div style="padding:12px;background:rgba(79,142,247,0.1);border:2px solid var(--accent);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Point Estimate</div>
+        <div style="font-size:1.4rem;font-weight:900;color:var(--accent);">$2,700,000</div>
+      </div>
+      <div style="padding:12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Full Range</div>
+        <div style="font-size:1.1rem;font-weight:800;color:var(--green);">$2.60M–$2.85M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Notes -->
+  <div class="alert alert-gold" style="line-height:1.8;">
+    <strong>⚠️ Critical Notes for HELOC Appraisal Process</strong><br><br>
+    <strong>1. Brief the appraiser before they pull public records.</strong> Zillow, Redfin, and Fairfax County assessments all show the prior structure. Provide: (a) contractor scope summary or invoices from the 2022 rebuild, (b) current interior photos, (c) Fairfax County permit records. If the appraiser anchors on the prior $850K sale, they will massively undervalue the property.<br><br>
+    <strong>2. The prior $850K sale is a comp trap.</strong> It reflects the old structure — must be excluded entirely.<br><br>
+    <strong>3. Document C2 condition.</strong> Prior appraisal documentation + photos of finishes and custom glass help the appraiser justify the quality rating.<br><br>
+    <strong>4. In-law suite documentation.</strong> Confirm permits and egress windows so the 2,000 sqft below grade counts toward finished GLA.<br><br>
+    <strong>5. HELOC math at $2.7M:</strong> 80% LTV = $2.16M loan basis. Subtract your outstanding first mortgage to get maximum HELOC line.
   </div>
 
 </div>
+</div>
 
 </body>
-</html>
