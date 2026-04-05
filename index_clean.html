@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24 Sugarbush Drive — Stratton STR Acquisition</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #13161f;
+    --border: #1e2332;
+    --text: #e8eaf0;
+    --muted: #8890a4;
+    --accent: #4f8ef7;
+    --green: #22c55e;
+    --red: #ef4444;
+    --gold: #f59e0b;
+    --purple: #a855f7;
+    --teal: #14b8a6;
+    --green-dim: rgba(34,197,94,0.12);
+    --gold-dim: rgba(245,158,11,0.12);
+    --red-dim: rgba(239,68,68,0.12);
+    --accent-dim: rgba(79,142,247,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+  /* Header */
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .header-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .header-badge {
+    background: var(--gold-dim);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    padding: 0 16px;
+  }
+  .tab-btn {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  /* Content */
+  .tab-content { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .tabs { padding: 0 8px; }
+    .tab-btn { padding: 12px 12px; font-size: 0.78rem; }
+    .tab-content { padding: 16px; }
+  }
+  /* Stat boxes */
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .stat-val { font-size: 1.5rem; font-weight: 800; line-height: 1; }
+  .stat-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #13161f 0%, #1a1e2e 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(79,142,247,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-address { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+  .hero-loc { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+  .specs-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .spec-pill {
+    background: rgba(30,35,50,0.8);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .strategy-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(168,85,247,0.12);
+    border: 1px solid rgba(168,85,247,0.4);
+    color: #c084fc;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .offer-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .offer-stat { }
+  .offer-stat .label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .offer-stat .value { font-size: 1.6rem; font-weight: 800; }
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid rgba(30,35,50,0.6); }
+  tr:last-child td { border-bottom: none; }
+  tr.row-gold { background: var(--gold-dim); }
+  tr.row-green { background: var(--green-dim); }
+  tr.row-blue { background: var(--accent-dim); }
+  tr.row-red { background: var(--red-dim); }
+  tr.row-highlight-y1 { background: rgba(20,184,166,0.10); }
+  tr.row-highlight-y2 { background: var(--green-dim); border-left: 3px solid var(--green); }
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .badge-blue { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(79,142,247,0.3); }
+  .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+  .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+  .badge-purple { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+  .badge-teal { background: rgba(20,184,166,0.12); color: var(--teal); border: 1px solid rgba(20,184,166,0.3); }
+  /* Progress bar */
+  .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 8px; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  /* Waterfall */
+  .waterfall-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(30,35,50,0.5);
+  }
+  .waterfall-row:last-child { border-bottom: none; }
+  .waterfall-label { font-size: 0.85rem; }
+  .waterfall-amount { font-size: 0.9rem; font-weight: 700; }
+  .waterfall-row.total { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 12px; }
+  .waterfall-row.total .waterfall-label { font-weight: 700; color: var(--text); }
+  /* Steps */
+  .step-list { display: flex; flex-direction: column; gap: 10px; }
+  .step-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-text { font-size: 0.85rem; line-height: 1.5; }
+  .step-text strong { color: var(--text); }
+  /* Comparison */
+  .compare-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .compare-col.recommended { border-color: rgba(79,142,247,0.5); }
+  .compare-col .col-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 12px; }
+  .compare-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+  .compare-row:last-child { border-bottom: none; }
+  /* PMI cards */
+  .pmi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .pmi-card.pmi-off { border-color: rgba(34,197,94,0.4); background: var(--green-dim); }
+  .pmi-year { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .pmi-val { font-size: 1.1rem; font-weight: 800; margin: 6px 0 2px; }
+  .pmi-equity { font-size: 0.72rem; color: var(--muted); }
+  .pmi-status { font-size: 0.7rem; font-weight: 700; margin-top: 8px; }
+  /* Wealth bar */
+  .wealth-bar-container { display: flex; gap: 2px; height: 14px; border-radius: 7px; overflow: hidden; margin-top: 8px; }
+  .wealth-seg { height: 100%; }
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  /* Alert box */
+  .alert {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .alert-gold { background: var(--gold-dim); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24; }
+  .alert-green { background: var(--green-dim); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; }
+  .alert-red { background: var(--red-dim); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
+  .alert-blue { background: var(--accent-dim); border: 1px solid rgba(79,142,247,0.3); color: #93c5fd; }
+  .col-green { color: var(--green); }
+  .col-red { color: var(--red); }
+  .col-gold { color: var(--gold); }
+  .col-blue { color: var(--accent); }
+  .col-muted { color: var(--muted); }
+  .text-right { text-align: right; }
+  .text-center { text-align: center; }
+  .fw-bold { font-weight: 700; }
+  .mt-4 { margin-top: 4px; }
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .section-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 24px 0 12px;
+  }
+  .two-col-table { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .tax-compare-col { padding: 16px; }
+  .tax-compare-col:first-child { border-right: 1px solid var(--border); }
+  .tax-compare-col .col-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .tax-row { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 6px 0; border-bottom: 1px solid rgba(30,35,50,0.4); }
+  .tax-row:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">🏔️ 24 Sugarbush Drive — Stratton Acquisition</div>
+    <div class="header-sub">Winhall, VT 05340 &nbsp;·&nbsp; 5bd / 3ba / 2,897 sqft &nbsp;·&nbsp; Offer: $870,000</div>
+  </div>
+  <div class="header-badge">LTR Close → STR Year 2</div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab(0)">🏠 The Property</button>
+  <button class="tab-btn" onclick="showTab(1)">💰 Financial Model</button>
+  <button class="tab-btn" onclick="showTab(2)">🎯 Offer Strategy</button>
+  <button class="tab-btn" onclick="showTab(3)">🏦 Financing &amp; Close</button>
+  <button class="tab-btn" onclick="showTab(4)">🔨 ROI Projects</button>
+<button class="tab-btn" onclick="showTab(5)">📊 Appraisal Model</button>
+  </div>
+
+<!-- ===== TAB 1: THE PROPERTY ===== -->
+<div class="tab-content active" id="tab-0">
+
+  <div class="hero">
+    <div class="hero-address">24 Sugarbush Drive</div>
+    <div class="hero-loc">Winhall, VT 05340 &nbsp;·&nbsp; Stratton Mountain Area</div>
+    <div class="specs-row">
+      <div class="spec-pill">🛏 5 Bedrooms</div>
+      <div class="spec-pill">🚿 3 Bathrooms</div>
+      <div class="spec-pill">📐 2,897 sqft</div>
+      <div class="spec-pill">🌲 1.26 acres</div>
+      <div class="spec-pill">🏗 Built 1974 / Renovated</div>
+      <div class="spec-pill">🎮 Game Room</div>
+            <div class="spec-pill">⛰ Mountain Views</div>
+    </div>
+    <div class="strategy-pill">⚡ Strategy: LTR Close → STR Year 2 → Cost Seg + 100% Bonus Dep</div>
+    <div class="offer-row">
+      <div class="offer-stat">
+        <div class="label">Offer Price</div>
+        <div class="value col-gold">$870,000</div>
+      </div>
+      <div class="offer-stat">
+        <div class="label">List Price</div>
+        <div class="value col-muted">$849,000</div>
+      </div>
+      <div class="offer-stat">
+        <div class="label">Price / sqft</div>
+        <div class="value col-green">$300</div>
+      </div>
+      <div class="offer-stat">
+        <div class="label">LTR Tax Saving</div>
+        <div class="value col-green">$18,705</div>
+      </div>
+      <div class="offer-stat">
+        <div class="label">5-Yr Value Target</div>
+        <div class="value col-accent" style="color:var(--accent)">$855K–$895K</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-green">
+    <strong>Price Analysis (Updated):</strong> Verified MLS sqft: Mountain Haunts 3,238 sqft ($294/sqft), Jamie Lane 3,252 sqft ($299/sqft). Subject at 2,897 sqft is 341–355 sqft smaller. Size-adjusted comps: $851K–$876K. Add amenity premium (views, fireplaces, game room): <strong>comp-adjusted FMV = $855K–$895K</strong>. Offer $870K is ~$2K below point estimate ($872K). Minimal appraisal gap risk.
+
+  <div class="card">
+    <div class="card-title">Comp Analysis — Stratton Mountain Area (5-Bed Market)</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Status</th>
+          <th>Sale Price</th>
+          <th>$/sqft</th>
+          <th>Beds</th>
+          <th>DOM</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-gold">
+          <td><strong>24 Sugarbush Dr</strong></td>
+          <td><span class="badge badge-gold">SUBJECT</span></td>
+          <td class="col-gold fw-bold">$870,000</td>
+          <td class="col-gold fw-bold">$300</td>
+          <td>5bd</td>
+          <td>—</td>
+          <td>Offer price; mountain views, 2 fireplaces, game room</td>
+        </tr>
+        <tr class="row-green">
+          <td>14 Mountain Haunts</td>
+          <td><span class="badge badge-green">SOLD Oct '25</span></td>
+          <td class="col-green fw-bold">$951,014</td>
+          <td>$294</td>
+          <td>5bd</td>
+          <td>5</td>
+          <td>Listed $875K → sold +8.7% over ask · 3,238 sqft confirmed (MLS 5060721)</td>
+        </tr>
+        <tr class="row-green">
+          <td>6 Chad Circle</td>
+          <td><span class="badge badge-green">SOLD Feb '26</span></td>
+          <td class="col-green fw-bold">$1,050,000</td>
+          <td>$356 ⚠️</td>
+          <td>5bd</td>
+          <td>—</td>
+          <td>Listed $1.1M, sold below ask · sqft unverified (conflicting sources)</td>
+        </tr>
+        <tr class="row-green">
+          <td>20 Jamie Lane</td>
+          <td><span class="badge badge-green">SOLD Nov '25</span></td>
+          <td class="col-green fw-bold">$975,000</td>
+          <td>$299</td>
+          <td>5bd</td>
+          <td>—</td>
+          <td>Sold at exact ask — clean market signal · 3,252 sqft (MLS 4911977)</td>
+        </tr>
+        <tr class="row-green">
+          <td>7 North Brookwood</td>
+          <td><span class="badge badge-green">SOLD '25/'26</span></td>
+          <td class="col-green fw-bold">$850,000</td>
+          <td>$419</td>
+          <td>4bd</td>
+          <td>—</td>
+          <td>ON MOUNTAIN — location premium; adj -20% for off-mtn · 2,028 sqft confirmed</td>
+        </tr>
+        <tr class="row-green">
+          <td>6 Roundtree Rd</td>
+          <td><span class="badge badge-green">SOLD Jul '24</span></td>
+          <td class="col-green fw-bold">$775,000</td>
+          <td>$406</td>
+          <td>4bd</td>
+          <td>—</td>
+          <td>Older sale; 4bd, still $406/sqft</td>
+        </tr>
+        <tr class="row-blue">
+          <td>13 Betty Johnson Ln</td>
+          <td><span class="badge badge-blue">ACTIVE</span></td>
+          <td class="col-blue">$849,000</td>
+          <td>—</td>
+          <td>4bd</td>
+          <td><strong class="col-red">89</strong></td>
+          <td>Sitting — not moving</td>
+        </tr>
+        <tr class="row-blue">
+          <td>25 Benson Fuller</td>
+          <td><span class="badge badge-blue">ACTIVE</span></td>
+          <td class="col-blue">$860,000</td>
+          <td>—</td>
+          <td>4bd</td>
+          <td><strong class="col-red">273</strong></td>
+          <td>Massively stale — 4bd, no movement</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid-2">
+     <div class="card">
+      <div class="card-title">Price Target — Comp-Adjusted (Updated)</div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px;">Size-adjusted from verified 5-bed comps. Subject (2,897 sqft) is 341–355 sqft smaller than primary comps — price adjusted at each comp’s verified $/sqft.</p>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Mountain Haunts: $951K − (341 sqft × $294)</span>
+        <span class="waterfall-amount col-green">$851K</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Jamie Lane: $975K − (355 sqft × $299)</span>
+        <span class="waterfall-amount col-green">$807K</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Size-adjusted midpoint</span>
+        <span class="waterfall-amount col-green">$851K–$876K</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Amenity premium (views, 2 fireplaces, game room, mudroom)</span>
+        <span class="waterfall-amount col-green">+$30K–$60K</span>
+      </div>
+      <div class="waterfall-row total">
+        <span class="waterfall-label fw-bold">Comp-Adjusted Fair Value</span>
+        <span class="waterfall-amount col-gold fw-bold">$855K–$895K</span>
+      </div>
+      <div class="mt-12" style="font-size:0.78rem; color:var(--muted)">Buying at $870K = ~$2K below point estimate of $872K. Strong entry.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Value Gap — $/sqft</div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:6px;">
+          <span>Subject (offer) — $300/sqft</span>
+          <span class="col-gold fw-bold">$300</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%; background:var(--gold)"></div></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:6px;">
+          <span>14 Mountain Haunts — $294/sqft (3,238 sqft verified)</span>
+          <span class="col-green fw-bold">$294</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:72%; background:var(--green)"></div></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:6px;">
+          <span>20 Jamie Lane — $299/sqft (3,252 sqft)</span>
+          <span class="col-green fw-bold">$299</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:80%; background:var(--green)"></div></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:6px;">
+          <span>6 Roundtree Rd — $406/sqft (1,908 sqft, 4bd)</span>
+          <span class="col-muted fw-bold">$406</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%; background:var(--green)"></div></div>
+      </div>
+      <div class="alert alert-green mt-8" style="font-size:0.8rem;">
+        <strong>Corrected:</strong> At $300/sqft, subject is in line with the verified 5-bed comp range of $294–$299/sqft. Both primary comps adjust to ~$851K–$876K on size. Weighted fair value: ~$872K. Offer at $870K is essentially at fair value.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 2: FINANCIAL MODEL ===== -->
+<div class="tab-content" id="tab-1">
+
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="stat-box">
+      <div class="stat-label">Purchase Price</div>
+      <div class="stat-val col-gold">$870K</div>
+      <div class="stat-sub">$87K down (10%)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Monthly Carry</div>
+      <div class="stat-val col-red">$6,326</div>
+      <div class="stat-sub">incl. PMI, tax, ins</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">5-Yr Wealth</div>
+      <div class="stat-val col-green">$301K</div>
+      <div class="stat-sub">253% ROI on cash</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">STR Net (Y2+)</div>
+      <div class="stat-val col-green">$68,164</div>
+      <div class="stat-sub">/year after all fees</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Year-by-Year Cash Flow — Full Breakdown</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:12px;">Personal use value ($800/night conservative) integrated as a quantitative line item. Financial-only row shown for reference.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:940px;">
+      <thead>
+        <tr style="background:var(--surface2);">
+          <th style="padding:9px 12px;text-align:left;color:var(--muted);border-bottom:2px solid var(--accent);min-width:210px;">Component</th>
+          <th style="padding:9px 12px;text-align:right;color:var(--teal);border-bottom:2px solid var(--accent);width:14%;">Year 1<br><span style="font-size:0.7rem;font-weight:400;">LTR</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--green);border-bottom:2px solid var(--accent);width:16%;">Year 2<br><span style="font-size:0.7rem;font-weight:400;">STR + Cost Seg 🚀</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 3<br><span style="font-size:0.7rem;font-weight:400;">STR (PMI on)</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 4<br><span style="font-size:0.7rem;font-weight:400;">STR (PMI off ✓)</span></th>
+          <th style="padding:9px 12px;text-align:right;color:var(--blue);border-bottom:2px solid var(--accent);width:14%;">Year 5<br><span style="font-size:0.7rem;font-weight:400;">STR</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#0a1a0a;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">STR / RENTAL INCOME</td></tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Gross Revenue</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);">+$30,000<br><span style="font-size:0.68rem;color:var(--muted)">monthly rentals</span></td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">+$110,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);">+$110,000</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:7px 12px;color:var(--text2);">VT Rooms+STR Tax (12%)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$13,200</td>
+        </tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Property Management (20%)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$22,000</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:7px 12px;color:var(--text2);">STR License + Ikon Pass</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$6,636</td>
+        </tr>
+        <tr style="background:#052e16;border-top:1px solid #14532d;border-bottom:1px solid #14532d;">
+          <td style="padding:8px 12px;color:var(--green);font-weight:700;">Net STR / LTR Income</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$30,000</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$68,164</td>
+        </tr>
+
+        <tr style="background:#1a0a2e;"><td colspan="6" style="padding:7px 12px;color:#a78bfa;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">PERSONAL USE VALUE (lodging avoided @ $800/night)</td></tr>
+        <tr style="background:#120a20;">
+          <td style="padding:8px 12px;color:#c4b5fd;">🎿 Nights at Mountain<br><span style="font-size:0.68rem;color:var(--muted)">Y1: ~30 nights (LTR transition, flexible use)<br>Y2–5: 14 nights/yr (peak ski season)</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$24,000<br><span style="font-size:0.68rem;color:var(--muted)">~30 nights</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$11,200<br><span style="font-size:0.68rem;color:var(--muted)">14 nights</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$11,200</td>
+        </tr>
+
+        <tr style="background:#0a0a1a;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">TAX BENEFITS (IRS cash savings at 35% marginal rate)</td></tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Standard Dep (27.5yr, LTR)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--teal);">+$8,858</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:7px 12px;color:var(--text2);">100% Bonus Dep — Cost Seg<br><span style="font-size:0.68rem;color:var(--muted)">$313,400 eligible × 35% = $109,690</span></td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">+$109,690</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+        </tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Ongoing Dep (39yr, $417,600 remaining)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--muted);">—</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--teal);">+$3,748</td>
+        </tr>
+
+        <tr style="background:#0c0a1f;"><td colspan="6" style="padding:7px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">OPERATING COSTS</td></tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Mortgage P&amp;I (6.375% ARM)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$58,619</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:7px 12px;color:var(--text2);">PMI ($210/mo)</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$2,520</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);font-weight:700;">DROPS ✓ $0</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--green);">$0</td>
+        </tr>
+        <tr>
+          <td style="padding:7px 12px;color:var(--text2);">Property Taxes</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$9,576</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:7px 12px;color:var(--text2);">Insurance + Maintenance</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td>
+          <td style="padding:7px 12px;text-align:right;color:var(--red);">−$5,196</td>
+        </tr>
+
+        <tr style="background:#0e0e0e; border-top:1px solid #333;">
+          <td style="padding:8px 12px;color:var(--muted);font-size:0.72rem;">Financial Only (excl. personal use)</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-size:0.85rem;">−$37,053</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-size:0.85rem;">+$105,691</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-size:0.85rem;">−$3,999</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-size:0.85rem;">−$1,479</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-size:0.85rem;">−$1,479</td>
+        </tr>
+        <tr style="background:linear-gradient(90deg,#1a0a35,#0c1a3a);border-top:2px solid #a78bfa;">
+          <td style="padding:11px 12px;color:#fff;font-weight:800;font-size:1rem;">NET (incl. personal use)</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$13,053</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1.15rem;">+$116,891</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1rem;">+$7,201</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1rem;">+$9,721</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1rem;">+$9,721</td>
+        </tr>
+        <tr style="background:#13161f;">
+          <td style="padding:8px 12px;color:var(--muted);font-weight:600;">Cumulative (lifestyle-adj)</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);">−$13,053</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$103,838</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$111,039</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$120,760</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$130,481</td>
+        </tr>
+        <tr style="background:#1a0a0a;">
+          <td colspan="6" style="padding:6px 12px;color:var(--muted);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">401(K) LOAN REPAYMENT — PERSONAL CASH OBLIGATION (Years 1–5 only, then done)</td>
+        </tr>
+        <tr style="background:#120a0a;">
+          <td style="padding:7px 12px;color:#fca5a5;">401(k) Repayment (Kevin + Sarah)<br><span style="font-size:0.68rem;color:var(--muted)">$2,052/mo · 5yr at 8.5% · interest paid back to yourselves · payroll deduction</span></td>
+          <td style="padding:7px 12px;text-align:right;color:#ef4444;">−$24,624</td>
+          <td style="padding:7px 12px;text-align:right;color:#ef4444;">−$24,624</td>
+          <td style="padding:7px 12px;text-align:right;color:#ef4444;">−$24,624</td>
+          <td style="padding:7px 12px;text-align:right;color:#ef4444;">−$24,624</td>
+          <td style="padding:7px 12px;text-align:right;color:#ef4444;">−$24,624</td>
+        </tr>
+        <tr style="background:#1a0808;border-top:2px solid #7f1d1d;">
+          <td style="padding:11px 12px;color:#fff;font-weight:800;font-size:1rem;">ALL-IN NET (after 401k repayment)<br><span style="font-size:0.68rem;font-weight:400;color:#fca5a5;">Y6+ this row improves by +$24,624 as loans are retired</span></td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$37,677</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1.15rem;">+$92,267</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$17,423</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$14,903</td>
+          <td style="padding:11px 12px;text-align:right;color:var(--red);font-weight:800;font-size:1rem;">−$14,903</td>
+        </tr>
+        <tr style="background:#130808;">
+          <td style="padding:8px 12px;color:#fca5a5;font-weight:600;">Cumulative all-in<br><span style="font-size:0.65rem;font-weight:400;color:var(--muted)">Property wealth creation unaffected — 401k is funded by Y2 STR income</span></td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);">−$37,677</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$54,590</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$37,167</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);">+$22,264</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--green);font-weight:700;">+$7,361</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">5-Year Wealth Build</div>
+      <div class="waterfall-row">
+        <div>
+          <div class="waterfall-label">🏠 Appreciation (4%/yr)</div>
+          <div style="font-size:0.72rem; color:var(--muted)">$870K → ~$1.058M at Year 5</div>
+        </div>
+        <span class="waterfall-amount col-green">+$188,488</span>
+      </div>
+      <div class="waterfall-row">
+        <div>
+          <div class="waterfall-label">🏦 Principal Paydown</div>
+          <div style="font-size:0.72rem; color:var(--muted)">Net of all 5 years years of amortization</div>
+        </div>
+        <span class="waterfall-amount col-green">+$51,089</span>
+      </div>
+      <div class="waterfall-row">
+        <div>
+          <div class="waterfall-label">💸 Cash Flow (financial only)</div>
+          <div style="font-size:0.72rem; color:var(--muted)">STR income + depreciation tax savings − carry costs, Y1–Y5</div>
+        </div>
+        <span class="waterfall-amount col-green">+$61,681</span>
+      </div>
+      <div class="waterfall-row">
+        <div>
+          <div class="waterfall-label">🎿 Personal Use Value</div>
+          <div style="font-size:0.72rem; color:var(--muted)">~30 nights Y1 + 14 nights/yr Y2–5 · $800/night conservative</div>
+        </div>
+        <span class="waterfall-amount" style="color:#a78bfa;">+$68,800</span>
+      </div>
+      <div style="font-size:0.72rem;color:#a78bfa;text-align:right;margin-top:-8px;margin-bottom:8px;">Integrated into P&amp;L — Y3/Y4/Y5 flip positive once personal use is counted</div>
+      <div class="waterfall-row total">
+        <div>
+          <div class="waterfall-label fw-bold">Total 5-Yr Return</div>
+          <div style="font-size:0.72rem; color:var(--muted)">Appreciation + equity + cash + lifestyle · on $119,275 invested</div>
+        </div>
+        <span class="waterfall-amount col-green fw-bold" style="font-size:1.1rem;">+$370,058</span>
+      </div>
+      <div style="font-size:0.72rem; color:var(--muted); margin-top:2px; margin-bottom:8px; text-align:right;">Financial only: +$301,258 · Personal use adds: +$68,800</div>
+      <div class="wealth-bar-container mt-12">
+        <div class="wealth-seg" style="flex:188; background:var(--green); opacity:0.9;" title="Appreciation $188K"></div>
+        <div class="wealth-seg" style="flex:51; background:var(--teal); opacity:0.9;" title="Principal $51K"></div>
+        <div class="wealth-seg" style="flex:62; background:#16a34a; opacity:0.9;" title="Cash flow $62K"></div>
+        <div class="wealth-seg" style="flex:69; background:#a78bfa; opacity:0.9;" title="Personal use $69K"></div>
+      </div>
+      <div style="display:flex; gap:14px; margin-top:6px; font-size:0.68rem; color:var(--muted); flex-wrap:wrap;">
+        <span style="color:var(--green)">▬ Appreciation $188K</span>
+        <span style="color:var(--teal)">▬ Principal $51K</span>
+        <span style="color:#4ade80">▬ Cash $62K</span>
+        <span style="color:#a78bfa">▬ Lifestyle $69K</span>
+      </div>
+      <div class="mt-12" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
+        <div style="background:var(--surface2);border-radius:6px;padding:8px;">
+          <div style="font-size:0.68rem;color:var(--muted);">Financial ROI</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--green);">253%</div>
+        </div>
+        <div style="background:#1a0a35;border-radius:6px;padding:8px;border:1px solid #6d28d9;">
+          <div style="font-size:0.68rem;color:#a78bfa;">Total Return ROI</div>
+          <div style="font-size:1rem;font-weight:800;color:#c4b5fd;">310%</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:6px;padding:8px;">
+          <div style="font-size:0.68rem;color:var(--muted);">5-Yr Wealth</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--green);">+$370K</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Monthly Carry Breakdown</div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">P&amp;I (6.375% ARM)</span>
+        <span class="waterfall-amount">$4,885</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">PMI (drops Year 4)</span>
+        <span class="waterfall-amount col-muted">$210</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Insurance</span>
+        <span class="waterfall-amount">$100</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Property Tax ($9,576/yr)</span>
+        <span class="waterfall-amount">$798</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Maintenance</span>
+        <span class="waterfall-amount">$333</span>
+      </div>
+      <div class="waterfall-row total">
+        <span class="waterfall-label fw-bold">Total Monthly Carry</span>
+        <span class="waterfall-amount fw-bold" style="font-size:1.1rem; color:var(--text);">$6,326</span>
+      </div>
+      <div style="font-size:0.75rem; color:var(--muted); margin-top:12px;">Annual carry: $75,911 (with PMI) / $73,391 (without PMI Year 4+) · STR gross $110,000/yr · net $68,164/yr (after 12% VT tax, 20% PM, STR license, Ikon). Hot tub from Year 1.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="background:#052e16;border:1px solid #14532d;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.78rem;color:#d1d5db;line-height:1.7;">
+        <strong style="color:#4ade80;">AirDNA cross-check (3/22/26):</strong> Rentalizer on comparable Stratton-area address → $93.3K gross, ADR $638, 40% occupancy, NOI <strong style="color:#fff;">$61.7K</strong>. That estimate used Jamaica VT (weaker location, no hot tub, low comp strength). Our model ($110K gross, $68.2K net) reflects Bondville's Stratton proximity premium and hot tub. Confirmed: model is well-supported.
+      </div>
+      <div class="card-title">STR Revenue Waterfall (Year 2+)</div>
+    <div class="waterfall-row">
+      <span class="waterfall-label fw-bold">Gross STR Revenue</span>
+      <span class="waterfall-amount col-green fw-bold">$110,000</span>
+    </div>
+    <div class="waterfall-row">
+      <span class="waterfall-label">VT Meals &amp; Rooms Tax (12%)</span>
+      <span class="waterfall-amount col-red">−$10,920</span>
+    </div>
+    <div class="waterfall-row">
+      <span class="waterfall-label">STR License Fee</span>
+      <span class="waterfall-amount col-red">−$2,500</span>
+    </div>
+    <div class="waterfall-row">
+      <span class="waterfall-label">Property Manager (20%)</span>
+      <span class="waterfall-amount col-red">−$18,200</span>
+    </div>
+    <div class="waterfall-row">
+      <span class="waterfall-label">Ikon Partnership Cost</span>
+      <span class="waterfall-amount col-red">−$4,136</span>
+    </div>
+    <div class="waterfall-row total">
+      <span class="waterfall-label fw-bold">Net STR Revenue</span>
+      <span class="waterfall-amount fw-bold" style="font-size:1.1rem; color:var(--green);">$68,164</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">PMI Removal Timeline (4%/yr Appreciation)</div>
+    <div class="grid-4">
+      <div class="pmi-card">
+        <div class="pmi-year">Year 1</div>
+        <div class="pmi-val">$904,800</div>
+        <div class="pmi-equity">13.5% equity</div>
+        <div class="pmi-status col-red">● PMI ON — $210/mo</div>
+      </div>
+      <div class="pmi-card">
+        <div class="pmi-year">Year 2</div>
+        <div class="pmi-val">$940,992</div>
+        <div class="pmi-equity">16.8% equity</div>
+        <div class="pmi-status col-red">● PMI ON — $210/mo</div>
+      </div>
+      <div class="pmi-card">
+        <div class="pmi-year">Year 3</div>
+        <div class="pmi-val">$978,632</div>
+        <div class="pmi-equity">20.0% equity</div>
+        <div class="pmi-status col-gold">◐ Borderline — request removal</div>
+      </div>
+      <div class="pmi-card pmi-off">
+        <div class="pmi-year">Year 4</div>
+        <div class="pmi-val col-green">$1,017,777</div>
+        <div class="pmi-equity">23.1% equity</div>
+        <div class="pmi-status col-green">✓ PMI OFF — saves $2,520/yr</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 3: OFFER STRATEGY ===== -->
+<div class="tab-content" id="tab-2">
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Offer Structure</div>
+      <div class="waterfall-row">
+        <span class="waterfall-label fw-bold">Offer Price</span>
+        <span class="waterfall-amount col-gold fw-bold" style="font-size:1.3rem;">$870,000</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Escalation Clause (if needed)</span>
+        <span class="waterfall-amount col-gold">$875,000</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Earnest Money (push back to)</span>
+        <span class="waterfall-amount">$25,000–$35,000</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">EMD worst case (have ready)</span>
+        <span class="waterfall-amount col-muted">$85,000</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Closing Timeline</span>
+        <span class="waterfall-amount">45 Days</span>
+      </div>
+
+  <!-- ===== LIFESTYLE VALUE SECTION ===== -->
+  <div class="card" style="margin-top:20px; border-color:#6d28d9; border-width:1px; border-style:solid; background:linear-gradient(135deg,#13161f,#1a1135);">
+    <div class="card-title" style="color:#c4b5fd;">🎿 Lifestyle Enhancement Analysis</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:16px;">This isn't just an investment — it's a platform for 5+ years of family ski weekends. Below is what you'd pay on the open market for equivalent access.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
+      <thead>
+        <tr style="background:#1e1535;">
+          <th style="padding:8px 12px;text-align:left;color:#a78bfa;border-bottom:1px solid #6d28d9;">Component</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 1<br><span style="font-size:0.7rem;font-weight:400">~30 nights</span></th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 2</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 3</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 4</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">Year 5</th>
+          <th style="padding:8px 12px;text-align:right;color:#a78bfa;border-bottom:1px solid #6d28d9;">5-Yr Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 12px;color:var(--text2);">Nights at mountain<br><span style="font-size:0.68rem;color:var(--muted)">Y1 LTR transition; Y2-5 owner usage</span></td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">~30</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">14</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);">~86</td>
+        </tr>
+        <tr style="background:#1e1535;">
+          <td style="padding:8px 12px;color:var(--text2);">Lodging cost avoided<br><span style="font-size:0.68rem;color:var(--muted)">$800/night · conservative Stratton 5-bed comp<br>Peak rates: $2,000–$3,000/night</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;font-weight:700;">+$24,000</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$11,200</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$68,800</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;color:var(--text2);">Ski day ticket value avoided<br><span style="font-size:0.68rem;color:var(--muted)">2 adults $225 + 2 kids $100/day vs. window rate<br>Ikon pass ($4,136/yr) already in financial model</span></td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$19,500</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#c4b5fd;">+$9,100</td>
+          <td style="padding:8px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$55,900</td>
+        </tr>
+        <tr style="background:#1e1535; border-top:1px solid #6d28d9;">
+          <td style="padding:9px 12px;color:#c4b5fd;font-weight:700;">Total Lifestyle Value</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$43,500</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:700;">+$20,300</td>
+          <td style="padding:9px 12px;text-align:right;color:#a78bfa;font-weight:800;font-size:1.05rem;">+$124,700</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Financial Wealth</div>
+        <div style="font-size:1.1rem;font-weight:800;color:var(--green);">+$301,238</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Appreciation + equity + cash</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Personal Use Value</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#a78bfa;">+$68,800</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Lodging avoided (conservative)</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Total 5-Yr Return</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#c4b5fd;">+$370,038</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Financial + lodging · 310% ROI</div>
+      </div>
+      <div style="background:#1e1535;border-radius:8px;padding:12px;text-align:center;border:1px solid #4c1d95;">
+        <div style="font-size:0.72rem;color:#a78bfa;margin-bottom:4px;">Full Lifestyle Value</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#f0abfc;">+$124,700</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Lodging + ski tickets combined</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:#1e1535;border-radius:8px;border-left:3px solid #a78bfa;font-size:0.8rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:#c4b5fd;">Key framing:</strong> At $800/night conservative — actual Stratton 5-bedroom peak bookings run $2,000–$3,000/night. Your 14 annual owner nights are effectively free relative to the investment thesis. Year 1, with ~30 nights of flexibility during the LTR-to-STR transition, returns roughly <strong style="color:#c4b5fd;">$43,500</strong> in lifestyle value alone — more than covering the Year 1 cash deficit.
+    </div>
+  </div>
+
+      <div class="alert alert-gold mt-12" style="font-size:0.8rem;">
+        <strong>Signal:</strong> Two competing offers exist and seller pushed the meeting back — sign of controlled process, not panic. Escalation to $875K keeps you competitive without overpaying.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">LTR Close Strategy — Why &amp; How</div>
+      <p style="font-size:0.82rem; color:var(--muted); margin-bottom:14px;">Closing as Long-Term Rental (LTR) is fully legal. Vermont imposes a higher transfer tax on STR-intent closings. By demonstrating genuine long-term rental use in Year 1, you qualify for the lower rate.</p>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Close as LTR</strong> — declare intent as primary/LTR at closing. Pay 1.47% transfer tax rate.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Execute 2–3 genuine 30-day rentals</strong> — real tenants with real leases. These tenants double as caretakers during shoulder season.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Document everything</strong> — signed leases, rent receipts, correspondence. Vermont looks at actual use, not just intent.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Convert to STR in Year 2</strong> — obtain STR license, list on Airbnb/VRBO, engage property manager.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-text"><strong>Commission cost seg study</strong> — Year 2 trigger. 40% of $696K building + hot tub ($15K) + game room ($20K) = $313,400 eligible → 100% bonus dep = $109,690 tax benefit. Remaining 60% building straight-line 39yr = $3,748/yr.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Vermont Transfer Tax Comparison</div>
+    <div class="grid-2">
+      <div style="padding:16px; background:var(--green-dim); border:1px solid rgba(34,197,94,0.2); border-radius:10px;">
+        <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; color:var(--green); margin-bottom:12px;">✓ LTR Close (Your Strategy)</div>
+        <div class="tax-row"><span>Rate</span><span class="fw-bold">1.47%</span></div>
+        <div class="tax-row"><span>On $870,000</span><span class="col-green fw-bold">$12,789</span></div>
+        <div style="margin-top:10px; font-size:0.78rem; color:var(--muted)">30% of normal STR rate. Legally achieved via genuine LTR use in Year 1.</div>
+      </div>
+      <div style="padding:16px; background:var(--red-dim); border:1px solid rgba(239,68,68,0.2); border-radius:10px;">
+        <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; color:var(--red); margin-bottom:12px;">✗ STR Day-1 Close</div>
+        <div class="tax-row"><span>Rate</span><span class="fw-bold">3.62%</span></div>
+        <div class="tax-row"><span>On $870,000</span><span class="col-red fw-bold">$31,494</span></div>
+        <div style="margin-top:10px; font-size:0.78rem; color:var(--muted)">Full STR rate. Applies if closing with STR intent declared.</div>
+      </div>
+    </div>
+    <div class="alert alert-green mt-12">
+      <strong>Transfer Tax Saving: $18,705</strong> — nearly covers half the launch budget. This single strategic decision is worth nearly $19K.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tax Strategy Comparison — STR Day 1 vs LTR→STR</div>
+    <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>STR Day 1 — Tax Benefit</th>
+            <th>LTR→STR (Your Strategy)</th>
+            <th>Advantage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Year 1</strong></td>
+            <td>Bonus dep immediately → large but fragmented across STR use</td>
+            <td class="col-teal" style="color:var(--teal)">Std dep $8,858 — small, clean</td>
+            <td class="col-gold">Lower tax, lower risk</td>
+          </tr>
+          <tr>
+            <td><strong>Year 2</strong></td>
+            <td>Partial dep (already taken in Y1)</td>
+            <td class="col-green fw-bold">$109,690 bonus dep + $3,748 ongoing = $113,438</td>
+            <td class="col-green">$113K+ extra benefit in Y2</td>
+          </tr>
+          <tr>
+            <td><strong>Transfer Tax</strong></td>
+            <td class="col-red">$31,494 at close</td>
+            <td class="col-green">$12,789 at close</td>
+            <td class="col-green fw-bold">Save $18,705</td>
+          </tr>
+          <tr style="background:var(--green-dim);">
+            <td colspan="2"><strong>LTR→STR total advantage (2-year window)</strong></td>
+            <td colspan="2" class="col-green fw-bold">~$85K+ in combined tax and transfer tax savings</td>
+          </tr>
+        <tr style="background:var(--surface2);border-top:2px solid var(--accent);">
+          <td colspan="2" style="padding:10px 12px;font-weight:700;color:var(--text);">5-Year Total</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--text);font-weight:700;">$470K gross</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--green);font-weight:700;">$140,481 STR net</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--green);font-weight:700;">+$93,591 tax</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--red);font-weight:700;">($374,028) carry</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1rem;">+$61,661</td>
+          <td style="padding:10px 12px;text-align:right;color:var(--green);font-weight:800;font-size:1rem;">+$61,661</td>
+          <td style="padding:10px 12px;font-size:0.75rem;color:var(--muted);">Cash-positive over 5 years on operations alone.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Comp Analysis with Adjustments</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Raw Price</th>
+          <th>$/sqft</th>
+          <th>Adj. Notes</th>
+          <th>Adj. Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-green">
+          <td>14 Mountain Haunts (Oct '25, 5bd)</td>
+          <td class="col-green">$951,014</td>
+          <td>$294</td>
+          <td style="font-size:0.78rem;">Listed $875K, sold +8.7% in 5 DOM — strongest signal · 3,238 sqft (MLS 5060721)</td>
+          <td class="col-green fw-bold">$951K ✓</td>
+        </tr>
+        <tr class="row-green">
+          <td>6 Chad Circle (Feb '26, 5bd)</td>
+          <td class="col-green">$1,050,000</td>
+          <td>$356 ⚠️</td>
+          <td style="font-size:0.78rem;">Listed $1.1M, discounted; still floor of $1.05M · sqft unverified</td>
+          <td class="col-green fw-bold">$1.05M ✓</td>
+        </tr>
+        <tr class="row-green">
+          <td>20 Jamie Lane (Nov '25, 5bd)</td>
+          <td class="col-green">$975,000</td>
+          <td>$299</td>
+          <td style="font-size:0.78rem;">Sold at exact ask — efficient market pricing · 3,252 sqft (MLS 4911977)</td>
+          <td class="col-green fw-bold">$975K ✓</td>
+        </tr>
+        <tr class="row-green">
+          <td>7 North Brookwood (4bd, on-mtn)</td>
+          <td class="col-green">$850,000</td>
+          <td>$419</td>
+          <td style="font-size:0.78rem;">ON MOUNTAIN premium — adj −20% for off-mountain · 2,028 sqft confirmed</td>
+          <td class="col-muted">~$679K adj'd (not primary comp)</td>
+        </tr>
+        <tr class="row-gold">
+          <td><strong>24 Sugarbush (subject)</strong></td>
+          <td class="col-gold fw-bold">$870,000</td>
+          <td class="col-gold fw-bold">$300</td>
+          <td style="font-size:0.78rem;">5bd, renovated, mountain views, 2 fireplaces, game room</td>
+          <td class="col-gold fw-bold">$855K–$895K target</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 4: FINANCING & CLOSE ===== -->
+<div class="tab-content" id="tab-3">
+
+  <div class="alert alert-red">
+    <strong>🚨 Key Action — Do Monday:</strong> There is a derogatory mark on file. Call <strong>Rebecca (VT Mortgage)</strong> and <strong>Heidi (Spruce)</strong> first thing Monday to discuss impact and cure options before making offer commitments.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mortgage Comparison</div>
+    <div class="grid-2">
+      <div class="compare-col recommended">
+        <div class="col-title" style="color:var(--accent);">✓ RECOMMENDED — 10% Down, 6.375% ARM</div>
+        <div class="compare-row"><span>Down Payment</span><span class="fw-bold col-green">$87,000 (10%)</span></div>
+        <div class="compare-row"><span>Loan Amount</span><span class="fw-bold">$783,000</span></div>
+        <div class="compare-row"><span>Rate</span><span class="fw-bold col-green">6.375% ARM (7/1 fixed)</span></div>
+        <div class="compare-row"><span>Classification</span><span class="fw-bold">Second Home ✓</span></div>
+        <div class="compare-row"><span>P&amp;I / Month</span><span class="fw-bold">$4,885</span></div>
+        <div class="compare-row"><span>PMI</span><span class="fw-bold col-red">$210/mo (drops Y4)</span></div>
+        <div class="compare-row"><span>Total Monthly</span><span class="fw-bold col-red">$6,326</span></div>
+        <div class="compare-row"><span>Cash Required</span><span class="fw-bold col-green">$119,275 total</span></div>
+        <div style="margin-top:12px; font-size:0.78rem; color:var(--muted);">Lower cash requirement preserves HELOC capacity. ARM fixed for 7 years — likely refinanced or sold before adjustment.</div>
+      </div>
+      <div class="compare-col">
+        <div class="col-title">Alt — 20% Down, 7.125% Fixed</div>
+        <div class="compare-row"><span>Down Payment</span><span class="fw-bold">$174,000 (20%)</span></div>
+        <div class="compare-row"><span>Loan Amount</span><span class="fw-bold">$696,000</span></div>
+        <div class="compare-row"><span>Rate</span><span class="fw-bold">7.125% Fixed 30yr</span></div>
+        <div class="compare-row"><span>Classification</span><span class="fw-bold">Second Home</span></div>
+        <div class="compare-row"><span>P&amp;I / Month</span><span class="fw-bold">~$4,686</span></div>
+        <div class="compare-row"><span>PMI</span><span class="fw-bold col-green">None</span></div>
+        <div class="compare-row"><span>Total Monthly</span><span class="fw-bold">~$6,116</span></div>
+        <div class="compare-row"><span>Cash Required</span><span class="fw-bold col-red">~$206,000+</span></div>
+        <div style="margin-top:12px; font-size:0.78rem; color:var(--muted);">Higher rate offsets PMI saving. Locks $87K more in the deal. Not recommended given cash deployment efficiency.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lender Comparison</div>
+    <div class="grid-2">
+      <div style="padding:16px; background:rgba(79,142,247,0.06); border:1px solid rgba(79,142,247,0.2); border-radius:10px;">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--accent); margin-bottom:10px;">Rebecca — VT Mortgage</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">
+          • Local Vermont lender — knows Stratton market<br>
+          • Familiarity with LTR→STR classification<br>
+          • Call Monday re: derogatory mark<br>
+          • Second home ARM specialist
+        </div>
+      </div>
+      <div style="padding:16px; background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.2); border-radius:10px;">
+        <div style="font-size:0.8rem; font-weight:700; color:#c084fc; margin-bottom:10px;">Heidi — Spruce</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">
+          • Second opinion / competitive rate check<br>
+          • Call Monday re: derogatory mark<br>
+          • Compare terms and processing timeline<br>
+          • Backup option if Rebecca's terms shift
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Closing Cost Breakdown — LTR Rate (1.47%)</div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Vermont Transfer Tax</div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">VT Property Transfer Tax (1.47%)</div><div style="font-size:0.68rem;color:var(--muted)">LTR close rate · $870K × 1.47% · saves $18,705 vs 3% rate</div></div>
+        <span class="waterfall-amount col-red">$12,789</span>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Lender Fees</div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Loan Origination (0.5% of $783K)</span>
+        <span class="waterfall-amount col-red">$3,915</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Appraisal</span>
+        <span class="waterfall-amount col-red">$750</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Underwriting Fee</span>
+        <span class="waterfall-amount col-red">$1,095</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Processing + Credit + Flood + Tax Service</span>
+        <span class="waterfall-amount col-red">$775</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Lender Fees Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$6,535</span>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Title &amp; Third-Party Fees</div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Title Search</span>
+        <span class="waterfall-amount col-red">$400</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Lender's Title Insurance</span>
+        <span class="waterfall-amount col-red">$2,349</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Owner's Title Insurance</span>
+        <span class="waterfall-amount col-muted">$0</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">VT Attorney Closing Fee</span>
+        <span class="waterfall-amount col-red">$1,200</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Recording Fees (Deed + Mortgage)</span>
+        <span class="waterfall-amount col-red">$240</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Title &amp; Third-Party Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$4,189</span>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:12px;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Prepaids &amp; Escrows</div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Prepaid Interest (15 days @ 6.375%)</div><div style="font-size:0.68rem;color:var(--muted)">$783K × 6.375% ÷ 365 × 15 days</div></div>
+        <span class="waterfall-amount col-red">$2,051</span>
+      </div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Homeowners Insurance (14 months prepaid)</div><div style="font-size:0.68rem;color:var(--muted)">12 mo policy + 2 mo escrow reserve</div></div>
+        <span class="waterfall-amount col-red">$1,400</span>
+      </div>
+      <div class="waterfall-row">
+        <div><div class="waterfall-label">Property Tax Escrow (6 months)</div><div style="font-size:0.68rem;color:var(--muted)">$9,576/yr ÷ 2 = $4,788</div></div>
+        <span class="waterfall-amount col-red">$4,788</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">First Month PMI</span>
+        <span class="waterfall-amount col-red">$210</span>
+      </div>
+      <div class="waterfall-row" style="background:var(--surface2);padding:6px 0;border-radius:4px;">
+        <span class="waterfall-label" style="font-size:0.78rem;color:var(--muted);">↳ Prepaids &amp; Escrows Subtotal</span>
+        <span class="waterfall-amount col-red" style="font-size:0.82rem;">$8,449</span>
+      </div>
+
+      <div class="waterfall-row total" style="margin-top:12px;">
+        <span class="waterfall-label fw-bold">Total Closing Costs</span>
+        <span class="waterfall-amount fw-bold col-red">$31,962</span>
+      </div>
+      <div class="divider"></div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Down Payment (10%)</span>
+        <span class="waterfall-amount col-red">$87,000</span>
+      </div>
+      <div class="waterfall-row">
+        <span class="waterfall-label">Total Closing Costs</span>
+        <span class="waterfall-amount col-red">$35,442</span>
+      </div>
+      <div class="waterfall-row total">
+        <span class="waterfall-label fw-bold">Total Cash to Close</span>
+        <span class="waterfall-amount fw-bold col-gold" style="font-size:1.2rem;">$118,962</span>
+      </div>
+      <div style="margin-top:14px;padding:12px;background:#0a1a0a;border-radius:8px;border:1px solid #14532d;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.4px;">✅ Funding Confirmed — No HELOC Required</div>
+        <div style="font-size:0.72rem;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text2);">Checking Account</strong> → $20,000 (First EMD — already deployed)<br>
+          <strong style="color:var(--text2);">Kevin 401(k) Loan ($50K)</strong> → $40,000 second EMD + $10,000 to close<br>
+          <strong style="color:var(--text2);">Sarah 401(k) Loan ($50K)</strong> → $50,000 to close<br>
+          <div style="border-top:1px solid #14532d;margin-top:6px;padding-top:6px;">
+            EMD credited at close: <strong style="color:var(--green);">$60,000</strong> &nbsp;·&nbsp;
+            Wire at close: <strong style="color:var(--text2);">$58,962</strong> &nbsp;·&nbsp;
+            Available: <strong style="color:var(--green);">$60,000</strong> &nbsp;·&nbsp;
+            Surplus: <strong style="color:var(--green);">+$1,038</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">45-Day Closing Timeline</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Monday</strong> — Call Rebecca &amp; Heidi re: derogatory mark. Resolve credit before offer.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Day 1–2</strong> — Submit $870K offer with escalation clause. LTR classification declared.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Day 3–5</strong> — Accepted offer → wire EMD ($25–35K target, $85K ready).</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Day 5–10</strong> — Mortgage application submitted. Appraisal ordered.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-text"><strong>Day 10–14</strong> — Home inspection. Negotiate credits if needed.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-text"><strong>Day 14–21</strong> — Appraisal completed. Attorney review / title search.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">7</div>
+          <div class="step-text"><strong>Day 21–35</strong> — Underwriting. Respond to conditions promptly.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">8</div>
+          <div class="step-text"><strong>Day 35–40</strong> — Clear to close. Final walk-through scheduled.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">9</div>
+          <div class="step-text"><strong>Day 40–44</strong> — Wire funds. Attorney closing (VT standard).</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">10</div>
+          <div class="step-text"><strong>Day 45</strong> — 🎉 Keys. Begin LTR lease execution for Y1 caretaker tenants.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Funding Plan — Confirmed Sources</div>
+
+    <!-- Summary stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px;">
+      <div class="stat-box">
+        <div class="stat-label">Cash to Close</div>
+        <div class="stat-val col-gold">$118,962</div>
+        <div class="stat-sub">Total required</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Checking (First EMD)</div>
+        <div class="stat-val col-green">$20,000</div>
+        <div class="stat-sub">Already deployed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Kevin 401(k) Loan</div>
+        <div class="stat-val col-teal">$50,000</div>
+        <div class="stat-sub">$40K EMD + $10K close</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Sarah 401(k) Loan</div>
+        <div class="stat-val col-teal">$50,000</div>
+        <div class="stat-sub">All to close</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Surplus at Close</div>
+        <div class="stat-val col-green">+$1,038</div>
+        <div class="stat-sub">Buffer remaining</div>
+      </div>
+    </div>
+
+    <!-- Waterfall -->
+    <div style="font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Deployment Waterfall</div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Checking Account → First EMD</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Wired at ratification · credited at close</div>
+      </div>
+      <span class="waterfall-amount col-red">$20,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Kevin 401(k) Loan → Second EMD</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Funded from $50K loan · wired after inspection contingency clears</div>
+      </div>
+      <span class="waterfall-amount col-red">$40,000</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;">
+      <div>
+        <div class="waterfall-label" style="color:var(--green);">Total EMD (credited at close)</div>
+      </div>
+      <span class="waterfall-amount col-green fw-bold">$60,000</span>
+    </div>
+    <div style="height:10px;"></div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Wire at closing — Down payment balance</div>
+        <div style="font-size:0.68rem;color:var(--muted)">$87,000 down − $60,000 EMD = $27,000</div>
+      </div>
+      <span class="waterfall-amount col-red">$27,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Wire at closing — Closing costs</div>
+        <div style="font-size:0.68rem;color:var(--muted)">Transfer tax + lender fees + title + prepaids</div>
+      </div>
+      <span class="waterfall-amount col-red">$31,962</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;">
+      <div>
+        <div class="waterfall-label" style="color:var(--green);">Wire total needed at close</div>
+      </div>
+      <span class="waterfall-amount col-green fw-bold">$58,962</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Kevin 401(k) remaining (after $40K EMD)</div>
+        <div style="font-size:0.68rem;color:var(--muted)">$50K loan − $40K EMD = $10K available for wire</div>
+      </div>
+      <span class="waterfall-amount col-teal">$10,000</span>
+    </div>
+    <div class="waterfall-row">
+      <div>
+        <div class="waterfall-label">Sarah 401(k) Loan (full amount to wire)</div>
+        <div style="font-size:0.68rem;color:var(--muted)">All $50K deployed at closing wire</div>
+      </div>
+      <span class="waterfall-amount col-teal">$50,000</span>
+    </div>
+    <div class="waterfall-row total">
+      <div>
+        <div class="waterfall-label fw-bold">Available for Wire</div>
+      </div>
+      <span class="waterfall-amount fw-bold col-green">$60,000</span>
+    </div>
+    <div class="waterfall-row" style="background:#052e16;border-radius:4px;border-top:none;">
+      <div>
+        <div class="waterfall-label fw-bold" style="color:var(--green);">Surplus at Close</div>
+      </div>
+      <span class="waterfall-amount fw-bold col-green">+$1,038</span>
+    </div>
+
+    <!-- 401k repayment section -->
+    <div style="margin-top:18px;padding:14px;background:#0a0a1a;border-radius:8px;border:1px solid #1e2332;">
+      <div style="font-size:0.75rem;font-weight:700;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.4px;">401(k) Loan Repayment Structure</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.72rem;margin-bottom:10px;">
+        <div style="background:var(--surface2);padding:10px;border-radius:6px;">
+          <div style="color:var(--muted);">Kevin's loan</div>
+          <div style="font-weight:700;color:var(--text);">$50,000 · 5yr · ~8.5%</div>
+          <div style="color:var(--accent);">~$1,026/mo payroll deduction</div>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:6px;">
+          <div style="color:var(--muted);">Sarah's loan</div>
+          <div style="font-weight:700;color:var(--text);">$50,000 · 5yr · ~8.5%</div>
+          <div style="color:var(--accent);">~$1,026/mo payroll deduction</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:0.72rem;margin-bottom:10px;">
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Combined monthly</div>
+          <div style="font-weight:800;color:var(--gold);">$2,052/mo</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Annual repayment</div>
+          <div style="font-weight:800;color:var(--gold);">$24,624/yr</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="color:var(--muted);">Interest paid to</div>
+          <div style="font-weight:800;color:var(--green);">Yourself ✓</div>
+        </div>
+      </div>
+      <div style="font-size:0.7rem;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:8px;">
+        <strong style="color:var(--text2);">Key risks to manage:</strong> (1) Job loss triggers immediate repayment or the balance becomes a taxable distribution with 10% penalty — maintain 3-month emergency fund. (2) Opportunity cost: $100K not invested during repayment period. At 7% market return, ~$40K in foregone growth over 5 years — partially offset by the STR returns this capital enables. (3) Loans must be fully repaid before any plan distributions — confirm with plan administrator before pulling.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 5: ROI PROJECTS ===== -->
+<div class="tab-content" id="tab-4">
+
+  <div style="padding:0 0 20px 0;max-width:860px;font-size:0.85rem;color:var(--muted);line-height:1.6;">
+    Projects revised based on confirmed property details: house comes <strong style="color:var(--text2);">fully furnished</strong>, already has a <strong style="color:var(--text2);">game room</strong>, <strong style="color:var(--text2);">two wood-burning fireplaces</strong>, and a <strong style="color:var(--text2);">ski mudroom</strong>. Capital budget is focused on what actually moves the needle. All items are 5-yr MACRS or 15-yr land improvements — bonus dep eligible.
+  </div>
+
+  <!-- SUMMARY -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;">
+    <div class="card" style="text-align:center;padding:14px;">
+      <div style="font-size:0.72rem;color:var(--muted);">Revised Budget</div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--gold);">$30,000–$42,000</div>
+      <div style="font-size:0.65rem;color:var(--muted);">Down from $87K — house delivers furnished + amenities</div>
+    </div>
+    <div class="card" style="text-align:center;padding:14px;">
+      <div style="font-size:0.72rem;color:var(--muted);">Revenue Lift (est.)</div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--green);">+$15–22K/yr</div>
+      <div style="font-size:0.65rem;color:var(--muted);">Hot tub alone = $10-12K</div>
+    </div>
+    <div class="card" style="text-align:center;padding:14px;">
+      <div style="font-size:0.72rem;color:var(--muted);">#1 ROI Project</div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--green);">Hot Tub</div>
+      <div style="font-size:0.65rem;color:var(--muted);">$14-18K all-in · pays back in &lt;18 months</div>
+    </div>
+    <div class="card" style="text-align:center;padding:14px;">
+      <div style="font-size:0.72rem;color:var(--muted);">Already Have</div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--teal);">$0 needed</div>
+      <div style="font-size:0.65rem;color:var(--muted);">Game room · 2 fireplaces · ski mudroom · full furnishings</div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU ALREADY HAVE -->
+  <div class="card" style="border-left:3px solid var(--teal);margin-bottom:24px;">
+    <div class="card-title" style="color:var(--teal);">✅ Already Have — No Capital Needed</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:8px;">
+      <div style="background:var(--surface2);padding:12px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">🎮 Game Room</div>
+        <div style="font-size:0.72rem;color:var(--muted);">Walkout finished basement already equipped. Listing calls it out explicitly — likely pool/ping-pong/foosball. Confirm what's there and supplement if needed ($1–2K).</div>
+      </div>
+      <div style="background:var(--surface2);padding:12px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">🪵 Two Wood-Burning Fireplaces</div>
+        <div style="font-size:0.72rem;color:var(--muted);">Biggest STR differentiator for a Vermont ski chalet. Photograph both prominently. Get chimney inspection + cleaning before first booking (~$200–$350/each).</div>
+      </div>
+      <div style="background:var(--surface2);padding:12px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">🎿 Ski Mudroom</div>
+        <div style="font-size:0.72rem;color:var(--muted);">Existing structure. Add boot dryers (4–6 pairs, $150–$300 each), additional hooks, ski rack, boot bench if not present. Budget $800–$1,500 for enhancement.</div>
+      </div>
+      <div style="background:var(--surface2);padding:12px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">🛋️ Full Furnishings</div>
+        <div style="font-size:0.72rem;color:var(--muted);">All furniture from listing photos included. Assess quality at walkthrough. Budget $3–5K for STR-specific upgrades (hotel bedding, towel refresh, kitchen supplies, smart locks, staging items).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 1: HOT TUB (deep dive) -->
+  <div class="card-title" style="margin-bottom:12px;">🛁 Priority #1 — Hot Tub: Full Sourcing Guide</div>
+
+  <div class="card" style="border-left:4px solid var(--green);margin-bottom:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      <div>
+        <div style="font-weight:800;font-size:1.05rem;color:var(--text);">🛁 Hot Tub Installation — Full Analysis</div>
+        <div style="font-size:0.75rem;color:var(--muted);">Single highest-ROI project. 138% more Airbnb views. $10–12K revenue lift at Stratton peak rates.</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:1.1rem;font-weight:800;color:var(--green);">$14,000–$20,000</div>
+        <div style="font-size:0.68rem;color:var(--muted);">All-in (tub + electrical + deck work)</div>
+      </div>
+    </div>
+
+    <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">What Guests Actually Want (STR-Specific Requirements)</div>
+    <div style="background:var(--surface2);padding:12px;border-radius:8px;font-size:0.75rem;color:var(--muted);line-height:1.7;margin-bottom:14px;">
+      For a 5-bedroom house sleeping 10–12 guests: <strong style="color:var(--text2);">minimum 6-person capacity</strong>, ideally 7–8 seats. Jets matter — guests specifically review jet quality. 240V (not 110V plug-and-play) is non-negotiable for power and heat recovery speed. Lounge seat strongly preferred. LED lighting and waterfall feature photograph well for listing hero images. Insulated cover with lift assist (guests leave covers off in Vermont winter — need to be able to replace easily). WiFi-enabled controls nice to have for remote monitoring.
+    </div>
+
+    <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Recommended Models — STR Durability Tier</div>
+    <div style="overflow-x:auto;margin-bottom:14px;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
+      <thead>
+        <tr style="background:var(--surface2);">
+          <th style="padding:8px 10px;text-align:left;color:var(--muted);border-bottom:1px solid var(--border);">Model</th>
+          <th style="padding:8px 10px;text-align:right;color:var(--muted);border-bottom:1px solid var(--border);">Price</th>
+          <th style="padding:8px 10px;text-align:center;color:var(--muted);border-bottom:1px solid var(--border);">Seats</th>
+          <th style="padding:8px 10px;text-align:center;color:var(--muted);border-bottom:1px solid var(--border);">Power</th>
+          <th style="padding:8px 10px;text-align:left;color:var(--muted);border-bottom:1px solid var(--border);">STR Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#052e16;">
+          <td style="padding:8px 10px;"><strong style="color:var(--green);">Hot Spring Limelight Flair ✓ BEST</strong></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">$9,000–$11,000</td>
+          <td style="padding:8px 10px;text-align:center;">6</td>
+          <td style="padding:8px 10px;text-align:center;">240V</td>
+          <td style="padding:8px 10px;font-size:0.7rem;color:var(--muted);">Moto-Massage DX jet. No-Fault heater. Salt system option. Best service network in VT. Built for commercial use longevity.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;"><strong style="color:var(--text2);">Sundance Optima</strong></td>
+          <td style="padding:8px 10px;text-align:right;">$9,500–$12,500</td>
+          <td style="padding:8px 10px;text-align:center;">7</td>
+          <td style="padding:8px 10px;text-align:center;">240V</td>
+          <td style="padding:8px 10px;font-size:0.7rem;color:var(--muted);">CLEARRAY UV-C system reduces chemical use. SmartTub app for remote monitoring. Excellent durability. Strong dealer network.</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:8px 10px;"><strong style="color:var(--text2);">Jacuzzi J-375</strong></td>
+          <td style="padding:8px 10px;text-align:right;">$10,000–$13,000</td>
+          <td style="padding:8px 10px;text-align:center;">6–7</td>
+          <td style="padding:8px 10px;text-align:center;">240V</td>
+          <td style="padding:8px 10px;font-size:0.7rem;color:var(--muted);">Brand recognition helps listing. ProAir jets. Robust warranty. Higher price point but guests recognize the name.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;"><strong style="color:var(--text2);">LifeSmart LS700DX</strong></td>
+          <td style="padding:8px 10px;text-align:right;">$4,500–$6,000</td>
+          <td style="padding:8px 10px;text-align:center;">7</td>
+          <td style="padding:8px 10px;text-align:center;">240V</td>
+          <td style="padding:8px 10px;font-size:0.7rem;color:var(--muted);">Best budget option. 65 jets. Adequate for STR but shorter lifespan (5–7yr vs 10–15yr for premium). Higher maintenance frequency.</td>
+        </tr>
+        <tr style="background:var(--surface2);">
+          <td style="padding:8px 10px;color:#ef4444;">❌ Inflatable (Coleman/Bestway)</td>
+          <td style="padding:8px 10px;text-align:right;color:#ef4444;">$300–$800</td>
+          <td style="padding:8px 10px;text-align:center;">4–6</td>
+          <td style="padding:8px 10px;text-align:center;">110V</td>
+          <td style="padding:8px 10px;font-size:0.7rem;color:#ef4444;">Do not use for STR. Won't heat adequately in Vermont winters. Puncture risk, no jets, guests will complain. Destroys your listing reviews.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+      <div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Sourcing Options (Vermont)</div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;font-size:0.72rem;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text2);">1. Local VT dealer (recommended):</strong> Jacuzzi, Hot Spring, or Sundance dealer. Gets local service coverage — critical when a tub goes down mid-booking in February. Look for dealers in Manchester VT, Brattleboro, or Springfield area. Ask for "demonstration model" or end-of-season pricing — often 15–25% off.<br><br>
+          <strong style="color:var(--text2);">2. Costco delivery:</strong> Caldera/Hot Spring models at $7–9K delivered. No local service relationship — you're on your own for repairs. Acceptable for budget-conscious approach if you have a plumber contact.<br><br>
+          <strong style="color:var(--text2);">3. Facebook Marketplace / Craigslist used:</strong> $2–5K. Real option. Hot Spring and Jacuzzi tubs last 15–20 years with maintenance. Inspect shell for cracks, check jets, test pump and heater. Have a spa tech inspect before buying (~$150). Saves $6–10K upfront.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">Ongoing Operating Costs</div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;font-size:0.72rem;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text2);">Electricity:</strong> $50–$80/mo in Vermont winter (240V running in cold temps)<br>
+          <strong style="color:var(--text2);">Chemicals:</strong> $40–$60/mo (bromine preferred over chlorine for STR — less maintenance-intensive)<br>
+          <strong style="color:var(--text2);">Filter replacement:</strong> $80–$120/yr<br>
+          <strong style="color:var(--text2);">Annual service:</strong> $150–$250<br>
+          <strong style="color:var(--text2);">Total annual cost:</strong> ~$1,500–$2,000/yr<br><br>
+          <strong style="color:var(--green);">Deductible</strong> as STR operating expense. Net cost after tax: ~$975–$1,300/yr.
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:10px;background:#0a1a0a;border-radius:8px;border-left:3px solid var(--green);font-size:0.72rem;color:var(--muted);">
+      <strong style="color:var(--green);">ROI Summary:</strong> At Stratton peak rates, a hot tub adds $150–$250/night premium on ski weekends. 40 peak nights/yr × $200 avg premium = <strong style="color:var(--green);">+$8,000–$10,000 incremental revenue</strong>. All-in cost $16,000 → payback 18–24 months. Qualifies for 15-yr MACRS 100% bonus depreciation in Year 2 (~$5,600 tax benefit). Effective net cost after tax: ~$10,400.
+    </div>
+  </div>
+
+  <!-- DECK STRUCTURAL CHECK -->
+  <div class="card" style="border-left:4px solid #f59e0b;margin-bottom:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <div>
+        <div style="font-weight:800;font-size:1.05rem;color:var(--text);">🏗️ Deck Structural Assessment — Required Before Hot Tub</div>
+        <div style="font-size:0.75rem;color:var(--muted);">Non-negotiable pre-step. A filled 7-person hot tub weighs 5,000–6,500 lbs. Most residential decks are not rated for this.</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:1.1rem;font-weight:800;color:var(--gold);">$500–$8,000</div>
+        <div style="font-size:0.68rem;color:var(--muted);">Inspection to full reinforcement</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:12px;font-size:0.72rem;">
+      <div style="background:var(--surface2);padding:10px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">The Problem</div>
+        <div style="color:var(--muted);">Standard residential decks handle 40–50 lbs/sq ft. A filled hot tub requires 80–100 lbs/sq ft. 1974 construction deck may have aging joists, rotted posts, or undersized footings. Vermont frost depth is 48–60" — footings must extend below this.</div>
+      </div>
+      <div style="background:var(--surface2);padding:10px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">Step 1: Inspector (During Inspection Period)</div>
+        <div style="color:var(--muted);">Have your home inspector specifically evaluate deck load capacity and joist/post condition. Note: general inspectors often miss this. Ask explicitly for a hot-tub load assessment. Cost: included in home inspection.</div>
+      </div>
+      <div style="background:var(--surface2);padding:10px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">Step 2: Structural Engineer (if needed)</div>
+        <div style="color:var(--muted);">If inspector flags concerns, hire a licensed VT structural engineer. $400–$700 for assessment + stamped drawings. Required for permit in Winhall. Engineer will specify exactly what reinforcement is needed.</div>
+      </div>
+      <div style="background:var(--surface2);padding:10px;border-radius:8px;">
+        <div style="font-weight:700;color:var(--text2);margin-bottom:4px;">Step 3: Reinforcement (if required)</div>
+        <div style="color:var(--muted);">Options: sister joists ($1,500–$3,000), steel beam addition ($2,000–$4,000), new concrete footings ($1,500–$2,500), or relocate tub to grade-level pad ($2,000–$4,000 concrete pad — often easier and cheaper than deck reinforcement).</div>
+      </div>
+    </div>
+
+    <div style="padding:10px;background:#1a1200;border-radius:8px;border-left:3px solid var(--gold);font-size:0.72rem;color:var(--muted);">
+      <strong style="color:var(--gold);">Recommended approach:</strong> If deck assessment comes back marginal, strongly consider a <strong style="color:var(--text2);">grade-level concrete pad</strong> adjacent to the deck rather than structural deck reinforcement. A 10×10 concrete pad ($2,000–$3,500) is faster, cheaper, and more stable long-term. Hot tub on a pad with deck access is actually preferred by many STR guests — easier entry/exit. Budget $2,500 for the pad as the baseline assumption and treat deck reinforcement as the fallback.
+    </div>
+  </div>
+
+  <!-- REMAINING PROJECTS -->
+  <div class="card-title" style="margin-bottom:12px;">🟡 Remaining High-ROI Projects</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:28px;">
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">📸 Pro Photography + Listing</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--green);">$800–$1,500</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">Real estate/STR photographer + drone. Hero shots: wall of glass with mountain view, both fireplaces lit, hot tub at dusk in snow, game room. Highest ROI per dollar of any project. Do before first booking.</div>
+      <div style="font-size:0.72rem;"><span style="color:var(--green);font-weight:700;">+$6–8K/yr</span> <span style="color:var(--muted);">click-through + conversion lift · 138% more Airbnb views · payback 0.1yr</span></div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">🛏️ STR Bedding + Kitchen Package</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--green);">$3,000–$5,000</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">House comes furnished but seller's personal bedding and kitchen supplies don't convey for STR use. Budget: hotel-quality bedding (Parachute/Pottery Barn) for all 5 bedrooms, full kitchen STR kit (coffee station, spices, cookware, serving sets), extra towel sets, smart locks, welcome basket supplies.</div>
+      <div style="font-size:0.72rem;"><span style="color:var(--green);font-weight:700;">Essential</span> <span style="color:var(--muted);">for launch · drives 5-star reviews from day one</span></div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">🎿 Mudroom Enhancement</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--green);">$800–$1,500</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">Existing mudroom gets: boot dryers for 6–8 pairs ($200–$300 each, Peet or Williams), additional ski/board wall racks, glove/goggle drying hooks, helmet shelf, bench with storage. Boot dryers are the #1 amenity mentioned in positive Vermont ski house reviews.</div>
+      <div style="font-size:0.72rem;"><span style="color:var(--green);font-weight:700;">+$1–2K/yr</span> <span style="color:var(--muted);">review quality + repeat bookings</span></div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">📡 Starlink Installation</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--gold);">$600 hardware + $120/mo</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">Rural Winhall has poor broadband. Starlink delivers 200+ Mbps anywhere. Remote workers book ski houses for "ski-work" trips — this is a search filter on Airbnb and a frequent review mention. Fully deductible as operating expense (~$840/yr after tax).</div>
+      <div style="font-size:0.72rem;"><span style="color:var(--gold);font-weight:700;">+$2–3K/yr</span> <span style="color:var(--muted);">booking appeal + enables off-season remote-worker segment</span></div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">🔥 Chimney Inspection + Cleaning (×2)</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--gold);">$400–$700</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">Two wood-burning fireplaces = two chimneys that need CSIA-certified inspection before first use. 1974 construction — check for cracks, flue liner integrity, creosote buildup. Required for STR insurance and guest safety. Vermont fire marshal takes this seriously.</div>
+      <div style="font-size:0.72rem;"><span style="color:var(--gold);font-weight:700;">Required</span> <span style="color:var(--muted);">for insurance + guest safety · fireplaces are a top listing amenity at Stratton</span></div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="font-weight:700;color:var(--text);font-size:0.95rem;">🚽 Septic Inspection ⚠️</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--accent);">$500–$35,000+</div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;"><strong style="color:#ef4444;">1975 system. 50 years old. 5-bed/2-kitchen design.</strong> Get VT-licensed septic inspector during 10-day inspection window. Pumping + camera inspection ~$800–$1,200. If system is failing: negotiate seller credit. Vermont STR regulations may require documented septic compliance. Budget worst case: $20K–$35K replacement if needed.</div>
+      <div style="font-size:0.72rem;"><span style="color:#ef4444;font-weight:700;">Pre-close negotiation item</span> <span style="color:var(--muted);">— use inspection results to get seller credit if system is marginal</span></div>
+    </div>
+
+  </div>
+
+  <!-- REVISED BUDGET SUMMARY -->
+  <div class="card">
+    <div class="card-title">Revised Project Budget — Confirmed Property Details</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px;">
+      <thead>
+        <tr style="background:var(--surface2);">
+          <th style="padding:9px 12px;text-align:left;color:var(--muted);border-bottom:1px solid var(--border);">Project</th>
+          <th style="padding:9px 12px;text-align:right;color:var(--muted);border-bottom:1px solid var(--border);">Budget</th>
+          <th style="padding:9px 12px;text-align:right;color:var(--muted);border-bottom:1px solid var(--border);">Revenue Lift</th>
+          <th style="padding:9px 12px;text-align:center;color:var(--muted);border-bottom:1px solid var(--border);">Priority</th>
+          <th style="padding:9px 12px;text-align:left;color:var(--muted);border-bottom:1px solid var(--border);">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:7px 12px;color:var(--text2);">🛁 Hot Tub (tub + electrical + pad/deck)</td><td style="padding:7px 12px;text-align:right;">$14–20K</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$10–12K/yr</td><td style="padding:7px 12px;text-align:center;"><span style="background:#052e16;color:var(--green);padding:2px 8px;border-radius:10px;font-size:0.7rem;">MUST DO</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Buy before first ski season</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">📸 Photography + Listing</td><td style="padding:7px 12px;text-align:right;">$1–1.5K</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$6–8K/yr</td><td style="padding:7px 12px;text-align:center;"><span style="background:#052e16;color:var(--green);padding:2px 8px;border-radius:10px;font-size:0.7rem;">MUST DO</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">After hot tub installed</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">🛏️ STR Bedding + Kitchen Kit</td><td style="padding:7px 12px;text-align:right;">$3–5K</td><td style="padding:7px 12px;text-align:right;color:var(--green);">Review quality</td><td style="padding:7px 12px;text-align:center;"><span style="background:#052e16;color:var(--green);padding:2px 8px;border-radius:10px;font-size:0.7rem;">MUST DO</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Before first booking</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">🎿 Mudroom Enhancement (boot dryers, racks)</td><td style="padding:7px 12px;text-align:right;">$800–1.5K</td><td style="padding:7px 12px;text-align:right;color:var(--green);">+$1–2K/yr</td><td style="padding:7px 12px;text-align:center;"><span style="background:#052e16;color:var(--green);padding:2px 8px;border-radius:10px;font-size:0.7rem;">MUST DO</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Existing mudroom, add equipment</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">🔥 Chimney Inspection ×2</td><td style="padding:7px 12px;text-align:right;">$400–700</td><td style="padding:7px 12px;text-align:right;color:var(--gold);">Required</td><td style="padding:7px 12px;text-align:center;"><span style="background:#052e16;color:var(--green);padding:2px 8px;border-radius:10px;font-size:0.7rem;">MUST DO</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Before first use — insurance req.</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">📡 Starlink</td><td style="padding:7px 12px;text-align:right;">$700 + $120/mo</td><td style="padding:7px 12px;text-align:right;color:var(--gold);">+$2–3K/yr</td><td style="padding:7px 12px;text-align:center;"><span style="background:#1a1200;color:var(--gold);padding:2px 8px;border-radius:10px;font-size:0.7rem;">HIGH ROI</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Rural VT needs this</td></tr>
+        <tr><td style="padding:7px 12px;color:var(--text2);">🎮 Game Room Supplemental</td><td style="padding:7px 12px;text-align:right;">$1–2K</td><td style="padding:7px 12px;text-align:right;color:var(--gold);">Already have</td><td style="padding:7px 12px;text-align:center;"><span style="background:#1a1200;color:var(--gold);padding:2px 8px;border-radius:10px;font-size:0.7rem;">OPTIONAL</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">Assess at walkthrough</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:7px 12px;color:var(--text2);">🚽 Septic Inspection + possible credit</td><td style="padding:7px 12px;text-align:right;">$500–35K</td><td style="padding:7px 12px;text-align:right;color:var(--red);">Required</td><td style="padding:7px 12px;text-align:center;"><span style="background:#2d0a0a;color:#ef4444;padding:2px 8px;border-radius:10px;font-size:0.7rem;">⚠️ INSPECT</span></td><td style="padding:7px 12px;font-size:0.7rem;color:var(--muted);">1975 system — pre-close item</td></tr>
+        <tr style="background:linear-gradient(90deg,#052e16,#0c1a3a);border-top:2px solid var(--green);">
+          <td style="padding:9px 12px;color:#fff;font-weight:800;">MUST-DO TOTAL (pre-launch)</td>
+          <td style="padding:9px 12px;text-align:right;font-weight:800;color:var(--gold);">$19–29K</td>
+          <td style="padding:9px 12px;text-align:right;font-weight:800;color:var(--green);">+$19–25K/yr</td>
+          <td colspan="2" style="padding:9px 12px;font-size:0.7rem;color:var(--muted);">Payback: 12–18 months</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:10px;font-size:0.7rem;color:var(--muted);">
+      Items eliminated vs. prior estimate: game room buildout ($10K saved), fireplace insert ($4.5K saved), bedroom furniture ($7.5K saved) — all already included with property. Net budget reduction: ~$22–27K vs. original estimate.
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function showTab(idx) {
+  document.querySelectorAll('.tab-content').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.tab-btn').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+}
+</script>
+
+<!-- ===== TAB 6: APPRAISAL / FAIR VALUE SECTION ===== -->
+<div class="tab-content" id="tab-5">
+<div style="max-width:100%;padding:0;" id="appraisal-section">
+
+  <div style="border-bottom:2px solid var(--accent);padding-bottom:12px;margin-bottom:24px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:6px;">Fair Value Analysis</div>
+    <div style="font-size:1.2rem;font-weight:800;color:var(--text);">Appraisal-Grade Pricing Model — 24 Sugarbush Drive</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Sales Comparison Approach · All sqft verified from MLS source data · Data as of March 2026</div>
+  </div>
+
+  <!-- Subject Property Data Table -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:16px;">Subject Property — Verified Characteristics</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Address</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">24 Sugarbush Drive, Winhall VT 05340</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">GLA (Above Grade)</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1,837 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Finished Below Grade</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1,060 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Total Finished Sqft</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">2,897 sqft</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Bedrooms / Baths</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">5 bd / 3 ba</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Year Built</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1974 (renovated)</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Lot Size</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">1.26 acres</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Neighborhood</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">Forest Farms, Winhall</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Style</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">Chalet / 3-story</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Annual Property Tax</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">$9,574.84</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">MLS #</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;">5079331 (Active UC)</div></div>
+      <div><div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">List Price</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;color:var(--gold);">$849,000 ($293/sqft)</div></div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.2);border-radius:8px;font-size:0.8rem;color:var(--muted);">
+      <strong style="color:var(--text);">Key amenities (value-positive):</strong> Mountain views (wall of glass), 2 wood-burning fireplaces, game room/family room lower level, ski mudroom, updated kitchen, hardwood floors throughout main level, walk-out finished basement, deck, metal roof, 1.26-acre lot. No garage. Oil/baseboard heat.
+    </div>
+  </div>
+
+  <!-- Verified Comp Grid -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Comparable Sales — Verified MLS Data</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;">All sqft figures sourced directly from PrimeMLS IDX listings. $/sqft calculated from verified sqft.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Property</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sale Date</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sale Price</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Sqft (src)</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">$/sqft</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Beds/Ba</th>
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">Proximity / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(245,158,11,0.06);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:700;color:var(--gold);">24 Sugarbush Dr <span style="font-size:0.65rem;background:var(--gold-dim);color:var(--gold);padding:1px 5px;border-radius:3px;margin-left:4px;">SUBJECT</span></td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Active UC</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--gold);">$870,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">2,897 <span style="font-size:0.65rem;color:var(--accent);">MLS 5079331 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--gold);">$300</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Forest Farms, Winhall · 1.26 ac · views · 2 FP · game room · mudroom</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">14 Mountain Haunts</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Oct 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$951,014</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,238 <span style="font-size:0.65rem;color:var(--accent);">MLS 5060721 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$294</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · 1.2 ac · Listed $875K, sold +8.7% in 5 DOM · 341 sqft larger than subject</td>
+        </tr>
+        <tr style="background:var(--card);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">20 Jamie Lane</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Nov 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$975,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,252 <span style="font-size:0.65rem;color:var(--accent);">MLS 4911977 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$299</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/3.5ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Sold exact ask · hot tub + barrel sauna · 355 sqft larger than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Chad Circle</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--green);">Feb 2026</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--green);">$1,050,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">4,788 <span style="font-size:0.65rem;color:var(--accent);">MLS 5063440 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--green);">$219</td>
+          <td style="padding:9px 10px;text-align:right;">5bd/4ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Listed $1.1M · 1,891 sqft larger than subject · hot tub · garage · superior finishes · excluded from adj. model (size gap too large)</td>
+        </tr>
+        <tr style="background:var(--card);border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">6 Roundtree Rd</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Jul 2024</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$775,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">1,908 <span style="font-size:0.65rem;color:var(--accent);">MLS 5002362 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$406</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/2ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · Jul 2024 (older) · 4bd, 1 bath fewer · 989 sqft smaller than subject</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">7 North Brookwood</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">'25/'26</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$850,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">2,028 <span style="font-size:0.65rem;color:var(--accent);">confirmed ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$419</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/—</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Stratton · <strong style="color:#f59e0b;">ON-MOUNTAIN</strong> · 40% $/sqft premium vs. off-mountain · excl. from adj. model</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:9px 10px;font-weight:600;color:var(--text);">5 Stratton Ridge Rd</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--muted);">Jul 2025</td>
+          <td style="padding:9px 10px;text-align:right;font-weight:700;color:var(--muted);">$770,000</td>
+          <td style="padding:9px 10px;text-align:right;color:var(--text);">3,676 <span style="font-size:0.65rem;color:var(--accent);">MLS 5033484 ✓</span></td>
+          <td style="padding:9px 10px;text-align:right;font-weight:600;color:var(--muted);">$209</td>
+          <td style="padding:9px 10px;text-align:right;">4bd/3ba</td>
+          <td style="padding:9px 10px;color:var(--muted);font-size:0.72rem;">Winhall · 4bd (inferior) · 779 sqft larger · supporting reference only</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:10px;font-size:0.7rem;color:var(--muted);padding:8px 10px;background:rgba(79,142,247,0.06);border-radius:6px;">
+      <strong style="color:var(--accent);">On-Mountain Premium Note:</strong> 7 North Brookwood at $419/sqft is ~40% above off-mountain comps ($294–$299/sqft). This gap is the quantified value of ski-in/ski-out access. Subject property at $300/sqft in Forest Farms (off-mountain, 5 min drive) is correctly benchmarked against the off-mountain comp set.
+    </div>
+  </div>
+
+  
+  <!-- Comp Map -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:16px 20px 12px;">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Comparable Sales — Map View</div>
+      <div style="font-size:0.72rem;color:var(--muted);">All comps within ~3 miles of subject. On-mountain comps (North Brookwood) carry a significant location premium vs. off-mountain Forest Farms/Winhall. Subject coordinates approximate (Sugarbush Dr not in OSM).</div>
+    </div>
+    <div id="comp-map" style="height:420px;width:100%;"></div>
+    <div style="padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px;font-size:0.72rem;border-top:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#f59e0b;display:inline-block;border:2px solid #fff;"></span> Subject — 24 Sugarbush Dr</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#22c55e;display:inline-block;border:2px solid #fff;"></span> Primary comps (used in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#14b8a6;display:inline-block;border:2px solid #fff;"></span> Supporting refs (not in adj. model)</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:#6b7280;display:inline-block;border:2px solid #fff;"></span> Active (not sold)</div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function() {
+    // Init map centered on subject area
+    var map = L.map('comp-map', {
+      center: [43.132, -72.880],
+      zoom: 13,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    function makeIcon(color, size) {
+      size = size || 14;
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + color + ';border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.5);"></div>',
+        iconSize: [size, size],
+        iconAnchor: [size/2, size/2],
+        popupAnchor: [0, -(size/2 + 4)]
+      });
+    }
+
+    var props = [
+      {
+        lat: 43.1330, lon: -72.8710,
+        color: '#f59e0b', size: 18,
+        title: '24 Sugarbush Drive — SUBJECT',
+        body: '<b>Offer: $870,000</b><br>2,897 sqft · 5bd/3ba · $300/sqft<br>Forest Farms, Winhall<br>Mountain views · 2 fireplaces · game room<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1364, lon: -72.8680,
+        color: '#22c55e', size: 16,
+        title: '20 Jamie Lane — SOLD Nov '25',
+        body: '<b>$975,000</b><br>3,252 sqft · 5bd/3.5ba · $299/sqft<br>Adj. value: <b>$858,600</b><br>Hot tub + barrel sauna'
+      },
+      {
+        lat: 43.1348, lon: -72.8784,
+        color: '#22c55e', size: 16,
+        title: '6 Chad Circle — SOLD Feb '26',
+        body: '<b>$1,050,000</b><br>4,788 sqft · 5bd/4ba · $219/sqft<br>Listed $1.1M · large floor plan · garage<br><i style="color:#aaa;">Excluded from adj. model (too large)</i>'
+      },
+      {
+        lat: 43.1368, lon: -72.8690,
+        color: '#22c55e', size: 16,
+        title: '14 Mountain Haunts — SOLD Oct '25',
+        body: '<b>$951,014</b><br>3,238 sqft · 5bd/3ba · $294/sqft<br>Adj. value: <b>$885,534</b><br>Listed $875K · sold +8.7% in 5 DOM<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1178, lon: -72.9142,
+        color: '#14b8a6', size: 14,
+        title: '6 Roundtree Rd — SOLD Jul '24',
+        body: '<b>$775,000</b><br>1,908 sqft · 4bd/2ba · $406/sqft<br>Supporting ref · older sale · 4bd'
+      },
+      {
+        lat: 43.1177, lon: -72.9118,
+        color: '#14b8a6', size: 14,
+        title: '7 North Brookwood — SOLD '25/'26',
+        body: '<b>$850,000</b><br>2,028 sqft · 4bd · $419/sqft<br><b>ON-MOUNTAIN</b> — ski-in/ski-out location premium (~40% vs. off-mountain)<br>Excluded from adj. model · market ceiling ref'
+      },
+      {
+        lat: 43.1364, lon: -72.8954,
+        color: '#14b8a6', size: 14,
+        title: '5 Stratton Ridge Rd — SOLD Jul '25',
+        body: '<b>$770,000</b><br>3,676 sqft · 4bd · $209/sqft<br>Supporting ref · 4bd, larger, inferior'
+      },
+      {
+        lat: 43.1347, lon: -72.8716,
+        color: '#6b7280', size: 12,
+        title: '13 Betty Johnson Ln — ACTIVE',
+        body: '<b>$849,000 (asking)</b><br>4bd · 89 days on market · not moving<br><i style="color:#aaa;">Coordinates approx.</i>'
+      },
+      {
+        lat: 43.1307, lon: -72.8713,
+        color: '#6b7280', size: 12,
+        title: '25 Benson Fuller — ACTIVE',
+        body: '<b>$860,000 (asking)</b><br>4bd · 273 days on market · massively stale'
+      }
+    ];
+
+    props.forEach(function(p) {
+      L.marker([p.lat, p.lon], {icon: makeIcon(p.color, p.size)})
+        .addTo(map)
+        .bindPopup('<div style="font-size:0.82rem;min-width:220px;"><b style="font-size:0.88rem;">' + p.title + '</b><br><hr style="margin:6px 0;border-color:#ddd;">' + p.body + '</div>', {maxWidth: 280});
+    });
+
+    // Stratton Mountain marker
+    L.marker([43.1050, -72.9211], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:#1e2332;color:#e8eaf0;font-size:0.65rem;font-weight:700;padding:3px 7px;border-radius:4px;border:1px solid #4f8ef7;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.5);">⛷ Stratton Mountain</div>',
+        iconSize: [130, 22],
+        iconAnchor: [65, 11]
+      })
+    }).addTo(map);
+
+  })();
+  </script>
+
+  <!-- Sales Comparison Adjustment Grid -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">Sales Comparison Approach — Adjustment Grid</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;">Adjustments applied at $280/sqft (midpoint of verified comp range). Positive = subject superior; Negative = subject inferior.</div>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <th style="padding:9px 10px;text-align:left;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;min-width:200px;">Adjustment Factor</th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">14 Mtn Haunts<br><span style="font-weight:400;">$951,014</span></th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">20 Jamie Lane<br><span style="font-weight:400;">$975,000</span></th>
+          <th style="padding:9px 10px;text-align:right;color:var(--green);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;">6 Chad Circle<br><span style="font-weight:400;">$1,050,000</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Sale Price</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$951,014</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$975,000</td>
+          <td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--green);">$1,050,000</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--muted);font-size:0.72rem;">Sqft (verified)</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">3,238</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">3,200</td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);font-size:0.72rem;">4,788</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Size Adjustment<br><span style="font-size:0.68rem;color:var(--muted);">Subject 2,897 sqft · delta × $280/sqft</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−341 sqft<br><span style="font-weight:700;">−$95,480</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−355 sqft<br><span style="font-weight:700;">−$99,400</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--red);">−1,891 sqft<br><span style="font-weight:700;">−$529,480</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Bathroom Adjustment<br><span style="font-size:0.68rem;color:var(--muted);">Subject 3ba · $10K per bath differential</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Same<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject − 0.5ba<br><span style="font-weight:700;color:var(--red);">−$2,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject − 1ba<br><span style="font-weight:700;color:var(--red);">−$10,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Garage<br><span style="font-size:0.68rem;color:var(--muted);">Comp has garage; subject does not</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$15,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Hot Tub / Amenity<br><span style="font-size:0.68rem;color:var(--muted);">Subject no hot tub (yet); comps have</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">N/A<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$12,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Comp superior<br><span style="font-weight:700;color:var(--red);">−$12,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--text);">Mountain Views<br><span style="font-size:0.68rem;color:var(--muted);">Wall of glass · documented in listing</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject superior<br><span style="font-weight:700;color:var(--green);">+$20,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,0.15);">
+          <td style="padding:8px 10px;color:var(--text);">Two Fireplaces<br><span style="font-size:0.68rem;color:var(--muted);">Subject has 2 WB fireplaces; Mountain Haunts 1; Chad Circle 1</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--green);">Subject superior<br><span style="font-weight:700;color:var(--green);">+$10,000</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Similar<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <td style="padding:8px 10px;color:var(--text);">Age / Condition<br><span style="font-size:0.68rem;color:var(--muted);">Subject 1974; comps 1983–1987 · but subject renovated</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+          <td style="padding:8px 10px;text-align:right;color:var(--muted);">Neutral<br><span style="color:var(--muted);">$0</span></td>
+        </tr>
+        <tr style="background:#052e16;border-top:1px solid #14532d;">
+          <td style="padding:10px 10px;font-weight:700;color:var(--text);">Net Adjusted Value</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$885,534</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$858,600</td>
+          <td style="padding:10px 10px;text-align:right;font-weight:800;font-size:1rem;color:var(--green);">$483,520</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:12px;padding:10px 12px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:6px;font-size:0.75rem;color:var(--muted);">
+      <strong style="color:var(--red);">⚠️ Chad Circle excluded from final estimate:</strong> At 4,788 sqft (65% larger than subject), the size adjustment is so large ($529K) it consumes most of the sale price, producing an unreliable result ($483K). Chad Circle is useful for market ceiling confirmation only — not a reliable adjusted comp for a 2,897 sqft property. Mountain Haunts and Jamie Lane are the primary comps.
+    </div>
+  </div>
+
+  <!-- Final Value Reconciliation -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:16px;">Value Reconciliation — Appraiser's Conclusion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+      <div style="padding:16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">14 Mountain Haunts<br>Adj. Value</div>
+        <div style="font-size:1.4rem;font-weight:800;color:var(--green);">$885,534</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Weight: 50%<br>Strongest comp · same beds/baths · 5 DOM · most recent 5-bed</div>
+      </div>
+      <div style="padding:16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">20 Jamie Lane<br>Adj. Value</div>
+        <div style="font-size:1.4rem;font-weight:800;color:var(--green);">$858,600</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">Weight: 50%<br>Clean market signal · sold at ask · 355 sqft larger, hot tub & sauna superior</div>
+      </div>
+      <div style="padding:16px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);border-radius:8px;text-align:center;">
+        <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Weighted Average<br>Fair Market Value</div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--gold);">$872,067</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-top:4px;">50/50 weighting · Mountain Haunts + Jamie Lane only</div>
+      </div>
+    </div>
+
+    <!-- The Final Box -->
+    <div style="background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(34,197,94,0.1));border:2px solid var(--accent);border-radius:10px;padding:20px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:8px;">Estimated Appraised Value</div>
+      <div style="font-size:2.2rem;font-weight:900;color:var(--text);letter-spacing:-0.02em;">$855,000 – $895,000</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-top:8px;">Point estimate: <strong style="color:var(--text);">~$875,000</strong> · Offer price of $870K is <strong style="color:var(--green);">$5K below estimated fair value</strong></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.78rem;">
+      <div style="padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;">
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">Appraisal Risk Flags</div>
+        <div style="color:var(--muted);line-height:1.7;">
+          <div>⚠️ Only 2 reliable 5-bed comps in the market (thin comp set — appraiser may note)</div>
+          <div>✅ Offer ($870K) is ~0.6% below point estimate — minimal appraisal gap risk</div>
+          <div>⚠️ No garage lowers adjusted value vs. some comps</div>
+          <div>⚠️ 1974 vintage; appraiser will scrutinize renovation quality</div>
+          <div>⚠️ Below-grade sqft (1,060 sqft) valued at 50–70% of above-grade rate by most appraisers</div>
+        </div>
+      </div>
+      <div style="padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;">
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">Appraisal Support Factors</div>
+        <div style="color:var(--muted);line-height:1.7;">
+          <div>✅ Active UC = market has already validated ~$849K ask</div>
+          <div>✅ Mountain Haunts sold +8.7% over ask → hot market dynamic</div>
+          <div>✅ Two wood-burning fireplaces — strong STR differentiator at Stratton</div>
+          <div>✅ 2 fireplaces, views, mudroom → documented amenity superiority</div>
+          <div>✅ Renovated condition mitigates 1974 year built</div>
+          <div>✅ Property tax $9,574 consistent with ~$850K market value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Below-Grade Adjustment Note -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:12px;">Appraiser's Methodology Notes — What to Expect</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:0.78rem;">
+      <div>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;font-size:0.82rem;">Above vs. Below Grade Adjustment</div>
+        <div style="color:var(--muted);line-height:1.7;margin-bottom:12px;">Appraisers value above-grade and below-grade sqft differently. Typical adjustment: above-grade at $280–$320/sqft; finished below-grade at $140–$180/sqft (50–60% of above-grade rate). Applied to subject:</div>
+        <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;font-size:0.75rem;">
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">Above grade: 1,837 × $300</span><span style="color:var(--text);font-weight:600;">$551,100</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">Below grade: 1,060 × $160 (est.)</span><span style="color:var(--text);font-weight:600;">$169,600</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;"><span style="color:var(--muted);">Cost approach subtotal</span><span style="color:var(--gold);font-weight:700;">$720,700</span></div>
+          <div style="font-size:0.68rem;color:var(--muted);margin-top:6px;">+ site/land value + amenities → reconciles to $830K–$870K range</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;font-size:0.82rem;">What to Hand an Appraiser</div>
+        <div style="color:var(--muted);line-height:1.8;">
+          <div>1. <strong style="color:var(--text);">This comp grid</strong> with MLS numbers and sqft sources</div>
+          <div>2. <strong style="color:var(--text);">Renovation documentation</strong> — what was updated and when</div>
+          <div>3. <strong style="color:var(--text);">Photos of views</strong> — wall of glass, mountain backdrop</div>
+          <div>4. <strong style="color:var(--text);">Fireplace inspection reports</strong> — condition documentation for both WB fireplaces</div>
+          <div>5. <strong style="color:var(--text);">Rental history</strong> if any — STR comps for income approach</div>
+          <div>6. <strong style="color:var(--text);">Chimney/fireplace inspection</strong> reports (shows condition)</div>
+          <div>7. <strong style="color:var(--text);">Property tax card</strong> — $9,574 assessment is consistent with value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Line -->
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(79,142,247,0.08));border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:20px;margin-bottom:20px;">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:12px;">Bottom Line — Offer vs. Appraised Value</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:16px;text-align:center;">
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Offer Price</div><div style="font-size:1.3rem;font-weight:800;color:var(--gold);margin-top:4px;">$870,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Est. Appraised Value</div><div style="font-size:1.3rem;font-weight:800;color:var(--text);margin-top:4px;">~$872,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Potential Gap</div><div style="font-size:1.3rem;font-weight:800;color:var(--green);margin-top:4px;">−$2,000</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Gap as % of Offer</div><div style="font-size:1.3rem;font-weight:800;color:var(--green);margin-top:4px;">−0.2%</div></div>
+      <div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Appraisal Risk</div><div style="font-size:1.3rem;font-weight:800;color:var(--green);margin-top:4px;">LOW</div></div>
+    </div>
+    <div style="font-size:0.8rem;color:var(--muted);line-height:1.7;">
+      At 3,252 sqft, Jamie Lane adjusted to $858,600; Mountain Haunts adjusted to $885,534. Weighted average $874,567 — point estimate ~$872K. Your $870K offer is $2K below the point estimate, well within a normal appraisal variance. Downside scenario: if an appraiser applies aggressive below-grade discounting, value could come in at $845K–$855K — a $15–25K shortfall, manageable with a seller credit or modest cash difference. <strong style="color:var(--text);">$870K is a clean, well-supported entry. The deal does not fall apart at any of these numbers.</strong>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

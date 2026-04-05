@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stratton / Winhall Acquisition Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e4e4e7; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0f1117 100%); border-bottom: 1px solid #2a2d3a; padding: 24px 32px; }
+  .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header .sub { font-size: 13px; color: #6b7280; }
+  .meta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .pill { background: #1e2332; border: 1px solid #2a2d3a; border-radius: 8px; padding: 8px 14px; font-size: 12px; }
+  .pill .label { color: #6b7280; display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .pill .value { color: #fff; font-weight: 600; }
+  .pill.green .value { color: #4ade80; }
+  .pill.yellow .value { color: #fbbf24; }
+  .pill.red .value { color: #f87171; }
+  .pill.blue .value { color: #60a5fa; }
+
+  .nav { display: flex; background: #0f1117; border-bottom: 1px solid #1e2332; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 12px 16px; font-size: 12px; font-weight: 500; color: #6b7280; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .tab-btn:hover { color: #d1d5db; }
+  .tab-btn.active { color: #60a5fa; border-bottom-color: #60a5fa; }
+
+  .content { padding: 24px 32px; max-width: 1100px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .section-title { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; margin-top: 28px; }
+  .section-title:first-child { margin-top: 0; }
+
+  /* Cards grid */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; }
+  .card.primary { border-color: #1e3a5f; }
+  .card.backup { border-color: #2d2010; }
+  .card.watch { border-color: #1a1a1a; }
+  .card.sold-comp { border-color: #0d2818; }
+  .card.ideal { border-color: #1a1f2e; background: #0f1421; }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .card-address { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .card-town { font-size: 12px; color: #6b7280; margin-top: 2px; }
+  .card-badge { display: inline-block; padding: 3px 9px; border-radius: 5px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap; }
+  .badge-primary { background: #0c1a3a; color: #60a5fa; border: 1px solid #1e3a5f; }
+  .badge-backup { background: #2d1a00; color: #fb923c; border: 1px solid #4d2d00; }
+  .badge-watch { background: #1e1e1e; color: #9ca3af; border: 1px solid #2a2a2a; }
+  .badge-sold { background: #052e16; color: #4ade80; border: 1px solid #14532d; }
+  .badge-active { background: #0c1a3a; color: #93c5fd; border: 1px solid #1e3a5f; }
+  .badge-ideal { background: #1c1500; color: #fbbf24; border: 1px solid #3d2c00; }
+
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .stat { background: #0f1117; border-radius: 6px; padding: 8px 10px; }
+  .stat .s-label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px; }
+  .stat .s-val { font-size: 14px; font-weight: 700; color: #e4e4e7; }
+  .stat .s-val.green { color: #4ade80; }
+  .stat .s-val.yellow { color: #fbbf24; }
+  .stat .s-val.red { color: #f87171; }
+  .stat .s-val.blue { color: #60a5fa; }
+
+  .card-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-top: 12px; }
+  .card-link { display: inline-block; margin-top: 12px; font-size: 11px; color: #60a5fa; text-decoration: none; }
+  .card-link:hover { text-decoration: underline; }
+  .card-price-big { font-size: 24px; font-weight: 800; color: #fff; margin-top: 6px; }
+  .card-price-big span { font-size: 13px; font-weight: 400; color: #6b7280; margin-left: 6px; }
+
+  .tag { display: inline-block; background: #1e2332; border: 1px solid #2a2d3a; border-radius: 4px; padding: 2px 7px; font-size: 10px; color: #9ca3af; margin-right: 4px; margin-top: 6px; }
+  .tag.green { background: #052e16; border-color: #14532d; color: #4ade80; }
+  .tag.yellow { background: #1c1500; border-color: #3d2c00; color: #fbbf24; }
+
+  /* Full-width table for comps */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th { text-align: left; padding: 10px 12px; color: #6b7280; font-weight: 500; border-bottom: 1px solid #1e2332; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .comp-table td { padding: 12px; border-bottom: 1px solid #1a1d27; vertical-align: middle; }
+  .comp-table tr:hover td { background: #14172080; }
+  .comp-table tr td:first-child { font-weight: 600; color: #e4e4e7; }
+
+  /* Profile checklist */
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media(max-width: 700px) { .profile-grid { grid-template-columns: 1fr; } .cards { grid-template-columns: 1fr; } }
+  .profile-section { background: #13161f; border: 1px solid #1e2332; border-radius: 10px; padding: 18px; }
+  .profile-section h3 { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 1px solid #1a1d27; font-size: 13px; }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { font-size: 13px; min-width: 18px; margin-top: 1px; }
+  .check-label { color: #d1d5db; flex: 1; }
+  .check-note { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+  /* Deal calculator */
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  @media(max-width: 700px) { .calc-grid { grid-template-columns: 1fr 1fr; } }
+  .calc-card { background: #13161f; border: 1px solid #1e2332; border-radius: 10px; padding: 16px; }
+  .calc-card h3 { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+  .calc-big { font-size: 22px; font-weight: 800; color: #fff; }
+  .calc-big.green { color: #4ade80; }
+  .calc-big.yellow { color: #fbbf24; }
+  .calc-big.blue { color: #60a5fa; }
+  .calc-sub { font-size: 11px; color: #6b7280; margin-top: 4px; }
+
+  .divider { border: none; border-top: 1px solid #1e2332; margin: 24px 0; }
+
+  .alert-box { background: #1c1000; border: 1px solid #854d0e; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #fcd34d; }
+  .alert-box strong { color: #fbbf24; }
+
+  .info-box { background: #0c1a3a; border: 1px solid #1e3a5f; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #93c5fd; }
+
+  /* Timeline */
+  .timeline { list-style: none; padding: 0; }
+  .timeline li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1d27; align-items: flex-start; }
+  .timeline li:last-child { border-bottom: none; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+  .tl-dot.red { background: #f87171; }
+  .tl-dot.yellow { background: #fbbf24; }
+  .tl-dot.green { background: #4ade80; }
+  .tl-dot.blue { background: #60a5fa; }
+  .tl-dot.gray { background: #4b5563; }
+  .tl-date { font-size: 12px; color: #6b7280; min-width: 90px; }
+  .tl-text { font-size: 13px; color: #d1d5db; line-height: 1.5; }
+  .tl-text strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>🎿 Stratton / Winhall Acquisition Tracker</h1>
+      <div class="sub">Vermont — Southern VT ski chalet acquisition | Updated March 11, 2026</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="pill yellow">
+      <span class="label">Target Price</span>
+      <span class="value">$650K</span>
+    </div>
+    <div class="pill red">
+      <span class="label">Hard Ceiling</span>
+      <span class="value">$850K</span>
+    </div>
+    <div class="pill">
+      <span class="label">Type</span>
+      <span class="value">SFH Preferred</span>
+    </div>
+    <div class="pill blue">
+      <span class="label">Pre-Approval Deadline</span>
+      <span class="value">March 14, 2026</span>
+    </div>
+    <div class="pill green">
+      <span class="label">Pass Strategy</span>
+      <span class="value">Ikon (Stratton unlimited)</span>
+    </div>
+    <div class="pill">
+      <span class="label">Market</span>
+      <span class="value">Winhall / Bondville VT</span>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="tab-btn active" onclick="showTab('targets')">🎯 Active Targets</button>
+  <button class="tab-btn" onclick="showTab('comps')">📊 Sold Comps</button>
+  <button class="tab-btn" onclick="showTab('profile')">📋 Buyer Profile</button>
+  <button class="tab-btn" onclick="showTab('calc')">🧮 Deal Calculator</button>
+  <button class="tab-btn" onclick="showTab('market')">📈 Market Intel</button>
+  <button class="tab-btn" onclick="showTab('timeline')">⏱️ Timeline</button>
+</div>
+
+<div class="content">
+
+  <!-- ACTIVE TARGETS -->
+  <div class="tab-pane active" id="tab-targets">
+    <div class="alert-box">
+      <strong>⚠️ Pre-approval deadline: March 14.</strong> Call Spruce Mortgage (802-863-8816) today to lock the letter. Without it you cannot make competitive offers.
+    </div>
+
+    <div class="section-title">Primary Target</div>
+    <div class="cards">
+      <div class="card primary" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <div>
+            <div class="card-address">5 Linscott Road</div>
+            <div class="card-town">Winhall (Bondville), VT 05340</div>
+          </div>
+          <span class="card-badge badge-primary">⭐ PRIMARY</span>
+        </div>
+        <div class="card-price-big">$650,000 <span>asking</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Beds / Baths</div><div class="s-val">3 bd / 2.5 ba</div></div>
+          <div class="stat"><div class="s-label">Sq Ft</div><div class="s-val">2,370 sf</div></div>
+          <div class="stat"><div class="s-label">Price / Sqft</div><div class="s-val blue">$274/sf</div></div>
+          <div class="stat"><div class="s-label">Last Sold</div><div class="s-val">$325K (Oct 2018)</div></div>
+          <div class="stat"><div class="s-label">Appreciation</div><div class="s-val yellow">+100% since 2018</div></div>
+          <div class="stat"><div class="s-label">To Stratton</div><div class="s-val">~8 min</div></div>
+        </div>
+        <div class="card-desc">
+          Winding private driveway, end of road setting. 2,370 sf is strong for this price point — most comps in budget range are 1,400–1,800 sf. Strong rental layout potential. Priced at market-rate for the area based on 2024 comp data ($620K for 1,796 sf = $345/sf; this is $274/sf for larger footprint = better value per square foot).
+        </div>
+        <div>
+          <span class="tag green">✓ At target price</span>
+          <span class="tag green">✓ SFH</span>
+          <span class="tag green">✓ 3 bed min</span>
+          <span class="tag yellow">? STR history TBD</span>
+          <span class="tag yellow">? Hot tub TBD</span>
+        </div>
+        <a class="card-link" href="https://www.redfin.com/VT/Bondville/5-Linscott-Rd-05340/home/91408819" target="_blank">→ View on Redfin</a>
+      </div>
+    </div>
+
+    <div class="section-title">Backup Targets</div>
+    <div class="cards">
+      <div class="card backup">
+        <div class="card-header">
+          <div>
+            <div class="card-address">13 Betty Johnson Road</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-backup">BACKUP</span>
+        </div>
+        <div class="card-price-big">$849,000 <span>asking</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Status</div><div class="s-val blue">Active</div></div>
+          <div class="stat"><div class="s-label">Vs. Ceiling</div><div class="s-val yellow">$1K below cap</div></div>
+        </div>
+        <div class="card-desc">
+          At $849K this sits $1K below the hard ceiling — any agent fees or concessions push over. Offer must be under ask to work within budget. Higher price means higher rental income target to justify. Only viable if Linscott falls through and property has strong STR revenue history or exceptional layout.
+        </div>
+        <div>
+          <span class="tag yellow">⚠ Near ceiling</span>
+          <span class="tag">Needs STR underwriting</span>
+        </div>
+      </div>
+
+      <div class="card watch">
+        <div class="card-header">
+          <div>
+            <div class="card-address">25 Benson Fuller Road</div>
+            <div class="card-town">Winhall, VT 05340</div>
+          </div>
+          <span class="card-badge badge-watch">SLEEPER</span>
+        </div>
+        <div class="card-price-big">$860,000 <span>asking</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Status</div><div class="s-val blue">Active</div></div>
+          <div class="stat"><div class="s-label">Vs. Ceiling</div><div class="s-val red">$10K over cap</div></div>
+        </div>
+        <div class="card-desc">
+          Over the $850K hard ceiling at ask. Would require a $10K+ price drop or seller concessions to fit. Track for price reduction — Stratton-area properties have sat longer in 2025. If it drops to $840K or below, worth a serious look. Watch DOM.
+        </div>
+        <div>
+          <span class="tag red">✗ Over ceiling</span>
+          <span class="tag">Watch for price drop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Also On Radar (Active Listings, Under Budget)</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-address">43 Beaver Street</div>
+            <div class="card-town">Bondville (Winhall), VT 05340</div>
+          </div>
+          <span class="card-badge badge-active">ACTIVE $649K</span>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Beds / Baths</div><div class="s-val">3 bd / 3 ba</div></div>
+          <div class="stat"><div class="s-label">Sq Ft</div><div class="s-val">2,392 sf</div></div>
+          <div class="stat"><div class="s-label">Price / Sqft</div><div class="s-val blue">$271/sf</div></div>
+          <div class="stat"><div class="s-label">Setting</div><div class="s-val">Cul-de-sac</div></div>
+        </div>
+        <div class="card-desc">Cul-de-sac end of Beaver St. 2,392 sf at $649K — competitive footprint. 3 full baths is a rental positive (sleeps more groups). Worth requesting a showing alongside Linscott for comparison.</div>
+        <a class="card-link" href="https://www.redfin.com/VT/Bondville/43-Beaver-St-05340/home/91409225" target="_blank">→ View on Redfin (MLS# 5078797)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLD COMPS -->
+  <div class="tab-pane" id="tab-comps">
+    <div class="info-box">
+      📋 <strong>For agent conversations:</strong> These are verified closed sales in Winhall/Bondville in the past 2–3 years. Use them to set expectations on what $600–850K buys in this market and to anchor offer pricing on active targets.
+    </div>
+
+    <div class="section-title">Verified Sold — Winhall / Bondville VT (2023–2025)</div>
+    <div class="cards">
+      <div class="card sold-comp">
+        <div class="card-header">
+          <div>
+            <div class="card-address">28 Red Brook Road</div>
+            <div class="card-town">Winhall (Bondville), VT 05340</div>
+          </div>
+          <span class="card-badge badge-sold">SOLD $620K</span>
+        </div>
+        <div class="card-price-big">$620,000 <span>closed May 2024</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Beds / Baths</div><div class="s-val">3 bd / 3 ba</div></div>
+          <div class="stat"><div class="s-label">Sq Ft</div><div class="s-val">1,796 sf</div></div>
+          <div class="stat"><div class="s-label">Price / Sqft</div><div class="s-val yellow">$345/sf</div></div>
+          <div class="stat"><div class="s-label">Sold Date</div><div class="s-val green">May 3, 2024</div></div>
+        </div>
+        <div class="card-desc">
+          "Contemporary four-season ski house." 3bd/3ba at $620K in May 2024 is the cleanest recent comp for 5 Linscott ($650K, 3bd/2.5ba, 2,370 sf). Linscott is 32% larger by sq footage at only 5% higher price → better value. This comp validates Linscott ask as fair market.
+        </div>
+        <div>
+          <span class="tag green">✓ Best recent comp</span>
+          <span class="tag">MLS# 4985158</span>
+        </div>
+        <a class="card-link" href="https://www.redfin.com/VT/Bondville/28-Red-Brook-Rd-05340/home/91410101" target="_blank">→ View closed sale on Redfin</a>
+      </div>
+
+      <div class="card sold-comp">
+        <div class="card-header">
+          <div>
+            <div class="card-address">11 Sunny Hill Road</div>
+            <div class="card-town">Bondville (Winhall), VT 05340</div>
+          </div>
+          <span class="card-badge badge-sold">SOLD $625K</span>
+        </div>
+        <div class="card-price-big">$625,000 <span>closed Apr 2023</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Beds / Baths</div><div class="s-val">4 bd / 3 ba</div></div>
+          <div class="stat"><div class="s-label">Sq Ft</div><div class="s-val">2,428 sf</div></div>
+          <div class="stat"><div class="s-label">Price / Sqft</div><div class="s-val green">$257/sf</div></div>
+          <div class="stat"><div class="s-label">Sold Date</div><div class="s-val">Apr 24, 2023</div></div>
+        </div>
+        <div class="card-desc">
+          "Renovated chalet on Sunny Hill in Winhall." 4bd/3ba, 2,428 sf at $625K — the best $/sqft comp in the dataset at $257/sf. Closed before 2024 price uptick. Demonstrates that 4-bed chalets transact in this price range; 2025/2026 equivalents would be $650–700K.
+        </div>
+        <div>
+          <span class="tag green">✓ 4 bed comp</span>
+          <span class="tag">MLS# 4940179</span>
+        </div>
+        <a class="card-link" href="https://www.redfin.com/VT/Bondville/11-Sunny-Hill-Rd-05340/home/91408877" target="_blank">→ View closed sale on Redfin</a>
+      </div>
+
+      <div class="card sold-comp">
+        <div class="card-header">
+          <div>
+            <div class="card-address">8 Strattonwald Road</div>
+            <div class="card-town">Winhall (Bondville), VT 05340</div>
+          </div>
+          <span class="card-badge badge-sold">SOLD $370K</span>
+        </div>
+        <div class="card-price-big">$370,000 <span>closed Feb 2025</span></div>
+        <div class="card-stats">
+          <div class="stat"><div class="s-label">Beds / Baths</div><div class="s-val">3 bd / 2 ba</div></div>
+          <div class="stat"><div class="s-label">Sq Ft</div><div class="s-val">1,392 sf</div></div>
+          <div class="stat"><div class="s-label">Price / Sqft</div><div class="s-val blue">$266/sf</div></div>
+          <div class="stat"><div class="s-label">Sold Date</div><div class="s-val">Feb 28, 2025</div></div>
+        </div>
+        <div class="card-desc">
+          "Classic alpine charm." Smaller footprint at 1,392 sf; price reflects size and likely condition. Useful as a floor comp — confirms that well-priced, smaller ski houses still trade below $400K. Not directly comparable to target properties but anchors the low end of the market.
+        </div>
+        <div>
+          <span class="tag">Floor comp</span>
+          <span class="tag">MLS# 5019226</span>
+        </div>
+        <a class="card-link" href="https://www.redfin.com/VT/Bondville/8-Strattonwald-Rd-05340/home/91409330" target="_blank">→ View closed sale on Redfin</a>
+      </div>
+    </div>
+
+    <div class="section-title">Comp Summary Table</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Sold</th>
+          <th>Price</th>
+          <th>Bed/Bath</th>
+          <th>Sq Ft</th>
+          <th>$/Sqft</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>28 Red Brook Rd</td>
+          <td>May 2024</td>
+          <td style="color:#4ade80;font-weight:700">$620,000</td>
+          <td>3/3</td>
+          <td>1,796</td>
+          <td>$345</td>
+          <td>Best recent comp — validates Linscott ask</td>
+        </tr>
+        <tr>
+          <td>11 Sunny Hill Rd</td>
+          <td>Apr 2023</td>
+          <td style="color:#4ade80;font-weight:700">$625,000</td>
+          <td>4/3</td>
+          <td>2,428</td>
+          <td>$257</td>
+          <td>Best $/sqft — 4bd comps in budget exist</td>
+        </tr>
+        <tr>
+          <td>8 Strattonwald Rd</td>
+          <td>Feb 2025</td>
+          <td style="color:#9ca3af;font-weight:700">$370,000</td>
+          <td>3/2</td>
+          <td>1,392</td>
+          <td>$266</td>
+          <td>Floor comp — smaller, lower condition</td>
+        </tr>
+        <tr style="background:#0c1a3a20;">
+          <td><strong>5 Linscott Rd (TARGET)</strong></td>
+          <td>Active now</td>
+          <td style="color:#60a5fa;font-weight:700">$650,000</td>
+          <td>3/2.5</td>
+          <td>2,370</td>
+          <td>$274</td>
+          <td>32% more space than Red Brook at 5% premium</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="margin-top:24px">Comp Analysis for Agent Conversations</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:20px;font-size:13px;color:#d1d5db;line-height:1.7;">
+      <p><strong style="color:#fff">What the comps tell us:</strong></p>
+      <ul style="margin-top:10px;margin-left:18px;">
+        <li style="margin-bottom:8px">The <strong style="color:#4ade80">$600–650K range is confirmed as real</strong> for 3bd ski SFH in Winhall. Red Brook ($620K, May 2024) and Sunny Hill ($625K, Apr 2023) are direct evidence.</li>
+        <li style="margin-bottom:8px">Market pricing for 4bd chalets in Winhall is <strong style="color:#fbbf24">$625–700K</strong> based on 2023–2024 data. 2026 list prices are trending slightly higher.</li>
+        <li style="margin-bottom:8px">Price per sqft ranges from <strong style="color:#60a5fa">$257–345/sf</strong>. 5 Linscott at $274/sf is on the lower end — reasonable if condition is good.</li>
+        <li style="margin-bottom:8px">Asking prices at $849K+ (Betty Johnson, Benson Fuller) represent a meaningful premium over recent closed sales and would require exceptional attributes (ski-in/ski-out, renovation, established rental income) to justify.</li>
+        <li>Bottom line: <strong style="color:#fff">$650K is a fair offer at Linscott; anything over $800K requires a comp with established STR revenue to underwrite.</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BUYER PROFILE -->
+  <div class="tab-pane" id="tab-profile">
+    <div class="info-box">
+      📋 <strong>Share this with agents.</strong> This page summarizes exactly what Kevin is looking for — use it to brief buyer's agents and listing agents on criteria before showings.
+    </div>
+
+    <div class="section-title">Buyer Snapshot</div>
+    <div style="background:#13161f;border:1px solid #1e3a5f;border-radius:10px;padding:20px;margin-bottom:20px;">
+      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;">Kevin K. — Vermont Ski Home Buyer</div>
+      <div style="font-size:13px;color:#9ca3af;line-height:1.6;">
+        Pre-approval in process (Spruce Mortgage, 802-863-8816). Serious buyer, family of 5 (2 adults, 3 kids ages 2/6/7). Looking to close before end of 2026 ski season. Ikon Pass holders → <strong style="color:#93c5fd">Stratton area strongly preferred</strong> (unlimited Ikon access).
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-section">
+        <h3>🏠 Property Requirements</h3>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Single-family home (SFH)</div><div class="check-note">No condos, townhouses, or shared wall units</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Minimum 3 bedrooms</div><div class="check-note">4 bedrooms strongly preferred — sleeps more for rental income</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Full kitchen</div><div class="check-note">Required for STR appeal — no studio or efficiency layouts</div></div></div>
+        <div class="check-item"><span class="check-icon">⭐</span><div><div class="check-label">Hot tub / outdoor feature</div><div class="check-note">Major STR revenue driver — strongly preferred</div></div></div>
+        <div class="check-item"><span class="check-icon">⭐</span><div><div class="check-label">Garage or covered parking</div><div class="check-note">Vermont winters; adds value for rentals</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Year-round accessible road</div><div class="check-note">Town-maintained preferred; private roads acceptable with plowing</div></div></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>📍 Location Requirements</h3>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Winhall / Bondville preferred</div><div class="check-note">7–15 min to Stratton base lodge; also near Bromley (12 min) and Magic (18 min)</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Within 20 min of Stratton</div><div class="check-note">Flexible on ski-in/ski-out — not required</div></div></div>
+        <div class="check-item"><span class="check-icon">⭐</span><div><div class="check-label">STR-friendly jurisdiction</div><div class="check-note">Winhall township currently permit-friendly; confirm before offer</div></div></div>
+        <div class="check-item"><span class="check-icon">ℹ️</span><div><div class="check-label">Londonderry / Jamaica considered</div><div class="check-note">Slightly further out (25–30 min) — acceptable if property is right</div></div></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>💰 Budget & Finance</h3>
+        <div class="check-item"><span class="check-icon">🎯</span><div><div class="check-label">Target: $650,000</div><div class="check-note">Strongly prefer closing at or below this figure</div></div></div>
+        <div class="check-item"><span class="check-icon">🔴</span><div><div class="check-label">Hard ceiling: $850,000</div><div class="check-note">Absolutely will not exceed — any all-in costs must fit under this</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Conventional financing</div><div class="check-note">Pre-approval through Spruce Mortgage; targeting 20–25% down</div></div></div>
+        <div class="check-item"><span class="check-icon">⭐</span><div><div class="check-label">Turnkey or light renovation only</div><div class="check-note">Budget does not accommodate major renovation on top of purchase price</div></div></div>
+      </div>
+
+      <div class="profile-section">
+        <h3>🏷️ STR Investment Criteria</h3>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Established rental history preferred</div><div class="check-note">Airbnb / VRBO history + revenue numbers ideal; seller willing to share?</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">Sleeps 8+ for rental economics</div><div class="check-note">Pullout sofa, bunk room, or loft acceptable toward sleeping capacity</div></div></div>
+        <div class="check-item"><span class="check-icon">ℹ️</span><div><div class="check-label">Personal use: ~4–6 weeks/year</div><div class="check-note">Rest of year available for rental; looking for net positive or neutral carry</div></div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div><div class="check-label">No HOA rental restrictions</div><div class="check-note">Must confirm STR is permitted — no association bans on short-term rental</div></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">What to Ask Listing Agents</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:20px;font-size:13px;color:#d1d5db;line-height:1.8;">
+      <ol style="margin-left:18px;">
+        <li>Does the property have an active STR permit or rental history? Can you share revenue numbers (Airbnb / VRBO dashboard)?</li>
+        <li>Is the property in Winhall township? Any HOA or deed restrictions on short-term rental?</li>
+        <li>What is the current DOM and has the seller received any prior offers?</li>
+        <li>Has the seller indicated motivation / flexibility on price?</li>
+        <li>Are there any known deferred maintenance items or system ages (roof, HVAC, water heater)?</li>
+        <li>Is there a hot tub? Is it operational and included in sale?</li>
+        <li>What is the road maintenance situation — town-maintained or private?</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- DEAL CALCULATOR -->
+  <div class="tab-pane" id="tab-calc">
+    <div class="section-title">Acquisition Economics — 5 Linscott Rd at $650K (Base Case)</div>
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h3>Purchase Price</h3>
+        <div class="calc-big">$650,000</div>
+        <div class="calc-sub">At ask — full price</div>
+      </div>
+      <div class="calc-card">
+        <h3>Down Payment (25%)</h3>
+        <div class="calc-big yellow">$162,500</div>
+        <div class="calc-sub">Conventional; avoid PMI</div>
+      </div>
+      <div class="calc-card">
+        <h3>Loan Amount</h3>
+        <div class="calc-big">$487,500</div>
+        <div class="calc-sub">30yr fixed, ~7% est.</div>
+      </div>
+      <div class="calc-card">
+        <h3>Est. Monthly PITI</h3>
+        <div class="calc-big red">~$3,800</div>
+        <div class="calc-sub">P&I + taxes + insurance est.</div>
+      </div>
+      <div class="calc-card">
+        <h3>Annual Carry Cost</h3>
+        <div class="calc-big red">~$48,000</div>
+        <div class="calc-sub">PITI + maintenance est.</div>
+      </div>
+      <div class="calc-card">
+        <h3>Break-Even Rental Nights</h3>
+        <div class="calc-big yellow">~55–65</div>
+        <div class="calc-sub">At $750–$900/night peak</div>
+      </div>
+    </div>
+
+    <div class="section-title">Stratton STR Revenue Estimates (Winhall Market)</div>
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h3>Peak Weekend Rate (3bd)</h3>
+        <div class="calc-big blue">$800–$1,100</div>
+        <div class="calc-sub">Fri–Sun, peak ski season</div>
+      </div>
+      <div class="calc-card">
+        <h3>Holiday Week Rate</h3>
+        <div class="calc-big blue">$1,200–$1,800</div>
+        <div class="calc-sub">Christmas/NYE/Presidents</div>
+      </div>
+      <div class="calc-card">
+        <h3>Shoulder Week Rate</h3>
+        <div class="calc-big">$500–$700</div>
+        <div class="calc-sub">Jan/Feb non-holiday weekdays</div>
+      </div>
+      <div class="calc-card">
+        <h3>Est. Annual Gross (optimistic)</h3>
+        <div class="calc-big green">$60–75K</div>
+        <div class="calc-sub">70 nights × avg $900 + summer</div>
+      </div>
+      <div class="calc-card">
+        <h3>Est. Annual Gross (conservative)</h3>
+        <div class="calc-big yellow">$40–50K</div>
+        <div class="calc-sub">50 nights × avg $850</div>
+      </div>
+      <div class="calc-card">
+        <h3>Pass Savings (Ikon + Epic)</h3>
+        <div class="calc-big green">$5,177/yr</div>
+        <div class="calc-sub">Family of 5 — buying at Stratton unlocks this</div>
+      </div>
+    </div>
+
+    <div class="section-title">Net Position Range</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:20px;font-size:13px;color:#d1d5db;line-height:1.7;">
+      <p><strong style="color:#fff">Conservative scenario:</strong> $43K gross rental − $48K carry = <span style="color:#f87171">−$5K/yr net</span> (covered by asset appreciation + personal use value)</p>
+      <p style="margin-top:8px;"><strong style="color:#fff">Optimistic scenario:</strong> $68K gross rental − $48K carry = <span style="color:#4ade80">+$20K/yr net</span> before tax treatment</p>
+      <p style="margin-top:8px;"><strong style="color:#fff">Key lever:</strong> Getting established STR history from seller (or neighboring comps) is critical before underwriting. A property with $60K documented annual revenue at ask = meaningfully different investment than one with zero STR history.</p>
+      <p style="margin-top:8px;color:#6b7280;font-size:11px;">All estimates subject to VT meals & rooms tax (~9%), platform fees (~3%), mgmt fees (if applicable), and actual mortgage rate at closing.</p>
+    </div>
+  </div>
+
+  <!-- MARKET INTEL -->
+  <div class="tab-pane" id="tab-market">
+    <div class="section-title">Winhall Market Snapshot (March 2026)</div>
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h3>Active Listings (Winhall)</h3>
+        <div class="calc-big blue">37</div>
+        <div class="calc-sub">All types, all prices (Zillow)</div>
+      </div>
+      <div class="calc-card">
+        <h3>Total Sales (Recent)</h3>
+        <div class="calc-big">431</div>
+        <div class="calc-sub">Closed transactions on record</div>
+      </div>
+      <div class="calc-card">
+        <h3>Market Temperature</h3>
+        <div class="calc-big yellow">Balanced</div>
+        <div class="calc-sub">Not bidding-war territory</div>
+      </div>
+      <div class="calc-card">
+        <h3>SFH $600–850K Range</h3>
+        <div class="calc-big blue">Thin</div>
+        <div class="calc-sub">~3–6 active at any time</div>
+      </div>
+      <div class="calc-card">
+        <h3>Comp Range (3bd SFH)</h3>
+        <div class="calc-big">$600–700K</div>
+        <div class="calc-sub">Based on 2023–2024 closed sales</div>
+      </div>
+      <div class="calc-card">
+        <h3>To Stratton Base</h3>
+        <div class="calc-big green">7–15 min</div>
+        <div class="calc-sub">Bondville / Winhall to Stratton</div>
+      </div>
+    </div>
+
+    <div class="section-title">Why Stratton / Winhall</div>
+    <div class="cards">
+      <div class="card ideal">
+        <div class="card-header"><div><div class="card-address">🎿 Ikon Pass — Unlimited Access</div></div><span class="card-badge badge-ideal">PASS MATCH</span></div>
+        <div class="card-desc">Stratton is one of the few Vermont resorts on Ikon with <strong>unlimited days</strong> (vs. Killington which is capped at 7). For a family buying Ikon passes at ~$5,177/yr, ownership near Stratton maximizes pass value and eliminates day tickets entirely.</div>
+      </div>
+      <div class="card ideal">
+        <div class="card-header"><div><div class="card-address">🏔️ Multi-Mountain Access</div></div><span class="card-badge badge-ideal">LOCATION</span></div>
+        <div class="card-desc">Winhall sits at the center of Southern VT skiing. <strong>Stratton: 7 min. Bromley: 12 min. Magic Mountain: 18 min.</strong> Renters get options — major STR differentiator over single-mountain locations.</div>
+      </div>
+      <div class="card ideal">
+        <div class="card-header"><div><div class="card-address">📋 STR Regulatory Environment</div></div><span class="card-badge badge-ideal">FAVORABLE</span></div>
+        <div class="card-desc">Vermont does not currently have statewide STR restrictions. Winhall township is permit-friendly. VT imposes meals & rooms tax (~9%) on STR income. Confirm no HOA restrictions at specific property. Market has robust Airbnb/VRBO demand in ski season.</div>
+      </div>
+    </div>
+
+    <div class="section-title">Key Local Resources</div>
+    <div style="background:#13161f;border:1px solid #1e2332;border-radius:10px;padding:18px;font-size:13px;color:#d1d5db;line-height:1.8;">
+      <p><strong style="color:#fff">Local brokerages that know this market:</strong></p>
+      <ul style="margin-top:8px;margin-left:18px;">
+        <li><strong>William Raveis Winhall Real Estate</strong> — winhallrealestate.com, 42 VT Route 30, Bondville VT</li>
+        <li><strong>Stratton Real Estate</strong> — strattonrealestate.com — Stratton-specific, 55+ years in market</li>
+        <li><strong>Wohler Realty Group</strong> — wohlerrealtygroup.com — Stratton Mountain area specialist</li>
+        <li><strong>PrimeMLS</strong> — The local MLS; all serious agents use it</li>
+      </ul>
+      <p style="margin-top:12px;"><strong style="color:#fff">Mortgage:</strong> Spruce Mortgage — 802-863-8816 (pre-approval letter deadline: March 14)</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="tab-pane" id="tab-timeline">
+    <div class="section-title">Acquisition Timeline</div>
+    <ul class="timeline">
+      <li>
+        <div class="tl-dot red"></div>
+        <div class="tl-date">Mar 14, 2026</div>
+        <div class="tl-text"><strong>Pre-approval letter deadline</strong> — Call Spruce Mortgage (802-863-8816). Letter required to make competitive offers in this market. Without it, agents won't take showings seriously.</div>
+      </li>
+      <li>
+        <div class="tl-dot yellow"></div>
+        <div class="tl-date">Mar 2026</div>
+        <div class="tl-text"><strong>Schedule showings</strong> — 5 Linscott Rd (primary), 43 Beaver St (comparison), and any new listings that appear. Bring the Sold Comps tab to anchor pricing discussions.</div>
+      </li>
+      <li>
+        <div class="tl-dot yellow"></div>
+        <div class="tl-date">Mar–Apr 2026</div>
+        <div class="tl-text"><strong>Offer + negotiation</strong> — Use $620K (Red Brook Rd, May 2024) as anchor comp. On Linscott, fair offer range is $620–650K depending on condition and STR history. Ask for seller's Airbnb/VRBO revenue data.</div>
+      </li>
+      <li>
+        <div class="tl-dot blue"></div>
+        <div class="tl-date">Before Oct 2026</div>
+        <div class="tl-text"><strong>Buy Ikon passes before Oct 2026</strong> — Lock in 4yo at free (under-5 policy). Total family cost ~$5,177/yr for Ikon Full + Epic Local. Miss this window and she's priced in as a 5-year-old.</div>
+      </li>
+      <li>
+        <div class="tl-dot green"></div>
+        <div class="tl-date">2026–27 Season</div>
+        <div class="tl-text"><strong>First ski season as owners</strong> — Kids: 7yo, 5yo, 3yo. All ski free or reduced. Personal use ~4–6 weeks; STR remainder.</div>
+      </li>
+      <li>
+        <div class="tl-dot gray"></div>
+        <div class="tl-date">Year 2–3</div>
+        <div class="tl-text"><strong>Optimize STR operation</strong> — Dynamic pricing, hot tub addition if not present, professional photography, establish SuperHost status on Airbnb. Target 70+ nights booked per season.</div>
+      </li>
+    </ul>
+
+    <div class="section-title" style="margin-top:24px">Active Watches</div>
+    <div class="cards">
+      <div class="card" style="border-color:#854d0e">
+        <div class="card-address" style="font-size:13px">25 Benson Fuller Rd — Watch for price drop</div>
+        <div class="card-desc" style="margin-top:8px">Currently $860K — $10K over ceiling. Any reduction to $840K or below triggers a serious look. Monitor DOM weekly.</div>
+      </div>
+      <div class="card" style="border-color:#1e3a5f">
+        <div class="card-address" style="font-size:13px">New listings — Winhall under $800K</div>
+        <div class="card-desc" style="margin-top:8px">Morning MLS scan runs daily at 8am and watches for new SFH listings in the Winhall/Bondville/Stratton area under $950K. Alerts post to Ski Acquisition Telegram group.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

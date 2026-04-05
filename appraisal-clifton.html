@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primary Residence Appraisal</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e4e4e7; min-height: 100vh; }
+
+  /* Header (for standalone view) */
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0f1117 100%); border-bottom: 1px solid #2a2d3a; padding: 24px 32px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header .sub { font-size: 13px; color: #6b7280; margin-top: 4px; }
+
+  /* Content */
+  .content { padding: 24px 32px; }
+
+  /* Appraisal-specific styles - borrowed from dashboard */
+  .market-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .market-flag { font-size: 36px; }
+  .market-title h2 { font-size: 22px; font-weight: 700; color: #fff; }
+  .market-title p { font-size: 13px; color: #6b7280; margin-top: 3px; }
+  .market-score { margin-left: auto; text-align: center; background: #1e2332; border-radius: 10px; padding: 12px 20px; }
+  .market-score .score-num { font-size: 28px; font-weight: 800; color: #60a5fa; }
+  .market-score .score-label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  .verdict-box { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .verdict-box h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .verdict-text { font-size: 14px; color: #d1d5db; line-height: 1.6; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media(max-width: 768px) { .detail-grid { grid-template-columns: 1fr; } }
+  .detail-card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; }
+  .detail-card h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1a1d27; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 13px; color: #9ca3af; }
+  .stat-value { font-size: 13px; font-weight: 600; color: #e4e4e7; text-align: right; }
+  .stat-value.green { color: #4ade80; }
+  .stat-value.yellow { color: #fbbf24; }
+  .stat-value.red { color: #f87171; }
+
+  .full-width-card { background: #13161f; border: 1px solid #1e2332; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .full-width-card h3 { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview-table th { text-align: left; padding: 10px 12px; color: #6b7280; font-weight: 500; border-bottom: 1px solid #1e2332; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .overview-table td { padding: 11px 12px; border-bottom: 1px solid #1a1d27; vertical-align: middle; }
+  .overview-table tr:hover td { background: #14172080; }
+  .overview-table tr td:first-child { font-weight: 600; color: #e4e4e7; }
+  .updated { font-size: 11px; color: #374151; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="content">
+
+  <div class="market-header">
+    <div class="market-flag">🏠</div>
+    <div class="market-title">
+      <h2>Primary Residence Appraisal <span style="font-size:14px;font-weight:400;color:#6b7280">— 6705 Briarcroft St, Clifton, VA 20124</span></h2>
+      <p>Estimate for HELOC Application · Date: April 1, 2026</p>
+    </div>
+    <div class="market-score"><div class="score-num">$2.1M</div><div class="score-label">Estimated Value</div></div>
+  </div>
+
+  <div class="verdict-box">
+    <h3>Executive Summary</h3>
+    <p class="verdict-text">An appraisal of 6705 Briarcroft St, Clifton, VA 20124 was performed using the Sales Comparison Approach. The property is a fully custom, extensively rebuilt (2022) luxury home totaling 5,950 finished square feet (3,900 above grade, 2,000 finished below grade including a full in-law suite). It features custom glass and high-end finishes. The property's condition is assessed as "C2" (recently renovated or nearly new, no deferred maintenance). Based on comparable sales in the Clifton area for luxury homes of similar size and quality, the estimated fair market value is <strong style="color: #60a5fa;">$2,100,000</strong>. This valuation anticipates a premium due to the recent high-quality rebuild and custom features, which significantly differentiate it from older homes or standard luxury new construction.</p>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h3>Subject Property Details (6705 Briarcroft St)</h3>
+      <div class="stat-row"><span class="stat-label">Address</span><span class="stat-value">6705 Briarcroft St, Clifton, VA 20124</span></div>
+      <div class="stat-row"><span class="stat-label">Total Finished SF</span><span class="stat-value">5,950 sqft</span></div>
+      <div class="stat-row"><span class="stat-label">Above Grade SF</span><span class="stat-value">3,900 sqft</span></div>
+      <div class="stat-row"><span class="stat-label">Below Grade Finished SF</span><span class="stat-value">2,000 sqft (Half-below, incl. in-law suite)</span></div>
+      <div class="stat-row"><span class="stat-label">Bedrooms / Bathrooms</span><span class="stat-value">9 Beds / 5 Baths (6/3 AG, 3/2 BG + suite)</span></div>
+      <div class="stat-row"><span class="stat-label">Year Built / Effective Age</span><span class="stat-value">Rebuilt 2022 / 4 Years (as of 2026)</span></div>
+      <div class="stat-row"><span class="stat-label">Condition Rating</span><span class="stat-value green">C2 (Superior, Recently Renovated)</span></div>
+      <div class="stat-row"><span class="stat-label">Key Features</span><span class="stat-value">Custom build, extensive glass, luxury finishes</span></div>
+      <div class="stat-row"><span class="stat-label">Lot Size</span><span class="stat-value">~5 Acres (estimated based on comps)</span></div>
+      <div class="stat-row"><span class="stat-label">Current Assessed Value</span><span class="stat-value yellow">*Not available (online access denied)*</span></div>
+    </div>
+    <div class="detail-card">
+      <h3>Appraisal Methodology</h3>
+      <p class="verdict-text" style="font-size: 13px; margin-bottom: 10px;">This appraisal relies primarily on the <strong>Sales Comparison Approach</strong>, which compares the subject property to similar properties that have recently sold in the same market. Adjustments are made for differences in key characteristics such as size, age, condition, features, and lot size. Due to the limited public record updates for custom rebuilds, a strong emphasis was placed on identifying true "luxury" and "custom" characteristics rather than just raw square footage.</p>
+      <p class="verdict-text" style="font-size: 13px;">The property's rebuild in 2022 and "C2" condition rating imply an effective age of a newly constructed or extensively renovated home. This significantly impacts comparability with older sales. Qualitative adjustments for custom finishes and architectural details were also factored into the final value range.</p>
+      <h3 style="margin-top: 20px;">Clifton Market Overview</h3>
+      <div class="stat-row"><span class="stat-label">Median List PPSF (20124)</span><span class="stat-value">$330/sqft</span></div>
+      <div class="stat-row"><span class="stat-label">Luxury New Build Cost (VA)</span><span class="stat-value">$378-$589/sqft (build only)</span></div>
+      <div class="stat-row"><span class="stat-label">Estate Properties</span><span class="stat-value green">Often >$2M</span></div>
+      <div class="stat-row"><span class="stat-label">Market Trend (2023-2024)</span><span class="stat-value yellow">Stable to moderate growth in luxury segment</span></div>
+    </div>
+  </div>
+
+  <div class="full-width-card">
+    <h3>Comparable Sales Analysis</h3>
+    <table class="overview-table">
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Sold Date / List Price</th>
+          <th>Size (SF)</th>
+          <th>Beds / Baths</th>
+          <th>Lot Size</th>
+          <th>PPSF</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Subject Property</strong></td>
+          <td>N/A (Appraisal Date: 4/1/2026)</td>
+          <td>5,950</td>
+          <td>9 / 5</td>
+          <td>~5 Acres</td>
+          <td>$353 (est.)</td>
+          <td>2022 Custom Rebuild, Luxury Finishes, C2 Condition</td>
+        </tr>
+        <tr>
+          <td>11604 Lawter Ln, Clifton, VA 20124</td>
+          <td>Sold Jan 4, 2023: $1,760,614</td>
+          <td>5,400</td>
+          <td>4 / 4.5</td>
+          <td>5.01 Acres</td>
+          <td>$326.04</td>
+          <td>Built 2022. Strongest comp for age, quality, acreage.</td>
+        </tr>
+        <tr>
+          <td>6612 Briarcroft St, Clifton, VA 20124</td>
+          <td>Listed: $1,400,000</td>
+          <td>5,090</td>
+          <td>6 / 5.5</td>
+          <td>5 Acres</td>
+          <td>$275.05 (list)</td>
+          <td>Built 1973, but "beautifully updated." Close proximity. Use as market indicator.</td>
+        </tr>
+        <tr>
+          <td>13907 Whetstone Manor Ct, Clifton, VA 20124</td>
+          <td>Listed: $1,399,900</td>
+          <td>5,023</td>
+          <td>6 / 6</td>
+          <td>(Details N/A)</td>
+          <td>$278.70 (list)</td>
+          <td>New Construction (2025). Good for new build baseline, but may lack custom features.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="updated" style="margin-top: 15px;">*Note: Due to limited access to comprehensive sold data for all custom luxury homes, additional qualitative adjustments were made based on property features and condition.</p>
+  </div>
+
+  <div class="full-width-card">
+    <h3>Valuation Summary</h3>
+    <p class="verdict-text" style="margin-bottom: 10px;">The subject property at 6705 Briarcroft St presents unique characteristics as a custom-built, fully rebuilt (2022) luxury residence with superior finishes and an expansive layout, including a dedicated in-law suite. These features place it at the higher end of the luxury market in Clifton, VA.</p>
+    <p class="verdict-text" style="margin-bottom: 10px;">Considering the strongest comparable sale (11604 Lawter Ln) and adjusting for the subject's larger size, superior bedroom/bathroom count, dedicated in-law suite, and custom luxury details beyond standard new construction, an upward adjustment is warranted.</p>
+    <div class="stat-row" style="border-bottom: none;"><span class="stat-label" style="font-size: 16px;"><strong>Estimated Appraised Value Range</strong></span><span class="stat-value" style="font-size: 16px;"><strong>$1,900,000 – $2,200,000</strong></span></div>
+    <div class="stat-row"><span class="stat-label" style="font-size: 18px; color: #60a5fa;"><strong>FINAL ESTIMATED VALUE</strong></span><span class="stat-value" style="font-size: 18px; color: #60a5fa;"><strong>$2,100,000</strong></span></div>
+    <p class="updated" style="margin-top: 15px;">This estimate is provided for informational purposes in anticipation of a HELOC application and is not a formal USPAP-compliant appraisal.</p>
+  </div>
+</div>
+
+</body>
+</html>
