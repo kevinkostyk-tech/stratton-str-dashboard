@@ -1,0 +1,16 @@
+# Workspace/agent files — never commit
+AGENTS.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+MEMORY.md
+SOUL.md
+TOOLS.md
+USER.md
+memory/
+.openclaw/
+*.py
+rebuild*.txt
+*_base.html
+*_clean.html
+*_final.html
